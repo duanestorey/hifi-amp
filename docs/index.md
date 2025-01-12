@@ -1,10 +1,10 @@
 ## Overview
 
-This project entails the two-year effort of myself, Duane Storey, to create a fully-functional, extensible, open-source high-fidelity home-audio amplifier with built-in active crossover and room correction ability. Everything in this repository is licensed under the creative commons, and is free to use for non-commercial and hobbyist usage. Please see the license section for more details.
+This project entails the two-year effort of myself, Duane Storey, to create a fully-functional, extensible, open-source high-fidelity home-audio amplifier with built-in active crossover and room correction ability. 
 
-### Contact
+### License 
 
-You can contact me directly at duanestorey (at) gmail.com, or by opening a discussion or issue on the [main repository page](https://github.com/duanestorey/hifi-amp). 
+Everything in this repository is licensed under the [BY-NC-SA 4.0creative commons license](https://creativecommons.org/licenses/by-nc-sa/4.0/) which allows for non-commercial usage. For commercial inquiries, please contact me directly.
 
 ### Contents
 
@@ -35,3 +35,7 @@ You can contact me directly at duanestorey (at) gmail.com, or by opening a discu
     - [DIP to SOIC](soic.md)
 - [Build](build.md)
 - [Test](test.md)
+
+### Contact
+
+You can contact me directly at duanestorey (at) gmail.com, or by opening a discussion or issue on the [main repository page](https://github.com/duanestorey/hifi-amp). 
