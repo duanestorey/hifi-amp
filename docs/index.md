@@ -15,4 +15,8 @@ This project entails the two-year effort of myself, Duane Storey, to create a fu
 - [Software](software.md)
 - Hardware
     - [Main PSU](psu.md)
+    - [Accessory PSU](dual-psu.md)
     - [Ground Lift](lift.md)
+    - [ADC][adc.md]
+    - [DAC][dac.md]
+    - [Microprocessor.md](uproc.md)
