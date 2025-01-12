@@ -14,7 +14,7 @@ The following are the rough technical specifications for the completed amplifier
 | TOSLINK Digital Inputs | 1 |
 | Vinyl | Built-in RIAA amplifier |
 | Internal Digital | 24-bit 96kHz | 
-| Active Crossovers | Supported via Biquads |
+| Active Crossovers | Supported via Programmabale Biquads |
 | Biquads supported | More than 100/chan at 96kHz |
 | Signal Processing | 3x240 MHz 32-bit Tensilica |
 | Output DAC | 112db range, -93db THD |
