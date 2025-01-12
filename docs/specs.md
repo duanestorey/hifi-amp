@@ -7,7 +7,7 @@ The following are the rough technical specifications for the completed amplifier
 | Speakers | 2.1 |
 | Channels | 4.1 |
 | Subwoofer | Auto-generated |
-| Sub xOver Frequency | Programmable |
+| Sub Crossover Freqn | Programmable (80Hz typical) |
 | Output Power | > 68W x 2 (4ohm) |
 | THD+N @ Power | 0.03% |
 | RCA Inputs | 6 |
