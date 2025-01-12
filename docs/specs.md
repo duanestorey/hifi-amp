@@ -18,7 +18,7 @@ The following are the rough technical specifications for the completed amplifier
 | Active Crossovers | Supported via Programmabale Biquads |
 | Biquads supported | More than 100 at 96kHz |
 | Signal Processing | 3x240 MHz 32-bit Tensilica |
-| Output DAC | 112db range, -93db THD |
-| Input ADC | 110db SND, -93db THD |
+| Output DAC | 112db SNR, -93db THD |
+| Input ADC | 110db SNR, -93db THD |
 | Configuration | Wifi-Support |
 | Programming | Over USB |
