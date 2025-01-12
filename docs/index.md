@@ -4,7 +4,7 @@ This project entails the two-year effort of myself, Duane Storey, to create a fu
 
 ### License 
 
-Everything in this repository is licensed under the [BY-NC-SA 4.0creative commons license](https://creativecommons.org/licenses/by-nc-sa/4.0/) which allows for non-commercial usage. For commercial inquiries, please contact me directly.
+Everything in this repository is licensed under the [BY-NC-SA 4.0 creative commons license](https://creativecommons.org/licenses/by-nc-sa/4.0/) which allows for non-commercial usage - if you're a hobbyist or DIY enthusiast, you are free to use the code and designs under the terms linked above. For commercial inquiries, please contact me directly.
 
 ### Contents
 
