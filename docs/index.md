@@ -1,5 +1,6 @@
+---
 title: "Hifi Amplifier"
-----
+---
 
 ## Overview
 
