@@ -1,8 +1,3 @@
----
-site:
-  title: "Hifi Amplifier"
----
-
 ## Overview
 
 This project entails the two-year effort of myself, Duane Storey, to create a fully-functional, extensible, open-source high-fidelity home-audio amplifier with built-in active crossover and room correction ability. 
@@ -13,11 +8,12 @@ This project entails the two-year effort of myself, Duane Storey, to create a fu
     - [History](history.md)
     - [Philosophy](philosphy.md)
     - [Design Guides](design-guides.md)
+- [Enclosures](enclosures.md)
 - [Software](software.md)
 - Hardware
     - [Main PSU](psu.md)
     - [Accessory PSU](dual-psu.md)
     - [Ground Lift](lift.md)
-    - [ADC][adc.md]
-    - [DAC][dac.md]
+    - [ADC](adc.md)
+    - [DAC](dac.md)
     - [Microprocessor.md](uproc.md)
