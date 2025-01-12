@@ -11,3 +11,5 @@
 | TOSLINK Digital Inputs | 1 |
 | Digital | 24-bit 96kHz | 
 | Output DSPs | 112db range, -93db THD |
+| Input DSPs | 110db SND, -93db THD |
+| Signal Processing | 3x240 MHz ARM processors |
