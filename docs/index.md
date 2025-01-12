@@ -4,7 +4,7 @@ This project entails the two-year effort of myself, Duane Storey, to create a fu
 
 ### Contents
 
-[History](history.md)
-[Philosophy](philosphy.md)
-[Design Guides](design-guides.md)
+- [History](history.md)
+- [Philosophy](philosphy.md)
+- [Design Guides](design-guides.md)
 
