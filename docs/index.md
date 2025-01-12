@@ -1,1 +1,1 @@
-### Documentation
+## Amplifier Documentation
