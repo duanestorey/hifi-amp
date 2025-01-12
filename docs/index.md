@@ -10,4 +10,4 @@ This project entails the two-year effort of myself, Duane Storey, to create a fu
 - [Software](software.md)
 - Hardware
     - [Main PSU](psu.md)
-    - [Ground Lift)(lift.md)
+    - [Ground Lift](lift.md)
