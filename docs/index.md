@@ -7,4 +7,6 @@ This project entails the two-year effort of myself, Duane Storey, to create a fu
 - [History](history.md)
 - [Philosophy](philosphy.md)
 - [Design Guides](design-guides.md)
-
+- [Software](software.md)
+- #### Hardware
+-- [Main PSU](psu.md)
