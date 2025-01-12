@@ -8,4 +8,6 @@
 | THD+N @ Power | 0.03% |
 | RCA Inputs | 6 |
 | SPDIF Digital Inputs | 4 |
-| TOSLINK Digital Inputs | 1 | 
+| TOSLINK Digital Inputs | 1 |
+| Digital | 24-bit 96kHz | 
+| Output DSPs | 112db range, -93db THD |
