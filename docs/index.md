@@ -8,6 +8,9 @@ Everything in this repository is licensed under the [BY-NC-SA 4.0 creative commo
 
 ### Contents
 
+Please browse the following sections for more information about the project.
+
+- [Technical Specs](specs.md)
 - [History](history.md)
 - [Philosophy](philosophy.md)
 - [Design Guides](design-guides.md)
