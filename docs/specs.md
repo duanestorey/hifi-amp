@@ -8,7 +8,8 @@ The following are the rough technical specifications for the completed amplifier
 | Channels | 4.1 |
 | Subwoofer | Auto-generated |
 | Sub Crossover Freqn | Programmable (80Hz typical) |
-| Output Power | > 68W x 2 (4ohm) |
+| Output Power (8Ω)| > 50W x 2 |
+| Output Power (6Ω)| > 68W x 2 |
 | THD+N @ Power | 0.03% |
 | Display | 4x16 alphanumeric LCD |
 | RCA Inputs | 6 |
