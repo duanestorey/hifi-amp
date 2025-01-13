@@ -52,7 +52,7 @@ Please browse the following sections for more information about the project.
     - [SPDIF & DSP](build/dsp.md)
     - [ADC & DAC](build/adc-dac.md)
     - [Monoblocks](build/mono.md)
-    - [Channel Amplifiers](build/mono.md)
+    - [Channel Amplifiers](build/lm3886.md)
     - [Monoblock Back Panel](build/mono-back-panel.md)
 - [Test](test.md)
 
