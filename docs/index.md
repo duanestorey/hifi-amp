@@ -26,7 +26,7 @@ Please browse the following sections for more information about the project.
     - [DAC](hardware/dac.md)
     - [Digital Signal Processors](hardware/dsp.md)
     - [FTDI USB to UART](hardware/ftdi.md)
-    - [GPIO Extender](hardware/gpio-extend.md)
+    - [GPIO Extender](hardware/extend.md)
     - [Ground Lift](hardware/lift.md)
     - [Main PSU](hardware/psu.md)
     - [Microprocessor](hardware/uproc.md)
