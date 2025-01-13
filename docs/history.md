@@ -6,4 +6,6 @@ Ever since I saw that, I was determined to eventually build an amplifier myself.
 
 When COVID19 happened, I was in Spain and mostly confined in my apartment for months on end. During that time, I decided to start working on this amplifier project. It started as a digitally-enhanced two-channel vacuum tube amplifier, but eventually morphed over time into it's current form based on how I actually listen to music and watch movies.  At one point the amplifier tried to support a full 5.1 dolby digital solution, but it seemed like overkill and created more problems than it solved.
 
+This is version 1.0 of this entire amplifier project. As time goes on, I hope to continue to improve and refine it based on feedback from others.
+
 [Return to main page](/)
