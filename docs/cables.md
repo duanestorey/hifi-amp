@@ -29,8 +29,8 @@ A 7-pin connector is used between the amplifier and each monoblock, and has the 
 | Pin # | Description |
 | ----- | ----------- |
 | 1 | Shield |
-| 2 | Power Ground |
-| 3 | +POWER (32V) |
+| 2 | +POWER (32V) |
+| 3 | Power Ground |
 | 4 | -POWER (-32V) |
 | 5 | SDA |
 | 6 | SDL |
@@ -45,8 +45,8 @@ A 5-pin connector is also used between the amplifier and each monoblock, and has
 | Pin # | Description |
 | ----- | ----------- |
 | 1 | Shield |
-| 2 | Signal Ground |
-| 3 | Woofer Signal |
+| 2 | Woofer Signal |
+| 3 | Signal Ground |
 | 4 | Tweeter Signal |
 | 5 | Monoblock Enable |
 
