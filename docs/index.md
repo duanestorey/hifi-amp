@@ -18,7 +18,7 @@ Please browse the following sections for more information about the project.
 - [Cables & Connectors](cables.md)
 - [Software](software/index.md)
 - [Hardware](hardware/index.md)
-- [Build](build.md)
+- [Build](build/index.md)
 - [Test](test.md)
 
 ### Contact
