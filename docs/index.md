@@ -32,7 +32,7 @@ Please browse the following sections for more information about the project.
     - [Microprocessor](hardware/uproc.md)
     - [Monoblocks](hardware/mono.md)
     - [RCA Inputs](hardware/inputs.md)
-    - [Rectifier](hardware/rectifier.md)
+    - [Rectifier](hardware/rectify.md)
     - [SPDIF/Digital Inputs](hardware/spdif.md)
     - [Vinyl RIAA Amplifier](hardware/vinyl.md)
     - [DIP to SOIC](hardware/soic.md)
