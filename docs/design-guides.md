@@ -10,9 +10,9 @@ Whenever possible, PCBs should be 55mm x 95mm so that they can be stackable. Fin
 
 The majority of resistors used in the proejct are 0603 sized, unless larger due to power requirements. Resistors directly in the audio path are typically thin-film resistors.
 
-Capacitors are usually 0805, as is the case for 0.1uF decoupling capacitors, and 1206 for 1uf - 10uf bulk capacitors. All decoupling and bulk capacitors are specified with a X7R dielectric.  Any capacitors directly in the audio path use a NP0/C0G dielectric, sized based on availability. 
+Capacitors are usually 0805, as is the case for 0.1uF decoupling capacitors, and 1206 for 1uf - 10uf bulk capacitors. All decoupling and bulk capacitors are specified with a X7R dielectric.  Any SMD capacitors directly in the audio path use a NP0/C0G dielectric, sized based on availability. 
 
-### LED lights and resistors
+### LED lights & Current Limiting Resistors
 
 The following voltages and LED colours should be used for consistency. In general, all LEDs are set at 2ma of current and should be 0603 size.
 
