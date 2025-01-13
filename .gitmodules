@@ -1,6 +1,0 @@
-[submodule "hifi-amp-pcbs"]
-	path = hifi-amp-pcbs
-	url = https://github.com/duanestorey/hifi-amp-pcbs.git
-[submodule "hifi-amp-code"]
-	path = hifi-amp-code
-	url = https://github.com/duanestorey/hifi-amp-code.git
