@@ -13,3 +13,5 @@ The main amplifier uses the Pesante 2U case with 10mm front panel from [modushop
 ![Monoblocks](images/mini-dissipante.png)
 
 There are also two monoblocks (technically duo-blocks, as they contain two channels each) that use the Mini-dissipante 2U cases also from [moduship.biz](https://modushop.biz/site/index.php?route=product/product&path=284&product_id=735).
+
+[Return to main page](/)
