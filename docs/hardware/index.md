@@ -1,5 +1,9 @@
 ## Hardware
 
+The following are the entire collection of PCBs used to build the amplifier. The majority of these PCBS are two layer, but are few of them are also four layer. 
+
+All of these PCBs were created using [Kicad](https://www.kicad.org/), a great open-source electronics design and automation suite.
+
 ### Contents
 
 - [Accessory PSU](dual-psu.md)
