@@ -23,3 +23,5 @@ The following are the rough technical specifications for the completed amplifier
 | Input ADC | 110db SNR, -93db THD |
 | Configuration | Wifi-Support |
 | Programming | Over USB |
+
+[Return to main page](/)
