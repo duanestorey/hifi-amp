@@ -23,6 +23,7 @@ The following are the rough technical specifications for the completed amplifier
 | Signal Processing | 3x240 MHz dual-core 32-bit Tensilica |
 | Output DAC | 112db SNR, -93db THD |
 | Input ADC | 110db SNR, -93db THD |
+| IR External Remote | Supported at 38kHz |
 | Configuration | Wifi-Support |
 | Programming | Over USB |
 
