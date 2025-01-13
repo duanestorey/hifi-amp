@@ -2,7 +2,7 @@
 
 ## Digital Signal Processing (DSP)
 
-This board can process one stereo I2S audio stream in six independent DSP pipelines configurable over I2C. 
+This board can convert one stereo I2S audio stream into six independent signal processing pipelines configurable over I2C. 
 
 ### Version History
 
