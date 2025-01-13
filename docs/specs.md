@@ -20,7 +20,7 @@ The following are the rough technical specifications for the completed amplifier
 | Internal Digital | 24-bit 96kHz | 
 | Active Crossovers | Supported via Programmabale Biquads |
 | Biquads supported | More than 100 at 96kHz |
-| Signal Processing | 3x240 MHz dual-core 32-bit Tensilica |
+| Signal Processing | 3x240 MHz dual-core 32-bit Xtensa LX7 |
 | Output DAC | 112db SNR, -93db THD |
 | Input ADC | 110db SNR, -93db THD |
 | IR External Remote | Supported at 38kHz |
