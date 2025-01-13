@@ -2,6 +2,6 @@
 
 The main amplifier code is an ESP32 IDF application built on FreeRTOS. 
 
-You can find the main amplifier code [in the Github repository](https://github.com/duanestorey/hifi-amp-code).
+You can find the main amplifier code [in the Github repository](https://github.com/duanestorey/hifi-amp/code).
 
 [Return to main page](/)
