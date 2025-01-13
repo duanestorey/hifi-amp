@@ -36,7 +36,7 @@ A 7-pin connector is used between the amplifier and each monoblock, and has the 
 | 6 | SDL |
 | 7 | 3.3V |
 
-The shield and power ground should be connected together at the amplifier end only. The shield pin should be left floating in the monoblock.
+To prevent ground loops, the shield and power ground should be connected together at the amplifier end only. The shield pin should be left floating in the monoblock.
 
 #### 5-Pin connector
 
@@ -50,7 +50,7 @@ A 5-pin connector is also used between the amplifier and each monoblock, and has
 | 4 | Tweeter Signal |
 | 5 | Monoblock Enable |
 
-The shield and signal ground should be connected together at the amplifier end only.  The shield pin should be left floating in the monoblock.
+To prevent ground loops, the shield and signal ground should be connected together at the amplifier end only.  The shield pin should be left floating in the monoblock.
 
 The monoblock enable pin is an active HIGH signal that tells the monoblocks to exit standby mode and get ready to amplify sound.  In the case of the LM3886 amplifiers, it causes the -0.5ma current to be drawn from the LM3886 MUTE pin, which enables the output circuitry.
 
