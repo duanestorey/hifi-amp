@@ -10,7 +10,8 @@ The following are the rough technical specifications for the completed amplifier
 | Sub Crossover Freqn | Programmable (80Hz typical) |
 | Output Power (8Ω)| > 50W x 2 |
 | Output Power (6Ω)| > 68W x 2 |
-| THD+N @ Power | 0.03% |
+| THD+N @ Full Power | 0.03% |
+| THD+N @ Normal Levels | 0.005% |
 | Display | 4x16 alphanumeric LCD |
 | RCA Inputs | 6 |
 | SPDIF Digital Inputs | 4 |
