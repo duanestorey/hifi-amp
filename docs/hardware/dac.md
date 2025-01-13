@@ -11,5 +11,6 @@ The board processes three stereo digital I2S channels (representing left woofer 
 ### Speciality Components
 
 - 3x PCM5122 - 2V RMS DIRECTPATH 112dB Audio Stereo DAC with PCM Interface and Fixed Audio Processing
+- DA101C audio isolation transformer
 
 [Return to main page](/)
