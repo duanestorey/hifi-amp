@@ -10,7 +10,7 @@ The main amplifier uses the Pesante 2U case with 10mm front panel from [modushop
 
 #### Front Panel
 
-The front panel was drilled using a CNC machine using the following template by modushop.biz using one of their optional add-ons. 
+The front panel was drilled using a CNC machine using the [front-panel template](https://github.com/duanestorey/hifi-amp/tree/main/cad) by modushop.biz using one of their optional add-ons. 
 
 ![Front Panel](images/front-panel.png)
 
