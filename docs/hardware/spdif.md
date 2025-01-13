@@ -11,5 +11,6 @@ This board provides decoding for up to 5 SPDIF/TOSLINK digital audio connections
 ### Speciality Compenents
 
 * DIX9211 216-kHz Digital Audio Interface Transceiver
+* 5x DA101C audio isolation transformer
 
 [Return to main page](/)
