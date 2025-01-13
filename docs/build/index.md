@@ -19,3 +19,5 @@
 - [Monoblocks](mono.md)
 - [Channel Amplifiers](lm3886.md)
 - [Monoblock Back Panel](mono-back-panel.md)
+
+[Return to main page](/)

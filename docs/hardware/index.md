@@ -23,3 +23,5 @@ All of these PCBs were created using [Kicad](https://www.kicad.org/), a great op
 - [SPDIF/Digital Inputs](spdif.md)
 - [Vinyl RIAA Amplifier](vinyl.md)
 - [DIP to SOIC](soic.md)
+
+[Return to main page](/)
