@@ -1,7 +1,7 @@
 
 ![Dual PSU PCB](images/dual-psu.png)
 
-## Dual Accessory Power Supply
+## Accessory Power Supply
 
 This board produces several low-voltage power supplies for use in the amplifier: +/- 9.5V for analog operational amplifiers, 3.3V and 5V for digital logic, and 12V for relays.
 
