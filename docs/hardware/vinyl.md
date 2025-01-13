@@ -13,3 +13,5 @@ This is a phono/vinyl pre-amp with adjustable gain from about 40dB up to 60dB. I
 * OPA1612 Burr Brown operation amplifiers
 * Various C0G and thin film resistors
 * Nichicon Muse ES 25V 10uF
+
+[Return to main page](/)
