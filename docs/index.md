@@ -15,6 +15,7 @@ Please browse the following sections for more information about the project.
 - [Philosophy](philosophy.md)
 - [Design Guides](design-guides.md)
 - [Enclosures](enclosures.md)
+- [Cables & Connectors](cables.md)
 - [Software](software/index.md)
     - [Amplifier](software/amp.md)
     - [DSP](software/dsp.md)
