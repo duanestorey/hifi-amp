@@ -16,9 +16,9 @@ Please browse the following sections for more information about the project.
 - [Design Guides](design-guides.md)
 - [Enclosures](enclosures.md)
 - [Cables & Connectors](cables.md)
-- [Software](software/index.md)
 - [Hardware](hardware/index.md)
 - [Build](build/index.md)
+- [Software](software/index.md)
 - [Test](test.md)
 
 ### Contact
