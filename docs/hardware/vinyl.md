@@ -1,3 +1,3 @@
 ## Vinyl Amplifier with RIAA Compensation
 
-(!images/vinyl.png)
+![Vinyl PCB](images/vinyl.png)
