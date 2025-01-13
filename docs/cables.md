@@ -22,6 +22,8 @@ The analog and SPDIF inputs into the amplifier use a standard RCA plug which has
 
 Several XLR audio connectors are used in the project.  
 
+#### 7-Pin Connector
+
 A 7-pin connector is used between the amplifier and each monoblock, and has the following pin designation.
 
 | Pin # | Description |
@@ -34,6 +36,10 @@ A 7-pin connector is used between the amplifier and each monoblock, and has the 
 | 6 | SDL |
 | 7 | 3.3V |
 
+The shield and power ground should be connected together at the amplifier end only. The shield pin should be left floating in the monoblock.
+
+#### 5-Pin connector
+
 A 5-pin connector is also used between the amplifier and each monoblock, and has the following pin designation.
 
 | Pin # | Description |
@@ -42,7 +48,11 @@ A 5-pin connector is also used between the amplifier and each monoblock, and has
 | 2 | Signal Ground |
 | 3 | Woofer Signal |
 | 4 | Tweeter Signal |
-| 5 | Enable |
+| 5 | Monoblock Enable |
+
+The shield and signal ground should be connected together at the amplifier end only.  The shield pin should be left floating in the monoblock.
+
+The monoblock enable pin is an active HIGH signal that tells the monoblocks to exit standby mode and get ready to amplify sound.  In the case of the LM3886 amplifiers, it causes the -0.5ma current to be drawn from the LM3886 MUTE pin, which enables the output circuitry.
 
 [Return to main page](/)
 
