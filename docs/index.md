@@ -1,4 +1,4 @@
-![Amplifier Front](images/amp-front.png)
+![Amplifier Front](images/amplifier-front.png)
 
 ## Overview
 
