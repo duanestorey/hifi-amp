@@ -25,7 +25,7 @@ Diagnostics::dumpAllTemperatures() {
 void 
 Diagnostics::dumpAllPower() {
     for ( std::map<std::string, PowerSensorPtr>::iterator i = mPowerSensors.begin(); i != mPowerSensors.end(); i++ ) {
-        AMP_DEBUG_I( "Power of [%s] is [%0.2f]", i->first.c_str(), i->second->getPowerUsage() );
+        AMP_DEBUG_I( "Power Sensor of [%s] is [%0.2f]V, [%0.2f]ma, [%0.2f]W", i->first.c_str(), i->second->getVoltage(), i->second->getCurrent(), i->second->getPowerUsage() );
     }
 }
 

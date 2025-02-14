@@ -13,7 +13,7 @@ MDNS::MDNS() {
 void
 MDNS::start() {
     //set hostname
-    mdns_hostname_set( "amp" ) ;
+    mdns_hostname_set( "amp2" ) ;
     mdns_instance_name_set( "Hifi Audio Amplifier" );
     mdns_service_add( NULL, "_http", "_tcp", 80, NULL, 0 );
 }

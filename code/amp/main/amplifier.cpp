@@ -157,9 +157,13 @@ Amplifier::init() {
     mI2C->scanBus();
 
     /*
--> found device with address 0x44 - INA260
--> found device with address 0x47 - INA260?
--> found device with address 0x48 - temperatuer sensor
+-> found device with address 0x27 - LCD
+-> found device with address 0x40 - 5V power meter
+-> found device with address 0x41 - 3V3 power meter
+-> found device with address 0x44 - Op amp power meter
+-> found device with address 0x45 - Buck power meter
+-> found device with address 0x48 - CPU temp sensor
+-> found device with address 0x4c - PSU temp sensor
 
 ...scan completed!
 
@@ -184,17 +188,14 @@ Amplifier::init() {
     AMP_DEBUG_I( "Setting up temperature sensors" );
 
     mDiagnostics->addTemperatureSensor( "CPU", TempSensorPtr( new TMP100( 0x48, mI2C ) ) );
-    mDiagnostics->addTemperatureSensor( "PSU", TempSensorPtr( new TMP100( 0x50, mI2C ) ) );
-    mDiagnostics->addTemperatureSensor( "LEFT", TempSensorPtr( new TMP100( 0x49, mI2C ) ) );
-    mDiagnostics->addTemperatureSensor( "RIGHT", TempSensorPtr( new TMP100( 0x50, mI2C ) ) );
+    mDiagnostics->addTemperatureSensor( "PSU", TempSensorPtr( new TMP100( 0x4c, mI2C ) ) );
 
     // Setup power sensors
     AMP_DEBUG_I( "Setting up power sensors" );
-    mDiagnostics->addPowerSensor( "PSU_DIGITAL", PowerSensorPtr( new INA260( 0x44, mI2C ) ) );
-    mDiagnostics->addPowerSensor( "TEST", PowerSensorPtr( new INA260( 0x45, mI2C ) ) );
-    mDiagnostics->addPowerSensor( "TEST2", PowerSensorPtr( new INA260( 0x48, mI2C ) ) );
-    mDiagnostics->addPowerSensor( "TEST3", PowerSensorPtr( new INA260( 0x4c, mI2C ) ) );
-    mDiagnostics->addPowerSensor( "PSU_CHANNEL", PowerSensorPtr( new INA260( 0x47, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "5V", PowerSensorPtr( new INA260( 0x40, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "3V3", PowerSensorPtr( new INA260( 0x41, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "OPAMP", PowerSensorPtr( new INA260( 0x44, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "BUCK", PowerSensorPtr( new INA260( 0x45, mI2C ) ) );
 
     // setup channel selector
     AMP_DEBUG_I( "Setting up channel selectors" );
@@ -230,7 +231,7 @@ Amplifier::init() {
     mNeedsTick.push_back( std::dynamic_pointer_cast<Tick>( mInputButton ) );
 
     AMP_DEBUG_I( "Setting up web server" );
-    mWebServer = HTTPServerPtr( new HTTPServer( mAmplifierQueue ) );
+    mWebServer = HTTPServerPtr( new HTTPServer( mAmplifierQueue, mDiagnostics ) );
 
     // Setup timers
     AMP_DEBUG_I( "Setting up periodic timers" );
@@ -488,10 +489,10 @@ Amplifier::handleAmplifierThread() {
                     break;
                 case Message::MSG_TIMER:
                     if ( msg.mParam == mTimerID ) {
-                        AMP_DEBUG_I( "In Periodic Timer Event, Temp is %0.2f", mDiagnostics->getTemperature( "CPU" ) );
-                        AMP_DEBUG_I( "In Periodic Timer Event, Power of PSU-Digital is %0.2f", mDiagnostics->getVoltage( "TEST" ) );
-                        AMP_DEBUG_I( "In Periodic Timer Event, Power of PSU-Channel is %0.2f", mDiagnostics->getVoltage( "TEST2" ) );
-                        AMP_DEBUG_I( "In Periodic Timer Event, Power of PSU-Channel is %0.2f", mDiagnostics->getVoltage( "TEST3" ) );
+                        mDiagnostics->dumpAllTemperatures();
+                        AMP_DEBUG_I( "Buck => %0.2f", mDiagnostics->getPower( "BUCK" ) );
+                        mDiagnostics->dumpAllPower();
+                       
                         asyncUpdateDisplay();
                     } else if ( msg.mParam == mButtonTimerID ) {
                         // Process all button ticks

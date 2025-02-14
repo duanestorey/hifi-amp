@@ -18,12 +18,13 @@
 
 #include "debug.h"
 #include <string>
+#include <ranges>
 #include "state.h"
 
 #define HTTPD_307 "307 Temporary Redirect"
 #define HTTPD_404 "404 Not Found"
 
-HTTPServer::HTTPServer( QueuePtr queue ) : mQueue( queue ), mServerHandle( 0 ) {
+HTTPServer::HTTPServer( QueuePtr queue, DiagnosticsPtr diag ) : mQueue( queue ), mServerHandle( 0 ), mDiag( diag ) {
 
 }
 
@@ -110,7 +111,18 @@ esp_err_t http_404( httpd_req_t *req ) {
     return server->handleResponse( HTTPServer::SERVER_NOT_FOUND, req );
 }
 
+void 
+HTTPServer::replaceWithFloat( std::string &str, const char *find, float replace ) {
+    std::string *resp = new std::string( str );
 
+    char temp[ 128 ];
+    sprintf( temp, "%0.2f", replace );
+
+    *resp = replaceAll( str, find, temp );
+    str = *resp;
+
+    delete resp;
+}
 
 esp_err_t 
 HTTPServer::handleResponse( uint8_t requestType, httpd_req_t *req ) {
@@ -129,7 +141,27 @@ HTTPServer::handleResponse( uint8_t requestType, httpd_req_t *req ) {
             return httpd_resp_send(req, NULL, 0 );
             break;
         case HTTPServer::SERVER_MAIN:
-            return httpd_resp_send(req, mMainPage.c_str(), HTTPD_RESP_USE_STRLEN );
+            {
+                std::string resp = mMainPage;
+                {
+                    replaceWithFloat( resp, "{$chan_voltage}", mDiag->getVoltage( "CHAN" ) );
+                    replaceWithFloat( resp, "{$chan_power}", mDiag->getPower( "CHAN" ) );
+                    replaceWithFloat( resp, "{$second_voltage}", mDiag->getVoltage( "SECOND" ) );
+                    replaceWithFloat( resp, "{$second_power}", mDiag->getPower( "SECOND" ) );
+                    replaceWithFloat( resp, "{$buck_voltage}", mDiag->getVoltage( "BUCK" ) );
+                    replaceWithFloat( resp, "{$buck_power}", mDiag->getPower( "BUCK" ) );
+                    replaceWithFloat( resp, "{$5v_voltage}", mDiag->getVoltage( "5V" ) );
+                    replaceWithFloat( resp, "{$5v_power}", mDiag->getPower( "5V" ) );
+                    replaceWithFloat( resp, "{$opamp_voltage}", mDiag->getVoltage( "OPAMP" ) );
+                    replaceWithFloat( resp, "{$opamp_power}", mDiag->getPower( "OPAMP" ) );
+                    replaceWithFloat( resp, "{$3v3_voltage}", mDiag->getVoltage( "3V3" ) );
+                    replaceWithFloat( resp, "{$3v3_power}", mDiag->getPower( "3V3" ) );
+                    replaceWithFloat( resp, "{$cpu_temp}", mDiag->getTemperature( "CPU" ) );
+                    replaceWithFloat( resp, "{$psu_temp}", mDiag->getTemperature( "PSU" ) );
+                }
+                
+                return httpd_resp_send(req, resp.c_str(), HTTPD_RESP_USE_STRLEN );
+            }
             break;
         case HTTPServer::SERVER_VOLUME_UP:
             mQueue->add( Message::MSG_VOLUME_UP );
@@ -196,6 +228,19 @@ HTTPServer::handleResponse( uint8_t requestType, httpd_req_t *req ) {
             break;
     }
 
+}
+
+
+std::string 
+HTTPServer::replaceAll( std::string str, const std::string& from, const std::string& to) {
+    auto&& pos = str.find(from, size_t{});
+    while (pos != std::string::npos)
+    {
+        str.replace(pos, from.length(), to);
+        // easy to forget to add to.length()
+        pos = str.find(from, pos + to.length());
+    }
+    return str;
 }
 
 void
@@ -287,10 +332,10 @@ HTTPServer::start() {
         httpd_register_uri_handler( mServerHandle, &uri_get );
                 
         esp_vfs_spiffs_conf_t conf = {
-        .base_path = "/spiffs",
-        .partition_label = NULL,
-        .max_files = 5,
-        .format_if_mount_failed = false
+            .base_path = "/spiffs",
+            .partition_label = NULL,
+            .max_files = 5,
+            .format_if_mount_failed = false
         };
 
         esp_err_t ret = esp_vfs_spiffs_register(&conf);
@@ -300,7 +345,7 @@ HTTPServer::start() {
 
             FILE *f = fopen( "/spiffs/index.html", "rt" );
             if ( f ) {
-                char s[ 2048 ];
+                char s[ 1025 ];
 
                 while ( !feof( f ) ) {
                     fgets( s, 1024, f );

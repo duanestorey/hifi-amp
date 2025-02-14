@@ -3,12 +3,13 @@
 
 #include "queue.h"
 #include <esp_http_server.h>
+#include "diagnostics.h"
 #include <string>
 #include <memory>
 
 class HTTPServer {
 public:
-    HTTPServer( QueuePtr queue );
+    HTTPServer( QueuePtr queue, DiagnosticsPtr diag );
 
     enum {
         SERVER_MAIN,
@@ -36,6 +37,11 @@ protected:
     QueuePtr mQueue;
     httpd_handle_t mServerHandle;
     std::string mMainPage;
+    DiagnosticsPtr mDiag;
+private:   
+    void replaceWithFloat( std::string &str, const char *find, float replace );
+
+    std::string replaceAll( std::string str, const std::string& from, const std::string& to );
 };
 
 typedef std::shared_ptr<HTTPServer> HTTPServerPtr;

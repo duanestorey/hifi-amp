@@ -2,9 +2,18 @@
 	<head>
 		<meta charset="UTF-8">
    		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 		<link rel="apple-touch-icon" href="https://duanestorey77.s3-us-west-2.amazonaws.com/amp-icon.png">
 		<style type="text/css">
-			body { font-size: 10pt; margin-top: 30px; background: black; color: white; text-align: left; padding-top: 10px; font-family: Lucida Grande; }
+			body { 
+				font-size: 9pt; 
+				margin-top: 30px; 
+				background: black; 
+				color: white; 
+				text-align: left; 
+				padding-top: 10px; 
+				font-family: 'Lucida Grande'; 
+			}
 			a.button { 
 				display: block;
 				color: white; 
@@ -12,7 +21,9 @@
 				text-transform: uppercase;
 				width: 150px;
 				padding: 2% 1%; 
+				
 				margin: 1%;
+				margin-top: 0px;
 				background: #445;
 				text-align: center;
 				font-weight: bold;
@@ -56,13 +67,18 @@
 				text-align: right;
 				font-size: 10pt;
 				font-weight: bold;
-				width: 100pt;
+				width: 100px;
+			}
+
+			td {
+				vertical-align: top;
 			}
 
 			.largeblock {
 				width: 150px;
 				padding: 1% 1%; 
 				margin: 1%;
+				margin-top: 0px;
 				background: #445;
 				display: block;
 				text-align: center;
@@ -73,11 +89,22 @@
 				padding: 0px;
 				margin: 0px;
 				margin-bottom: 10px;
-				font-size: 12pt;
+				font-size: 11pt;
+				text-transform: uppercase;
 			}
 
 			.largeblock .level {
-				font-size: 16pt;
+				font-size: 14pt;
+				margin-bottom: 2px;
+			}
+
+			.level.power, 
+			.level.temp  {
+				color: #f88;
+			}
+
+			.level.voltage{
+				color: #ddd;
 			}
 
 			
@@ -120,7 +147,13 @@
 							<a class="button" href="/input_streamer">Streamer</a>
 							<a class="button" href="/input_tv">TV</a>
 							<a class="button" href="/input_game">Game</a>
-							<a class="button" href="/input_vinyl">Vinyl</a></td>
+							<a class="button" href="/input_vinyl">Vinyl</a>
+							<a class="button" href="/input_hdmi">Analog 1</a>
+							<a class="button" href="/input_blueray">Analog 2</a>
+							<a class="button" href="/input_streamer">Analog 3</a>
+							<a class="button" href="/input_tv">Analog 4</a>
+							<a class="button" href="/input_game">Analog 5</a>
+							<a class="button" href="/input_vinyl">Analog 6</a></td>
 						</td>
 					</tr>
 				</tbody>
@@ -138,69 +171,48 @@
 						<td class="desc">Levels</td>
 						<td>
 							<div class="largeblock">
-								<h4>To Amplifers</h4>
-								<div class="level">
-									10.1V
-								</div>
+								<h4>Amplifers</h4>
+								<div class="level voltage">{$chan_voltage}V</div>
+								<div class="level power">{$chan_power}W</div>
 							</div>
 							<div class="largeblock">
-								<h4>To Secondary</h4>
-								<div class="level">
-									10.1V
-								</div>
+								<h4>Secondary</h4>
+								<div class="level voltage">{$second_voltage}V</div>
+								<div class="level power">{$second_power}W</div>
 							</div>
 							<div class="largeblock">
-								<h4>To Buck</h4>
-								<div class="level">
-									10.1V
-								</div>
+								<h4>Buck Converter</h4>
+								<div class="level voltage">{$buck_voltage}V</div>
+								<div class="level power">{$buck_power}W</div>
 							</div>
 							<div class="largeblock">
-								<h4>To 5V</h4>
-								<div class="level">
-									10.1V
-								</div>
+								<h4>Opamps</h4>
+								<div class="level voltage">{$opamp_voltage}V</div>
+								<div class="level power">{$opamp_power}W</div>
 							</div>
 							<div class="largeblock">
-								<h4>To 3.3V</h4>
-								<div class="level">
-									10.1V
-								</div>
+								<h4>5V Rail</h4>
+								<div class="level voltage">{$5v_voltage}V</div>
+								<div class="level power">{$5v_power}W</div>
 							</div>
 							<div class="largeblock">
-								<h4>To Opamp</h4>
-								<div class="level">
-									10.1V
-								</div>
+								<h4>3.3V Rail</h4>
+								<div class="level voltage">{$3v3_voltage}V</div>
+								<div class="level power">{$3v3_power}W</div>
 							</div>
+							
 						</td>
 					</tr>
 					<tr>
-						<td class="desc">Temperatures</td>
+						<td class="desc">Temps</td>
 						<td>
 							<div class="largeblock">
 								<h4>CPU</h4>
-								<div class="level">
-									20.2C
-								</div>
+								<div class="level temp">{$cpu_temp}C</div>
 							</div>
 							<div class="largeblock">
 								<h4>PSU</h4>
-								<div class="level">
-									20.2C
-								</div>
-							</div>
-							<div class="largeblock">
-								<h4>Left Mono</h4>
-								<div class="level">
-									20.2C
-								</div>
-							</div>
-							<div class="largeblock">
-								<h4>Right Mono</h4>
-								<div class="level">
-									20.2C
-								</div>
+								<div class="level temp">{$psu_temp}C</div>
 							</div>
 						</td>
 					</tr>

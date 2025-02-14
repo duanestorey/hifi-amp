@@ -80,7 +80,7 @@ extern "C" void app_main(void)
     xTaskCreate(
         startRadioThread,
         "Radio Thread",
-        10000,
+        32*1024,
         (void *)amp,
         2,
         NULL
@@ -89,7 +89,7 @@ extern "C" void app_main(void)
     xTaskCreate(
         startAmplifierThread,
         "Amplifier Thread",
-        10000,
+         32*1024,
         (void *)amp,
         3,
         NULL
