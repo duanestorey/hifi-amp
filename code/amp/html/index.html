@@ -5,45 +5,207 @@
 		<link rel="apple-touch-icon" href="https://duanestorey77.s3-us-west-2.amazonaws.com/amp-icon.png">
 		<style type="text/css">
 			body { font-size: 10pt; margin-top: 30px; background: black; color: white; text-align: left; padding-top: 10px; font-family: Lucida Grande; }
-			a.button { display: inline-block; color: white; padding: 15px 1.5%; margin: 1%; text-decoration: none; text-transform: uppercase; width: 43%; background: #22304e; border: 1px solid darkgrey; }
+			a.button { 
+				display: block;
+				color: white; 
+				text-decoration: none; 
+				text-transform: uppercase;
+				width: 150px;
+				padding: 2% 1%; 
+				margin: 1%;
+				background: #445;
+				text-align: center;
+				font-weight: bold;
+				border: 1px solid #445;
+				float: left;
+			}
+
 			hr { max-width: 50% }
 			h3 { text-transform: uppercase; color: white; font-size: 10pt; text-align: left; padding-bottom: 5px; padding-left: 1.5%; margin-bottom: 5px; margin-left: 0px; }
 		
+			h1 {
+				border-bottom: 1px solid #888;
+				padding-bottom: 5px;
+			}
+
+			h2 {
+				border-bottom: 1px solid #555;
+				display: inline-block;
+			}
 
 			a.button:hover {
-				background: #ddd;
-				color: black;
+				background: #669;
+				border: 1px solid #888;
 			}
+
 			#main {
 				padding: 10px; 
+				margin-left: 10%;
+				margin-right: 10%;		
 			}
+
+			#main table {
+				width: 100%;
+				margin-left: 2%;
+				margin-right: 2%;
+				
+			}
+
+			td.desc {
+				text-transform: uppercase;
+				text-align: right;
+				font-size: 10pt;
+				font-weight: bold;
+				width: 100pt;
+			}
+
+			.largeblock {
+				width: 150px;
+				padding: 1% 1%; 
+				margin: 1%;
+				background: #445;
+				display: block;
+				text-align: center;
+				float: left;
+			}
+
+			.largeblock h4 {
+				padding: 0px;
+				margin: 0px;
+				margin-bottom: 10px;
+				font-size: 12pt;
+			}
+
+			.largeblock .level {
+				font-size: 16pt;
+			}
+
+			
 		</style>
 		<title>Amp.Local</title>
 	</head>
 	<body>
-
 		<div id="main">
-				<h3>Power</h3>
-					<a class="button" href="/poweroff">Off</a>
-					<a class="button" href="/poweron">On</a>
-
-				<h3>Volume</h3>
-					<a class="button" href="/volumedown">-1 dB</a>
-					<a class="button" href="/volumedown5">-5 dB</a>
-					
-					<a class="button" href="/volumeup">+1 dB</a>
-					<a class="button" href="/volumeup5">+5 dB</a>
-
-
-				<h3>Input</h3>
-
-				<a class="button" href="/input_hdmi">HDMI</a>
-				<a class="button" href="/input_blueray">Blueray</a>
-				<a class="button" href="/input_streamer">Streamer</a>
-				<a class="button" href="/input_tv">TV</a>
-				<a class="button" href="/input_game">Game</a>
-				<a class="button" href="/input_vinyl">Vinyl</a></td>
-	
+			<h1>StoreyAudio Hi-Fi Amplifier</h1>
+			<h2>Controls</h2>
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="desc">Power</td>
+						<td>
+							<a class="button" href="/poweroff">Off</a>
+							<a class="button" href="/poweron">On</a>
+						</td>
+					</tr>
+					<tr>
+						<td class="desc">Volume</td>
+						<td>
+							<a class="button" href="/volumedown5">-5 dB</a>
+							<a class="button" href="/volumedown">-1 dB</a>
+							<a class="button" href="/volumeup">+1 dB</a>
+							<a class="button" href="/volumeup5">+5 dB</a>
+						</td>
+					</tr>
+					<tr>
+						<td class="desc">Input</td>
+						<td>		
+							<a class="button" href="/input_hdmi">HDMI</a>
+							<a class="button" href="/input_blueray">Blueray</a>
+							<a class="button" href="/input_streamer">Streamer</a>
+							<a class="button" href="/input_tv">TV</a>
+							<a class="button" href="/input_game">Game</a>
+							<a class="button" href="/input_vinyl">Vinyl</a></td>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h2>Diagnostics</h2>
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="desc">Levels</td>
+						<td>
+							<div class="largeblock">
+								<h4>To Amplifers</h4>
+								<div class="level">
+									10.1V
+								</div>
+							</div>
+							<div class="largeblock">
+								<h4>To Secondary</h4>
+								<div class="level">
+									10.1V
+								</div>
+							</div>
+							<div class="largeblock">
+								<h4>To Buck</h4>
+								<div class="level">
+									10.1V
+								</div>
+							</div>
+							<div class="largeblock">
+								<h4>To 5V</h4>
+								<div class="level">
+									10.1V
+								</div>
+							</div>
+							<div class="largeblock">
+								<h4>To 3.3V</h4>
+								<div class="level">
+									10.1V
+								</div>
+							</div>
+							<div class="largeblock">
+								<h4>To Opamp</h4>
+								<div class="level">
+									10.1V
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="desc">Temperatures</td>
+						<td>
+							<div class="largeblock">
+								<h4>CPU</h4>
+								<div class="level">
+									20.2C
+								</div>
+							</div>
+							<div class="largeblock">
+								<h4>PSU</h4>
+								<div class="level">
+									20.2C
+								</div>
+							</div>
+							<div class="largeblock">
+								<h4>Left Mono</h4>
+								<div class="level">
+									20.2C
+								</div>
+							</div>
+							<div class="largeblock">
+								<h4>Right Mono</h4>
+								<div class="level">
+									20.2C
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</body>
 </html>

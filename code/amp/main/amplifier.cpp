@@ -29,6 +29,7 @@
 #include "esp_netif_ip_addr.h"
 #include "esp_mac.h"
 #include "netdb.h"
+#include "ina260.h"
 
 Amplifier::Amplifier() : mWifiEnabled( false ), mWifiConnectionAttempts( 0 ), mUpdatingFromNTP( false ), mPoweredOn( true ), mTimerID( 0 ), mButtonTimerID( 0 ), mReconnectTimerID( 0 ),
     mCurrentInput( 0 ), mVolumeEncoder( 15, 13, true ), mInputEncoder( 4, 16, false ), mAudioTimerID( 0 ), mSpdifTimerID( 0 ), mPendingVolumeChange( false ), mPendingVolume( 0 ),
@@ -152,6 +153,18 @@ Amplifier::init() {
     AMP_DEBUG_I( "Setting up I2C bus" );
     mI2C = I2CBUSPtr( new I2CBUS() );
 
+    AMP_DEBUG_I( "Scanning Bus" ); 
+    mI2C->scanBus();
+
+    /*
+-> found device with address 0x44 - INA260
+-> found device with address 0x47 - INA260?
+-> found device with address 0x48 - temperatuer sensor
+
+...scan completed!
+
+    */
+
     // Create volume controller
     AMP_DEBUG_I( "Setting up volume controller" );
     mMasterVolume = VolumeControllerPtr( new VolumeController() );
@@ -174,6 +187,14 @@ Amplifier::init() {
     mDiagnostics->addTemperatureSensor( "PSU", TempSensorPtr( new TMP100( 0x50, mI2C ) ) );
     mDiagnostics->addTemperatureSensor( "LEFT", TempSensorPtr( new TMP100( 0x49, mI2C ) ) );
     mDiagnostics->addTemperatureSensor( "RIGHT", TempSensorPtr( new TMP100( 0x50, mI2C ) ) );
+
+    // Setup power sensors
+    AMP_DEBUG_I( "Setting up power sensors" );
+    mDiagnostics->addPowerSensor( "PSU_DIGITAL", PowerSensorPtr( new INA260( 0x44, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "TEST", PowerSensorPtr( new INA260( 0x45, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "TEST2", PowerSensorPtr( new INA260( 0x48, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "TEST3", PowerSensorPtr( new INA260( 0x4c, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "PSU_CHANNEL", PowerSensorPtr( new INA260( 0x47, mI2C ) ) );
 
     // setup channel selector
     AMP_DEBUG_I( "Setting up channel selectors" );
@@ -214,7 +235,7 @@ Amplifier::init() {
     // Setup timers
     AMP_DEBUG_I( "Setting up periodic timers" );
     mTimer = TimerPtr( new Timer() );
-    mTimerID = mTimer->setTimer( 60000, mAmplifierQueue, true );
+    mTimerID = mTimer->setTimer( 5000, mAmplifierQueue, true );
     mButtonTimerID = mTimer->setTimer( 10, mAmplifierQueue, true );
     mAudioTimerID = mTimer->setTimer( 1000, mAudioQueue, true );
 
@@ -468,6 +489,9 @@ Amplifier::handleAmplifierThread() {
                 case Message::MSG_TIMER:
                     if ( msg.mParam == mTimerID ) {
                         AMP_DEBUG_I( "In Periodic Timer Event, Temp is %0.2f", mDiagnostics->getTemperature( "CPU" ) );
+                        AMP_DEBUG_I( "In Periodic Timer Event, Power of PSU-Digital is %0.2f", mDiagnostics->getVoltage( "TEST" ) );
+                        AMP_DEBUG_I( "In Periodic Timer Event, Power of PSU-Channel is %0.2f", mDiagnostics->getVoltage( "TEST2" ) );
+                        AMP_DEBUG_I( "In Periodic Timer Event, Power of PSU-Channel is %0.2f", mDiagnostics->getVoltage( "TEST3" ) );
                         asyncUpdateDisplay();
                     } else if ( msg.mParam == mButtonTimerID ) {
                         // Process all button ticks
@@ -669,8 +693,6 @@ Amplifier::stopAudio() {
 void 
 Amplifier::handleAudioThread() {
     AMP_DEBUG_I( "Starting Audio Thread" );
-    
-    mI2C->scanBus();
 
     // Set the initial channel input to the first slot
     {

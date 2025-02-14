@@ -31,6 +31,7 @@ set(COMPONENT_SRCS
     "digital-receiver.cpp"
     "adc-pcm1863.cpp"
     "diagnostics.cpp"
+    "ina260.cpp"
 )
 set(COMPONENT_ADD_INCLUDEDIRS)
 

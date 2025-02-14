@@ -2230,7 +2230,7 @@
 		(uuid "77785bcc-a4ca-4b46-9013-8699b28af110")
 	)
 	(junction
-		(at 74.93 123.19)
+		(at 91.44 110.49)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ab597d61-3c15-4e47-a162-b341f895159f")
@@ -2417,7 +2417,7 @@
 	)
 	(wire
 		(pts
-			(xy 74.93 116.84) (xy 74.93 123.19)
+			(xy 91.44 104.14) (xy 91.44 110.49)
 		)
 		(stroke
 			(width 0)
@@ -2437,7 +2437,7 @@
 	)
 	(wire
 		(pts
-			(xy 74.93 123.19) (xy 62.23 123.19)
+			(xy 91.44 110.49) (xy 78.74 110.49)
 		)
 		(stroke
 			(width 0)
@@ -2547,7 +2547,7 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 123.19) (xy 62.23 132.08)
+			(xy 78.74 110.49) (xy 78.74 119.38)
 		)
 		(stroke
 			(width 0)
@@ -2877,7 +2877,7 @@
 	)
 	(wire
 		(pts
-			(xy 74.93 123.19) (xy 74.93 124.46)
+			(xy 91.44 110.49) (xy 91.44 111.76)
 		)
 		(stroke
 			(width 0)
@@ -3117,7 +3117,7 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 123.19) (xy 74.93 123.19)
+			(xy 96.52 110.49) (xy 91.44 110.49)
 		)
 		(stroke
 			(width 0)
@@ -3539,7 +3539,7 @@
 	)
 	(global_label "GND"
 		(shape input)
-		(at 74.93 139.7 270)
+		(at 91.44 127 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3549,7 +3549,7 @@
 		)
 		(uuid "31d5d915-db9b-4cb9-bfb6-608accff4b32")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 74.93 146.5557 90)
+			(at 91.44 133.8557 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3715,7 +3715,7 @@
 	)
 	(global_label "SDA"
 		(shape input)
-		(at 90.17 63.5 0)
+		(at 92.71 66.04 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3725,7 +3725,7 @@
 		)
 		(uuid "482edf85-2d5c-49c3-9e59-ecfb713a0378")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 96.7233 63.5 0)
+			(at 99.2633 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3737,7 +3737,7 @@
 	)
 	(global_label "AGND"
 		(shape input)
-		(at 64.77 62.23 0)
+		(at 63.5 63.5 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3747,7 +3747,7 @@
 		)
 		(uuid "4eb168a2-5c57-40f7-94c6-5a886f595dd2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 72.7143 62.23 0)
+			(at 71.4443 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3891,7 +3891,7 @@
 	)
 	(global_label "SCLKI"
 		(shape input)
-		(at 82.55 132.08 0)
+		(at 99.06 119.38 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3901,7 +3901,7 @@
 		)
 		(uuid "6cc6de27-99c0-4e48-b7ad-f7e98af39259")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 90.9176 132.08 0)
+			(at 107.4276 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4111,7 +4111,7 @@
 	)
 	(global_label "GND"
 		(shape input)
-		(at 85.09 123.19 0)
+		(at 101.6 110.49 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4121,7 +4121,7 @@
 		)
 		(uuid "865cdc79-3dbc-4ac0-b9c5-d61043372cb1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 91.9457 123.19 0)
+			(at 108.4557 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4133,7 +4133,7 @@
 	)
 	(global_label "ADC_INT"
 		(shape input)
-		(at 90.17 68.58 0)
+		(at 92.71 71.12 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4143,7 +4143,7 @@
 		)
 		(uuid "8b0533d6-b3e7-4fea-9d82-3aa0d7f6179f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 100.6543 68.58 0)
+			(at 103.1943 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4265,7 +4265,7 @@
 	)
 	(global_label "SCL"
 		(shape input)
-		(at 90.17 60.96 0)
+		(at 92.71 63.5 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4275,7 +4275,7 @@
 		)
 		(uuid "992b99e8-d9fe-4974-89cb-60448b90a43f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 96.6628 60.96 0)
+			(at 99.2028 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4309,7 +4309,7 @@
 	)
 	(global_label "3V3"
 		(shape input)
-		(at 74.93 116.84 90)
+		(at 91.44 104.14 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4319,7 +4319,7 @@
 		)
 		(uuid "a60153e4-b449-464c-930c-69c7ae2c670d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 74.93 110.3472 90)
+			(at 91.44 97.6472 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4529,7 +4529,7 @@
 	)
 	(global_label "ADC_GPIO1"
 		(shape input)
-		(at 90.17 66.04 0)
+		(at 92.71 68.58 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4539,7 +4539,7 @@
 		)
 		(uuid "c981cbff-0c4e-451b-977e-029eff1805ac")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 103.4362 66.04 0)
+			(at 105.9762 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4859,7 +4859,7 @@
 	)
 	(global_label "GND"
 		(shape input)
-		(at 64.77 64.77 0)
+		(at 63.5 66.04 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4869,7 +4869,7 @@
 		)
 		(uuid "f8e79d55-8f9f-4a97-9e15-48c70c1d3701")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 71.6257 64.77 0)
+			(at 70.3557 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5250,7 +5250,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Male")
-		(at 59.69 62.23 0)
+		(at 58.42 63.5 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5259,7 +5259,7 @@
 		(fields_autoplaced yes)
 		(uuid "18dfd2ea-6326-4f47-8c6a-bbabaeea5329")
 		(property "Reference" "J2"
-			(at 57.912 64.7701 0)
+			(at 56.642 66.0401 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5268,7 +5268,7 @@
 			)
 		)
 		(property "Value" "Conn_01x02_Male"
-			(at 57.912 62.2301 0)
+			(at 56.642 63.5001 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5277,7 +5277,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
-			(at 59.69 62.23 0)
+			(at 58.42 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5286,7 +5286,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 59.69 62.23 0)
+			(at 58.42 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5295,7 +5295,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 59.69 62.23 0)
+			(at 58.42 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5842,7 +5842,7 @@
 	)
 	(symbol
 		(lib_id "Oscillator:ASDMB-xxxMHz")
-		(at 72.39 132.08 0)
+		(at 88.9 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5851,7 +5851,7 @@
 		(fields_autoplaced yes)
 		(uuid "474c7995-c1c5-4160-9619-0077ab7ae163")
 		(property "Reference" "U1"
-			(at 88.9 125.7614 0)
+			(at 105.41 113.0614 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5859,7 +5859,7 @@
 			)
 		)
 		(property "Value" "ASDMB-xxxMHz"
-			(at 88.9 128.3014 0)
+			(at 105.41 115.6014 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5867,7 +5867,7 @@
 			)
 		)
 		(property "Footprint" "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm"
-			(at 72.39 132.08 0)
+			(at 88.9 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5876,7 +5876,7 @@
 			)
 		)
 		(property "Datasheet" "https://abracon.com/Oscillators/ASDMB.pdf"
-			(at 80.01 120.65 0)
+			(at 96.52 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5885,7 +5885,7 @@
 			)
 		)
 		(property "Description" "1.8-3.3V SMD Ultra Miniature Crystal Clock Oscillator, Abracon"
-			(at 72.39 132.08 0)
+			(at 88.9 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5894,7 +5894,7 @@
 			)
 		)
 		(property "Mouser" "346-3225Z24.5760C1KX "
-			(at 72.39 132.08 0)
+			(at 88.9 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5995,7 +5995,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 31.877 38.1 0)
+		(at 26.67 34.29 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6004,7 +6004,7 @@
 		(fields_autoplaced yes)
 		(uuid "58849b10-5dd1-4c0b-8d9c-8bd5c113b193")
 		(property "Reference" "H4"
-			(at 35.052 36.8299 0)
+			(at 29.845 33.0199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6013,7 +6013,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 35.052 39.3699 0)
+			(at 29.845 35.5599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6022,7 +6022,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopOnly"
-			(at 31.877 38.1 0)
+			(at 26.67 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6031,7 +6031,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 31.877 38.1 0)
+			(at 26.67 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6040,7 +6040,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 31.877 38.1 0)
+			(at 26.67 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6341,7 +6341,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 82.55 123.19 90)
+		(at 99.06 110.49 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6349,7 +6349,7 @@
 		(dnp no)
 		(uuid "68732ea5-d3e7-4cde-9df6-7bd4262f1e2d")
 		(property "Reference" "C1"
-			(at 82.423 126.238 90)
+			(at 98.933 113.538 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6357,7 +6357,7 @@
 			)
 		)
 		(property "Value" "0.1u"
-			(at 82.5563 119.507 90)
+			(at 99.0663 106.807 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6365,7 +6365,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
-			(at 82.55 123.19 0)
+			(at 99.06 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6374,7 +6374,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 82.55 123.19 0)
+			(at 99.06 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6383,7 +6383,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 82.55 123.19 0)
+			(at 99.06 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6392,7 +6392,7 @@
 			)
 		)
 		(property "Mouser" "791-0805N103G250CT"
-			(at 205.74 205.74 0)
+			(at 222.25 193.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7047,7 +7047,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x04_Pin")
-		(at 85.09 63.5 0)
+		(at 87.63 66.04 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7056,7 +7056,7 @@
 		(fields_autoplaced yes)
 		(uuid "8fc45337-2ed4-45de-b7c5-280e0d59e9de")
 		(property "Reference" "J4"
-			(at 85.725 55.88 0)
+			(at 88.265 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7064,7 +7064,7 @@
 			)
 		)
 		(property "Value" "Conn_01x04_Pin"
-			(at 85.725 58.42 0)
+			(at 88.265 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7072,7 +7072,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical"
-			(at 85.09 63.5 0)
+			(at 87.63 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7081,7 +7081,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 85.09 63.5 0)
+			(at 87.63 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7090,7 +7090,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x04, script generated"
-			(at 85.09 63.5 0)
+			(at 87.63 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7619,7 +7619,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 31.75 46.609 0)
+		(at 26.7333 40.9338 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7628,7 +7628,7 @@
 		(fields_autoplaced yes)
 		(uuid "b6bbc79a-bab7-4d62-8be1-d31603b2be62")
 		(property "Reference" "H1"
-			(at 34.925 45.3389 0)
+			(at 29.9083 39.6637 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7637,7 +7637,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 34.925 47.8789 0)
+			(at 29.9083 42.2037 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7646,7 +7646,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopOnly"
-			(at 31.75 46.609 0)
+			(at 26.7333 40.9338 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7655,7 +7655,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 31.75 46.609 0)
+			(at 26.7333 40.9338 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7664,7 +7664,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 31.75 46.609 0)
+			(at 26.7333 40.9338 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8038,7 +8038,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 26.543 30.988 0)
+		(at 26.67 27.94 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8047,7 +8047,7 @@
 		(fields_autoplaced yes)
 		(uuid "d3fce2fa-ec30-4033-bdf0-d0c9350d02ff")
 		(property "Reference" "H2"
-			(at 29.718 29.7179 0)
+			(at 29.845 26.6699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8056,7 +8056,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 29.718 32.2579 0)
+			(at 29.845 29.2099 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8065,7 +8065,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopOnly"
-			(at 26.543 30.988 0)
+			(at 26.67 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8074,7 +8074,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 26.543 30.988 0)
+			(at 26.67 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8083,7 +8083,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 26.543 30.988 0)
+			(at 26.67 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8255,7 +8255,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "ea76815c-4730-4087-934d-0c24bb114c04")
 		(property "Reference" "C9"
 			(at 58.801 111.7536 0)
