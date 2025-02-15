@@ -39,7 +39,7 @@ protected:
     std::string mMainPage;
     DiagnosticsPtr mDiag;
 private:   
-    void replaceWithFloat( std::string &str, const char *find, float replace );
+    void replaceWithFloat( std::string &str, const char *find, float replace, uint8_t digits = 1 );
 
     std::string replaceAll( std::string str, const std::string& from, const std::string& to );
 };

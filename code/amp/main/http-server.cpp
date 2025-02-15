@@ -112,11 +112,15 @@ esp_err_t http_404( httpd_req_t *req ) {
 }
 
 void 
-HTTPServer::replaceWithFloat( std::string &str, const char *find, float replace ) {
+HTTPServer::replaceWithFloat( std::string &str, const char *find, float replace, uint8_t digits ) {
     std::string *resp = new std::string( str );
 
     char temp[ 128 ];
-    sprintf( temp, "%0.1f", replace );
+    if ( digits == 1 ) {
+        sprintf( temp, "%0.1f", replace );
+    } else {
+        sprintf( temp, "%0.2f", replace );
+    }
 
     *resp = replaceAll( str, find, temp );
     str = *resp;
@@ -145,17 +149,17 @@ HTTPServer::handleResponse( uint8_t requestType, httpd_req_t *req ) {
                 std::string resp = mMainPage;
                 {
                     replaceWithFloat( resp, "{$chan_current}", mDiag->getCurrent( "CHAN" ) );
-                    replaceWithFloat( resp, "{$chan_power}", mDiag->getPower( "CHAN" ) );
+                    replaceWithFloat( resp, "{$chan_power}", mDiag->getPower( "CHAN" ), 2 );
                     replaceWithFloat( resp, "{$second_current}", mDiag->getCurrent( "SECOND" ) );
-                    replaceWithFloat( resp, "{$second_power}", mDiag->getPower( "SECOND" ) );
+                    replaceWithFloat( resp, "{$second_power}", mDiag->getPower( "SECOND" ), 2 );
                     replaceWithFloat( resp, "{$buck_current}", mDiag->getCurrent( "BUCK" ) );
-                    replaceWithFloat( resp, "{$buck_power}", mDiag->getPower( "BUCK" ) );
+                    replaceWithFloat( resp, "{$buck_power}", mDiag->getPower( "BUCK" ), 2 );
                     replaceWithFloat( resp, "{$5v_current}", mDiag->getCurrent( "5V" ) );
-                    replaceWithFloat( resp, "{$5v_power}", mDiag->getPower( "5V" ) );
+                    replaceWithFloat( resp, "{$5v_power}", mDiag->getPower( "5V" ), 2 );
                     replaceWithFloat( resp, "{$opamp_current}", mDiag->getCurrent( "OPAMP" ) );
-                    replaceWithFloat( resp, "{$opamp_power}", mDiag->getPower( "OPAMP" ) );
+                    replaceWithFloat( resp, "{$opamp_power}", mDiag->getPower( "OPAMP" ), 2 );
                     replaceWithFloat( resp, "{$3v3_current}", mDiag->getCurrent( "3V3" ) );
-                    replaceWithFloat( resp, "{$3v3_power}", mDiag->getPower( "3V3" ) );
+                    replaceWithFloat( resp, "{$3v3_power}", mDiag->getPower( "3V3" ), 2 );
                     replaceWithFloat( resp, "{$cpu_temp}", mDiag->getTemperature( "CPU" ) );
                     replaceWithFloat( resp, "{$psu_temp}", mDiag->getTemperature( "PSU" ) );
                 }

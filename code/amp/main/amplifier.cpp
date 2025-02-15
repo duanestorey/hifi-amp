@@ -196,6 +196,7 @@ Amplifier::init() {
     mDiagnostics->addPowerSensor( "3V3", PowerSensorPtr( new INA260( 0x41, mI2C ) ) );
     mDiagnostics->addPowerSensor( "OPAMP", PowerSensorPtr( new INA260( 0x44, mI2C ) ) );
     mDiagnostics->addPowerSensor( "BUCK", PowerSensorPtr( new INA260( 0x45, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "TEST", PowerSensorPtr( new INA260( 0x47, mI2C ) ) );
 
     // setup channel selector
     AMP_DEBUG_I( "Setting up channel selectors" );
@@ -490,7 +491,7 @@ Amplifier::handleAmplifierThread() {
                 case Message::MSG_TIMER:
                     if ( msg.mParam == mTimerID ) {
                         mDiagnostics->dumpAllTemperatures();
-                        AMP_DEBUG_I( "Buck => %0.2f", mDiagnostics->getPower( "BUCK" ) );
+                        AMP_DEBUG_I( "Test => %0.2f", mDiagnostics->getPower( "TEST" ) );
                         mDiagnostics->dumpAllPower();
                        
                         asyncUpdateDisplay();
