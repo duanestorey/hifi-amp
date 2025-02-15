@@ -3977,12 +3977,6 @@
 		(uuid "0349ca0a-6ab6-4688-b715-a4886e246633")
 	)
 	(junction
-		(at 370.84 130.81)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "07b9cf7d-f7e0-4e7f-99a5-3ce239661bc7")
-	)
-	(junction
 		(at 120.65 161.29)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4029,12 +4023,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "556e0abc-75a3-4560-85de-e542b437fb18")
-	)
-	(junction
-		(at 110.744 86.614)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5d76a501-2804-4f1f-80cf-3151605e77d9")
 	)
 	(junction
 		(at 153.67 137.16)
@@ -4089,6 +4077,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "91b91b1e-d8d7-4fc1-b6a6-0077288ee994")
+	)
+	(junction
+		(at 370.84 135.89)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9a8f3984-0243-40a8-a20c-d78f69e63c3a")
 	)
 	(junction
 		(at 152.781 71.12)
@@ -4190,16 +4184,6 @@
 	)
 	(wire
 		(pts
-			(xy 110.744 86.614) (xy 108.331 86.614)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0a83bb2d-4c44-4095-8c62-972eb32b1015")
-	)
-	(wire
-		(pts
 			(xy 322.58 119.38) (xy 327.66 119.38)
 		)
 		(stroke
@@ -4237,6 +4221,16 @@
 			(type default)
 		)
 		(uuid "1f7952a9-3030-4fbb-b4e4-282f0bca1c67")
+	)
+	(wire
+		(pts
+			(xy 370.84 135.89) (xy 370.84 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "20277181-42af-4448-b804-9e29c088f552")
 	)
 	(wire
 		(pts
@@ -4320,7 +4314,7 @@
 	)
 	(wire
 		(pts
-			(xy 370.84 132.08) (xy 370.84 130.81)
+			(xy 370.84 139.7) (xy 370.84 135.89)
 		)
 		(stroke
 			(width 0)
@@ -4770,7 +4764,7 @@
 	)
 	(wire
 		(pts
-			(xy 112.649 86.614) (xy 110.744 86.614)
+			(xy 108.331 86.614) (xy 112.649 86.614)
 		)
 		(stroke
 			(width 0)
@@ -4900,7 +4894,7 @@
 	)
 	(wire
 		(pts
-			(xy 370.84 125.73) (xy 370.84 124.46)
+			(xy 370.84 127) (xy 370.84 124.46)
 		)
 		(stroke
 			(width 0)
@@ -4940,7 +4934,7 @@
 	)
 	(wire
 		(pts
-			(xy 370.84 113.03) (xy 370.84 118.11)
+			(xy 370.84 113.03) (xy 370.84 116.84)
 		)
 		(stroke
 			(width 0)
@@ -5050,7 +5044,7 @@
 	)
 	(wire
 		(pts
-			(xy 381 130.81) (xy 370.84 130.81)
+			(xy 381 135.89) (xy 370.84 135.89)
 		)
 		(stroke
 			(width 0)
@@ -5080,7 +5074,7 @@
 	)
 	(wire
 		(pts
-			(xy 370.84 124.46) (xy 370.84 123.19)
+			(xy 370.84 124.46) (xy 370.84 121.92)
 		)
 		(stroke
 			(width 0)
@@ -5420,16 +5414,6 @@
 	)
 	(wire
 		(pts
-			(xy 110.744 89.281) (xy 110.744 86.614)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f169c34f-ead3-4100-9793-478a51a141c1")
-	)
-	(wire
-		(pts
 			(xy 119.38 194.31) (xy 119.38 200.66)
 		)
 		(stroke
@@ -5500,7 +5484,7 @@
 	)
 	(wire
 		(pts
-			(xy 381 123.19) (xy 381 130.81)
+			(xy 381 123.19) (xy 381 135.89)
 		)
 		(stroke
 			(width 0)
@@ -8938,7 +8922,7 @@
 	)
 	(global_label "PGND"
 		(shape input)
-		(at 370.84 132.08 270)
+		(at 370.84 139.7 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8948,7 +8932,7 @@
 		)
 		(uuid "cda4e13c-a693-410b-870d-cc6735648e38")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 370.84 140.2057 90)
+			(at 370.84 147.8257 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12265,7 +12249,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "800R"
+		(property "Value" "1.2K"
 			(at 151.384 139.7001 0)
 			(effects
 				(font
@@ -12388,7 +12372,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 370.84 120.65 0)
+		(at 370.84 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12397,7 +12381,7 @@
 		(fields_autoplaced yes)
 		(uuid "57adee63-09fb-4a23-88c5-08e09ddcfc1b")
 		(property "Reference" "R13"
-			(at 373.126 119.3799 0)
+			(at 373.126 118.1099 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12405,8 +12389,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "180K"
-			(at 373.126 121.9199 0)
+		(property "Value" "160K"
+			(at 373.126 120.6499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12415,7 +12399,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 370.84 120.65 0)
+			(at 370.84 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12424,7 +12408,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 370.84 120.65 0)
+			(at 370.84 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12433,7 +12417,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 370.84 120.65 0)
+			(at 370.84 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12442,7 +12426,7 @@
 			)
 		)
 		(property "Mouser" " 603-RC0603JR-10180KL "
-			(at 370.84 120.65 0)
+			(at 370.84 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14196,7 +14180,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3.3K"
+		(property "Value" "6K"
 			(at 370.205 39.2429 0)
 			(effects
 				(font
@@ -16131,7 +16115,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3.3K"
+		(property "Value" "6K"
 			(at 356.616 41.9099 0)
 			(effects
 				(font
@@ -16269,7 +16253,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "800R"
+		(property "Value" "1.2K"
 			(at 157.226 135.8899 0)
 			(effects
 				(font
@@ -16322,7 +16306,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 370.84 128.27 0)
+		(at 370.84 129.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -16331,7 +16315,7 @@
 		(fields_autoplaced yes)
 		(uuid "ebccdb12-9a0f-4016-8a86-b6c3978c3ae7")
 		(property "Reference" "R11"
-			(at 372.618 127 0)
+			(at 372.618 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16340,7 +16324,7 @@
 			)
 		)
 		(property "Value" "22.1K"
-			(at 372.618 129.54 0)
+			(at 372.618 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16349,7 +16333,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 370.84 128.27 0)
+			(at 370.84 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16358,7 +16342,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 370.84 128.27 0)
+			(at 370.84 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16367,7 +16351,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 370.84 128.27 0)
+			(at 370.84 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16376,7 +16360,7 @@
 			)
 		)
 		(property "Mouser" "603-RC0603JR-07820KP"
-			(at 370.84 128.27 0)
+			(at 370.84 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)

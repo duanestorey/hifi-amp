@@ -5,7 +5,7 @@
 
 // I2C parameters
 #define I2C_MS_TO_WAIT              50
-#define I2C_MASTER_FREQ_HZ          200000
+#define I2C_MASTER_FREQ_HZ          300000
 
 // I2C addresses
 #define AMP_I2C_ADDR_MCP            0x20

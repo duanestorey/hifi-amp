@@ -12,6 +12,7 @@ Everything in this repository is licensed under the [BY-NC-SA 4.0 creative commo
 
 Please browse the following sections for more information about the project.
 
+- [Project Log](log.md)
 - [Technical Specs](specs.md)
 - [History](history.md)
 - [Philosophy](philosophy.md)
