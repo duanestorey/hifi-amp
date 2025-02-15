@@ -35,7 +35,7 @@ A 7-pin connector is used between the amplifier and each monoblock, and has the 
 | 4 | Enable |
 | 5 | SDA |
 | 6 | SDL |
-| 7 | Future Expansion |
+| 7 | 12V |
 
 
 To prevent ground loops, the shield and power ground should be connected together at the amplifier end only. The shield pin should be left floating in the monoblock.
@@ -50,8 +50,8 @@ A 5-pin connector is also used between the amplifier and each monoblock, and has
 | 1 | +POWER (32V) |
 | 2 | Power Ground |
 | 3 | -POWER (-32V) |
-| 4 | 3.3V |
-| 5 | 12V |
+| 5 | Digital Ground |
+| 5 | 3.3V |
 
 To prevent ground loops, the shield and signal ground should be connected together at the amplifier end only.  The shield pin should be left floating in the monoblock.
 

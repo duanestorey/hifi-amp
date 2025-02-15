@@ -116,7 +116,7 @@ HTTPServer::replaceWithFloat( std::string &str, const char *find, float replace 
     std::string *resp = new std::string( str );
 
     char temp[ 128 ];
-    sprintf( temp, "%0.2f", replace );
+    sprintf( temp, "%0.1f", replace );
 
     *resp = replaceAll( str, find, temp );
     str = *resp;
