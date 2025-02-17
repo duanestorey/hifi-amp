@@ -1705,7 +1705,7 @@
 		(descr "CP, Radial series, Radial, pin pitch=2.50mm 5.00mm, , diameter=10mm, Electrolytic Capacitor")
 		(tags "CP Radial series Radial pin pitch 2.50mm 5.00mm  diameter 10mm Electrolytic Capacitor")
 		(property "Reference" "C1"
-			(at 1.25 -6.25 -90)
+			(at 1.25 -6 90)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "e9966e6e-de32-47ed-9d8d-e690e9219cfa")
@@ -6181,7 +6181,7 @@
 		(descr "CP, Radial series, Radial, pin pitch=2.50mm 5.00mm, , diameter=10mm, Electrolytic Capacitor")
 		(tags "CP Radial series Radial pin pitch 2.50mm 5.00mm  diameter 10mm Electrolytic Capacitor")
 		(property "Reference" "C4"
-			(at 1.25 -6.25 -90)
+			(at 1.25 -6 90)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "acec0dd5-5320-4502-b7ab-2201a6a58e87")
@@ -8360,7 +8360,7 @@
 		(descr "CP, Radial series, Radial, pin pitch=2.50mm 5.00mm, , diameter=10mm, Electrolytic Capacitor")
 		(tags "CP Radial series Radial pin pitch 2.50mm 5.00mm  diameter 10mm Electrolytic Capacitor")
 		(property "Reference" "C6"
-			(at 1.25 -6.25 -90)
+			(at 1.25 -6 90)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "feff2757-1497-4ca9-be0e-80e68f49f794")
@@ -15586,7 +15586,7 @@
 		(descr "CP, Radial series, Radial, pin pitch=2.50mm 5.00mm, , diameter=10mm, Electrolytic Capacitor")
 		(tags "CP Radial series Radial pin pitch 2.50mm 5.00mm  diameter 10mm Electrolytic Capacitor")
 		(property "Reference" "C5"
-			(at 1.25 -6.25 -90)
+			(at 1.25 -6 90)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "3f20e22f-d1b7-4bac-8c6a-faad754d0494")
@@ -20973,7 +20973,7 @@
 		(descr "CP, Radial series, Radial, pin pitch=2.50mm 5.00mm, , diameter=10mm, Electrolytic Capacitor")
 		(tags "CP Radial series Radial pin pitch 2.50mm 5.00mm  diameter 10mm Electrolytic Capacitor")
 		(property "Reference" "C3"
-			(at 1.25 -6.25 -90)
+			(at 1.25 -6 90)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "86752225-dacf-400d-ab1a-a26a3da3ddf1")
@@ -27422,7 +27422,7 @@
 		(descr "CP, Radial series, Radial, pin pitch=2.50mm 5.00mm, , diameter=10mm, Electrolytic Capacitor")
 		(tags "CP Radial series Radial pin pitch 2.50mm 5.00mm  diameter 10mm Electrolytic Capacitor")
 		(property "Reference" "C2"
-			(at 1.25 -6.25 -90)
+			(at 1.25 -6 90)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "41021f26-167d-4b68-8bb2-d175473522a9")
@@ -30193,7 +30193,7 @@
 		(descr "CP, Radial series, Radial, pin pitch=2.50mm, , diameter=6.3mm, Electrolytic Capacitor")
 		(tags "CP Radial series Radial pin pitch 2.50mm  diameter 6.3mm Electrolytic Capacitor")
 		(property "Reference" "C7"
-			(at 1.25 -4.4 90)
+			(at 1.25 -4.15 90)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "f0498020-077a-474e-ac0a-a2c58a1d5cfe")

@@ -4819,7 +4819,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "YELLOW"
+		(property "Value" "BLUE"
 			(at 223.139 128.5874 90)
 			(effects
 				(font
@@ -5845,7 +5845,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "BLUE"
+		(property "Value" "YELLOW"
 			(at 237.109 128.5874 90)
 			(effects
 				(font

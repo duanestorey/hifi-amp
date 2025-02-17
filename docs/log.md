@@ -4,6 +4,8 @@ This is chronological log of everything I've done on the project.  I'll backfill
 
 ### Updates
 
++ Feburary 17, 2025:
+    * Didn't have my energy today, but I wired up the high power lines for the LM3886 chip. I accidentally blew a fuse when I shorted an XLR pin with my multimeter probe. But other than that, all four channels seem to be working.  I'm still waiting on a bunch of PCBs to assemble, after which I'll have to ramp up my coding.  But I'll try to finish wiring the monoblocks shortly.
 + February 15, 2025:
     * I changed the resistors on the LM317/337 to 300/2700. The current has gone down a bit, but temperature of the board is still 42.9C. That's not horrible, but I'll probably toss a little Raspberry Pi heatsink on it and see if it changes.
     * Worked on the monoblocks.  Mounted the LM3886 to the heatsinks and started wiring up the power XLR in the main amplifier. For some reason the 3.3V line isn't working, so I'll debug in the morning.  Sometime in the next few days I'll wire up the power to the monoblocks.

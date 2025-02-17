@@ -11554,7 +11554,7 @@
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "90f891f9-6255-44f6-98da-a5681f9a3d35")
+			(uuid "4b797b26-9a1d-4d56-babf-18b3788e3592")
 			(effects
 				(font
 					(size 0.8 0.8)
@@ -11566,7 +11566,7 @@
 			(at 0 -3.2 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "2ea03871-ead4-4390-8838-64d34d793eee")
+			(uuid "51deb586-e142-4f53-83f4-85335d9eada5")
 			(effects
 				(font
 					(size 1 1)
@@ -11613,12 +11613,16 @@
 				)
 			)
 		)
+		(property ki_fp_filters "MountingHole*")
+		(path "/14211922-300f-43ff-b369-d1f3a3d07358")
+		(sheetname "Root")
+		(sheetfile "lm3886.kicad_sch")
 		(attr through_hole)
 		(fp_text user "${REFERENCE}"
 			(at 0 2.8 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "c08538e6-c6fa-4dae-8d20-58a7fbe15bfb")
+			(uuid "d996cabe-a1f1-488e-96ab-127e7c387ae6")
 			(effects
 				(font
 					(size 1 1)
@@ -11632,7 +11636,7 @@
 			(drill oval 3.2 9)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(uuid "7a398c26-e9ef-420d-a443-5cfa43a7a2ea")
+			(uuid "d81db774-8e68-4553-b9f6-142f7f751646")
 		)
 	)
 	(footprint "Custom:M3 Slot"
@@ -13270,7 +13274,7 @@
 				)
 			)
 		)
-		(property "Value" "BLUE"
+		(property "Value" "YELLOW"
 			(at 0 1.43 -90)
 			(layer "F.Fab")
 			(uuid "2e1003a8-a019-4cba-9bcc-39353ace8c4e")
@@ -18924,7 +18928,7 @@
 				)
 			)
 		)
-		(property "Value" "YELLOW"
+		(property "Value" "BLUE"
 			(at 0 1.43 90)
 			(layer "F.Fab")
 			(uuid "a96cf7a3-4572-43ee-9275-aa893955e09f")
