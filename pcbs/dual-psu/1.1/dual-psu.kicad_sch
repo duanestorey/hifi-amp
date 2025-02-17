@@ -4194,7 +4194,7 @@
 	)
 	(wire
 		(pts
-			(xy 261.62 121.92) (xy 261.62 123.063)
+			(xy 283.21 118.11) (xy 283.21 119.253)
 		)
 		(stroke
 			(width 0)
@@ -4504,7 +4504,7 @@
 	)
 	(wire
 		(pts
-			(xy 261.62 129.921) (xy 261.62 128.143)
+			(xy 283.21 126.111) (xy 283.21 124.333)
 		)
 		(stroke
 			(width 0)
@@ -8414,7 +8414,7 @@
 	)
 	(global_label "7V"
 		(shape input)
-		(at 261.62 121.92 90)
+		(at 283.21 118.11 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8424,7 +8424,7 @@
 		)
 		(uuid "a6fb13e8-3fe9-4146-995e-31581386243f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 261.62 116.6367 90)
+			(at 283.21 112.8267 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9910,7 +9910,7 @@
 	)
 	(global_label "PGND"
 		(shape input)
-		(at 261.62 129.921 270)
+		(at 283.21 126.111 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9920,7 +9920,7 @@
 		)
 		(uuid "fa46c7ed-d824-43d5-b1dd-297071a261f0")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 261.62 138.0467 90)
+			(at 283.21 134.2367 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12436,7 +12436,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 261.62 125.603 0)
+		(at 283.21 121.793 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12445,7 +12445,7 @@
 		(fields_autoplaced yes)
 		(uuid "51e79ad1-0d20-4712-9b7f-07677fc5db16")
 		(property "Reference" "C14"
-			(at 264.922 123.7868 0)
+			(at 286.512 119.9768 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12454,7 +12454,7 @@
 			)
 		)
 		(property "Value" "10V 470u"
-			(at 264.922 126.3268 0)
+			(at 286.512 122.5168 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12463,7 +12463,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm"
-			(at 261.62 125.603 0)
+			(at 283.21 121.793 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12472,7 +12472,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 261.62 125.603 0)
+			(at 283.21 121.793 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12481,7 +12481,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 261.62 125.603 0)
+			(at 283.21 121.793 0)
 			(effects
 				(font
 					(size 1.27 1.27)
