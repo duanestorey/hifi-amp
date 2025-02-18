@@ -33,7 +33,7 @@ A 7-pin connector is used between the amplifier and each monoblock, and has the 
 | 2 | Woofer Signal |
 | 3 | Tweeter Signal |
 | 4 | SDA |
-| 5 | SDL |
+| 5 | SCL |
 | 6 | Enable |
 | 7 | 12V |
 

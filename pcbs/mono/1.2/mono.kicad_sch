@@ -2174,16 +2174,6 @@
 	)
 	(wire
 		(pts
-			(xy 81.28 30.48) (xy 74.93 30.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "049aa589-7f53-4c90-9ca9-9ed2b139b9ec")
-	)
-	(wire
-		(pts
 			(xy 113.03 100.33) (xy 125.73 100.33)
 		)
 		(stroke
@@ -2191,16 +2181,6 @@
 			(type default)
 		)
 		(uuid "083dae07-3105-4990-b61f-e7ab9c8d4f20")
-	)
-	(wire
-		(pts
-			(xy 88.9 38.1) (xy 86.36 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "14e8540f-d607-406c-b821-2e030f4749f1")
 	)
 	(wire
 		(pts
@@ -2261,16 +2241,6 @@
 			(type default)
 		)
 		(uuid "3b4f2ce0-866d-44b5-889f-e2a76776c4d5")
-	)
-	(wire
-		(pts
-			(xy 81.28 38.1) (xy 74.93 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3f1f64a8-5188-4f57-a8e3-9d42c7c97228")
 	)
 	(wire
 		(pts
@@ -2612,16 +2582,6 @@
 		)
 		(uuid "fc84f13b-42e8-4d2a-aad5-6e0f0a9fb2c2")
 	)
-	(wire
-		(pts
-			(xy 88.9 30.48) (xy 86.36 30.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fe4d1a04-b352-4475-9f4f-d4bae164d6bb")
-	)
 	(global_label "3V3"
 		(shape input)
 		(at 132.08 97.79 180)
@@ -2842,6 +2802,28 @@
 			)
 		)
 	)
+	(global_label "VM"
+		(shape input)
+		(at 88.9 39.37 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "39db921f-4e02-46bd-bb0a-b4c5c3eef016")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 94.4252 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "PGND"
 		(shape input)
 		(at 199.39 114.3 270)
@@ -2899,6 +2881,28 @@
 		(uuid "4293ee47-d2f9-4974-87f3-079cb642c94a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 77.8547 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "VP"
+		(shape input)
+		(at 88.9 30.48 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "4633d0c0-31cf-4591-83c1-127d9557d5e1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 94.2438 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3062,28 +3066,6 @@
 			)
 		)
 	)
-	(global_label "NEG"
-		(shape input)
-		(at 88.9 38.1 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "5df9073d-5ee4-491b-99a7-948c3727ebef")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 95.6347 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "AGND"
 		(shape input)
 		(at 82.55 105.41 0)
@@ -3234,28 +3216,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "VP"
-		(shape input)
-		(at 74.93 30.48 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "85998a6e-6133-4318-988d-9a3735a14e4e")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 69.5862 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -3526,28 +3486,6 @@
 	)
 	(global_label "POS"
 		(shape input)
-		(at 88.9 30.48 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "a31010c3-780e-4190-a32d-2305fe021a4e")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 95.6952 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "POS"
-		(shape input)
 		(at 110.49 30.48 90)
 		(fields_autoplaced yes)
 		(effects
@@ -3564,6 +3502,28 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "POS"
+		(shape input)
+		(at 88.9 30.48 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "b1e0f462-12ff-4aea-a2fa-9a8ccf423281")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 82.1048 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -3740,28 +3700,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "VM"
-		(shape input)
-		(at 74.93 38.1 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "c9666114-2261-4641-b249-5cbc32053666")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 69.4048 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -3955,6 +3893,28 @@
 		(uuid "ec31b6c0-983e-4fc9-8b99-96f391e92383")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 212.9753 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "NEG"
+		(shape input)
+		(at 88.9 39.37 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "eead74c7-3e47-4fb8-9108-95a886f4537f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 82.1653 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4493,83 +4453,6 @@
 			(project ""
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
 					(reference "D1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 83.82 30.48 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "23e221da-9aa1-4833-86cf-21e7fde98cc4")
-		(property "Reference" "R3"
-			(at 83.82 25.4 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "470m 3W"
-			(at 83.82 27.94 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_1218_3246Metric_Pad1.22x4.75mm_HandSolder"
-			(at 83.82 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 83.82 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 83.82 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser" "RLW73PA3FR47TDF"
-			(at 83.82 30.48 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d5a4bf75-ab87-4eec-9d82-b2581aa6b8ec")
-		)
-		(pin "2"
-			(uuid "b36c9490-88c2-47a2-8529-f246a2ffd8c2")
-		)
-		(instances
-			(project ""
-				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -5768,83 +5651,6 @@
 			(project "Inputs"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
 					(reference "R7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 83.82 38.1 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "99ce20fc-beef-48bb-8169-d0fe83f7f85f")
-		(property "Reference" "R4"
-			(at 83.82 33.02 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "470m 3W"
-			(at 83.82 35.56 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_1218_3246Metric_Pad1.22x4.75mm_HandSolder"
-			(at 83.82 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 83.82 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 83.82 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser" "RLW73PA3FR47TDF"
-			(at 83.82 38.1 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0c46b501-dcc5-4fa7-8118-f22e3656fae9")
-		)
-		(pin "2"
-			(uuid "a3cad68b-7f02-4048-94b7-e108ccb76b39")
-		)
-		(instances
-			(project "Inputs"
-				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "R4")
 					(unit 1)
 				)
 			)
