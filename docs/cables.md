@@ -50,8 +50,8 @@ A 5-pin connector is also used between the amplifier and each monoblock, and has
 | 1 | Power Ground |
 | 2 | -POWER (-32V) |
 | 3 | +POWER (32V) |
-| 4 | 3.3V |
-| 5 | Digital Ground |
+| 4 | Digital Ground |
+| 5 | 3.3V |
 
 To prevent ground loops, the shield and signal ground should be connected together at the amplifier end only.  The shield pin should be left floating in the monoblock.
 
