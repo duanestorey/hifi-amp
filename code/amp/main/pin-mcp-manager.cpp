@@ -1,7 +1,14 @@
 #include "pin-mcp-manager.h"
 #include <memory.h>
+#include "debug.h"
 
 PinMcpManager::PinMcpManager( I2CBUSPtr bus, uint8_t addr, QueuePtr queue ) : mBus( bus ), mAddr( addr ), mInterruptQueue( queue ) {
+   
+}
+
+void
+PinMcpManager::reset() {
+
 }
 
 uint8_t 
@@ -50,6 +57,8 @@ void
 PinMcpManager::setState( uint8_t pin, uint8_t state ) {
     uint8_t portState = 0;
 
+    AMP_DEBUG_I( "Attemping to set MCP state on pin %d to state %d", pin, state );
+
     if ( isPortA( pin ) ) {
         mBus->readRegisterByte( mAddr, 0x12, portState );
     } else {
@@ -57,6 +66,8 @@ PinMcpManager::setState( uint8_t pin, uint8_t state ) {
     }
    
     uint8_t pinValue = ( 1 << ( ( pin & 0x0f ) - 1 ) );
+    AMP_DEBUG_I( "...Current pin value is %d", pinValue );
+    AMP_DEBUG_I( "...Current port value is %d", portState );
 
     if ( state == Pin::PIN_STATE_LOW ) {
         portState = portState & ~pinValue;
@@ -64,16 +75,20 @@ PinMcpManager::setState( uint8_t pin, uint8_t state ) {
         portState = portState | pinValue;
     }
 
+    AMP_DEBUG_I( "...New port value is %d", portState );
+
     if ( isPortA( pin ) ) {
+        AMP_DEBUG_I( ".....Writing %d to addr %d and register 0x12", portState, mAddr );
         mBus->writeRegisterByte( mAddr, 0x12, portState );
     } else {
+        AMP_DEBUG_I( ".....Writing %d to addr %d and register 0x13", portState, mAddr );
         mBus->writeRegisterByte( mAddr, 0x13, portState );
     }
 }
 
 bool 
 PinMcpManager::isPortA( uint8_t pin ) {
-    return ( pin & 0x10 );
+    return !( pin & 0x10 );
 }
 
 void
@@ -101,7 +116,9 @@ PinMcpManager::updateConfig() {
                 }
             }
 
+            AMP_DEBUG_I( "Setting PortA Dir to %d for pin %d", portADir, i->second->getPinID() );
             mBus->writeRegisterByte( mAddr, 0x00, portADir );
+            AMP_DEBUG_I( "Setting PortB Dir to %d for pin %d", portBDir, i->second->getPinID() );
             mBus->writeRegisterByte( mAddr, 0x01, portBDir );
             mBus->writeRegisterByte( mAddr, 0x0c, pullupA );
             mBus->writeRegisterByte( mAddr, 0x0d, pullupB );
@@ -114,6 +131,8 @@ PinMcpManager::createPin( uint8_t pin, uint8_t direction, uint8_t pulldown, uint
     PinPtr newPtr = PinPtr( new PinMcp( this, pin, direction, pulldown, pullup ) );
 
     mPinMap[ pin ] = newPtr;
+
+    updateConfig();
 
     return newPtr;
 }

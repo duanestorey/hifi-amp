@@ -21,9 +21,23 @@ ESP32_GPIO_ISR_PORTB( void *arg ) {
 }
 
 PinManager::PinManager( I2CBUSPtr i2c, QueuePtr interruptQueue ) : mInterruptQueue( interruptQueue ), mI2C( i2c ) {
-    mPinManagerMCP = PinMcpManagerPtr( new PinMcpManager( i2c, AMP_I2C_ADDR_MCP, interruptQueue ) );
+    // disable reset, enable MCP
+    gpio_set_direction( (gpio_num_t)AMP_PIN_MCP_RESET, GPIO_MODE_OUTPUT );
+    gpio_set_level( (gpio_num_t)AMP_PIN_MCP_RESET, 0 );
+
+    mPinManagerMCP1 = PinMcpManagerPtr( new PinMcpManager( i2c, AMP_I2C_ADDR_MCP_1, interruptQueue ) );
+    mPinManagerMCP2 = PinMcpManagerPtr( new PinMcpManager( i2c, AMP_I2C_ADDR_MCP_2, interruptQueue ) );
+
+    vTaskDelay( 1 / portTICK_PERIOD_MS );
 
     configureMCPInterrupts();
+
+    gpio_set_level( (gpio_num_t)AMP_PIN_MCP_RESET, 1 );
+
+    vTaskDelay( 1 / portTICK_PERIOD_MS );
+
+    mPinManagerMCP1->reset();
+    mPinManagerMCP2->reset();
 }
 
 PinPtr 
@@ -34,9 +48,12 @@ PinManager::createPin( uint8_t pinType, uint8_t pinReference, uint8_t direction,
         case PIN_TYPE_ESP32:
             pin = PinPtr( new PinESP32( this, (gpio_num_t)pinReference, direction, pulldown, pullup ) ); 
             break;
-        case PIN_TYPE_MCP:
-            pin = PinPtr( new PinMcp( mPinManagerMCP.get(), pinReference, direction, pulldown, pullup ) );
+        case PIN_TYPE_MCP1:
+            pin = mPinManagerMCP1->createPin( pinReference, direction, pulldown, pullup ); 
             break;
+        case PIN_TYPE_MCP2:
+            pin = mPinManagerMCP2->createPin( pinReference, direction, pulldown, pullup ); 
+            break;    
         default:
             AMP_DEBUG_E( "Trying to create unknown pin type" );
             break;
@@ -97,19 +114,16 @@ PinManager::configureMCPInterrupts() {
     io_conf.pull_up_en = GPIO_PULLUP_DISABLE;
     io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE;
     gpio_config( &io_conf );  
-
-    // disable reset, enable MCP
-    gpio_set_level( (gpio_num_t)AMP_PIN_MCP_RESET, 1 );
 }
 
 void 
 PinManager::handleMcpPortA() {
-    mPinManagerMCP->processPortAInterrupt();
+    mPinManagerMCP1->processPortAInterrupt();
 }
 
 void 
 PinManager::handleMcpPortB() {
-    mPinManagerMCP->processPortBInterrupt();
+    mPinManagerMCP2->processPortBInterrupt();
 }
 
 void 

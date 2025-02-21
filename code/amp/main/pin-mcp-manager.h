@@ -19,6 +19,8 @@ class PinMcpManager {
 
         void processPortAInterrupt();
         void processPortBInterrupt();
+
+        void reset();
     protected:
         I2CBUSPtr mBus;
         PinMap mPinMap;

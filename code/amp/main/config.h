@@ -1,14 +1,15 @@
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
-#define AMP_DAC_TOTAL_NUM            3
+#define AMP_DAC_TOTAL_NUM            1
 
 // I2C parameters
 #define I2C_MS_TO_WAIT              50
-#define I2C_MASTER_FREQ_HZ          300000
+#define I2C_MASTER_FREQ_HZ          100000
 
 // I2C addresses
-#define AMP_I2C_ADDR_MCP            0x20
+#define AMP_I2C_ADDR_MCP_1          0x20
+#define AMP_I2C_ADDR_MCP_2          0x21
 #define AMP_I2C_ADDR_RECEIVER       0x40
 
 // IR receiver
@@ -58,5 +59,8 @@
 // UART
 #define AMP_PIN_UART_TX             36
 #define AMP_PIN_UART_RX             37
+
+// Dolby
+#define AMP_PIN_DOLBY_RESET         Pin::MCP
 
 #endif 

@@ -17,7 +17,8 @@ class PinManager {
     public:
         enum {
             PIN_TYPE_ESP32 = 0,
-            PIN_TYPE_MCP = 1
+            PIN_TYPE_MCP1 = 1,
+            PIN_TYPE_MCP2 = 2
         };
 
         PinManager( I2CBUSPtr i2c, QueuePtr interruptQueue );
@@ -32,7 +33,8 @@ class PinManager {
         void _handlePortB();
     protected:
         QueuePtr mInterruptQueue;
-        PinMcpManagerPtr mPinManagerMCP;
+        PinMcpManagerPtr mPinManagerMCP1;
+        PinMcpManagerPtr mPinManagerMCP2;
         I2CBUSPtr mI2C;
         InterruptMap mInterrupts;
 

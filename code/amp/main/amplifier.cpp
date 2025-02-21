@@ -153,10 +153,9 @@ Amplifier::init() {
     AMP_DEBUG_I( "Setting up I2C bus" );
     mI2C = I2CBUSPtr( new I2CBUS() );
 
-    AMP_DEBUG_I( "Scanning Bus" ); 
-    mI2C->scanBus();
-
     /*
+-> found device with address 0x20 - MCP1
+-> found device with address 0x21 - MCP2
 -> found device with address 0x27 - LCD
 -> found device with address 0x40 - 5V power meter
 -> found device with address 0x41 - 3V3 power meter
@@ -164,9 +163,11 @@ Amplifier::init() {
 -> found device with address 0x45 - Buck power meter
 -> found device with address 0x48 - CPU temp sensor
 -> found device with address 0x4c - PSU temp sensor
+-> found device with address 0x4e - PCM5122
+-> found device with address 0x58 - Duane's DSP!
+-> found device with address 0x5c - Dolby
 
 ...scan completed!
-
     */
 
     // Create volume controller
@@ -177,6 +178,19 @@ Amplifier::init() {
     AMP_DEBUG_I( "Setting up pin manager" );
     mPinManager = PinManagerPtr( new PinManager( mI2C, mAmplifierQueue ) );
     mStandbyLED = mPinManager->createPin( PinManager::PIN_TYPE_ESP32, AMP_PIN_STANDBY_LED, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_ENABLE, Pin::PIN_PULLUP_DISABLE );
+    mEncoderResetPin = mPinManager->createPin( PinManager::PIN_TYPE_ESP32, AMP_PIN_MCP_RESET, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_ENABLE, Pin::PIN_PULLUP_DISABLE );
+    mDolbyResetPin = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A7, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+
+    AMP_DEBUG_I( "Activing MCP GPIO extenders" );
+    mEncoderResetPin->enable();
+
+    AMP_DEBUG_I( "Activing Dolby Decoder" );
+    mDolbyResetPin->enable();
+
+    taskDelayInMs( 5 );
+
+    AMP_DEBUG_I( "Scanning Bus" ); 
+    mI2C->scanBus();
 
     // Setup LCD display
     AMP_DEBUG_I( "Setting up LCD display" );
@@ -196,7 +210,6 @@ Amplifier::init() {
     mDiagnostics->addPowerSensor( "3V3", PowerSensorPtr( new INA260( 0x41, mI2C ) ) );
     mDiagnostics->addPowerSensor( "OPAMP", PowerSensorPtr( new INA260( 0x44, mI2C ) ) );
     mDiagnostics->addPowerSensor( "BUCK", PowerSensorPtr( new INA260( 0x45, mI2C ) ) );
-    mDiagnostics->addPowerSensor( "TEST", PowerSensorPtr( new INA260( 0x47, mI2C ) ) );
 
     // setup channel selector
     AMP_DEBUG_I( "Setting up channel selectors" );
@@ -208,7 +221,7 @@ Amplifier::init() {
     // Setup output DACs
     AMP_DEBUG_I( "Setting up DACs" );
     for ( int i = 0; i < AMP_DAC_TOTAL_NUM; i++ ) {
-        mDAC[i] = DACPtr( new DAC_PCM5142( 0x4c + i, mI2C ) );
+        mDAC[i] = DACPtr( new DAC_PCM5142( 0x4e + i, mI2C ) );
         mDAC[i]->init();
         mDAC[i]->setFormat( DAC::FORMAT_I2S );
 

@@ -9,30 +9,36 @@ float
 INA260::getVoltage() {
     uint8_t data[2];
 
-    mBus->readRegisterBytes( mAddr, INA260::REGISTER_VOLTAGE, 2, data );
-    uint16_t voltage = data[1] | ( data[0] << 8 );
-   // AMP_DEBUG_I( "Reading voltage %d, value is %u", mAddr, voltage );
-    return ((float)voltage)*0.00125;
+    if ( mBus->readRegisterBytes( mAddr, INA260::REGISTER_VOLTAGE, 2, data ) ) {
+         uint16_t voltage = data[1] | ( data[0] << 8 );
+        return ((float)voltage)*0.00125;
+    } else {
+        return 0;
+    }
 }
 
 float 
 INA260::getCurrent() {
     uint8_t data[2];
 
-    mBus->readRegisterWord( mAddr, INA260::REGISTER_CURRENT, data );
-    uint16_t current = data[1] | ( data[0] << 8 );
-   // AMP_DEBUG_I( "Reading current %d, value is %u", mAddr, current );
-    return ((float)current)*1.25;
+    if ( mBus->readRegisterWord( mAddr, INA260::REGISTER_CURRENT, data ) ) {
+        uint16_t current = data[1] | ( data[0] << 8 );
+        return ((float)current)*1.25;
+    } else {
+        return 0;
+    }
 }
 
 float 
 INA260::getPowerUsage() {
     uint8_t data[2];
 
-    mBus->readRegisterWord( mAddr, INA260::REGISTER_POWER, data );
-    uint16_t power = data[1] | (data[0] << 8 );
-   // AMP_DEBUG_I( "Reading power %d, value is %u", mAddr, power );
-    return ((float)power)*0.010;
+    if ( mBus->readRegisterWord( mAddr, INA260::REGISTER_POWER, data ) ) {
+        uint16_t power = data[1] | (data[0] << 8 );
+        return ((float)power)*0.010;
+    } else {
+        return 0;
+    }
 }
 
 void

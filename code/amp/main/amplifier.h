@@ -53,6 +53,8 @@ protected:
     void asyncUpdateDisplay();
 
     PinPtr mStandbyLED;
+    PinPtr mEncoderResetPin;
+    PinPtr mDolbyResetPin;
 
     bool mWifiEnabled;   
     bool mWifiConnectionAttempts;
@@ -114,6 +116,7 @@ protected:
 
     //PinMcpManagerPtr mMcpPinManager;
     PinManagerPtr mPinManager;
+    
 
     VolumeControllerPtr mMasterVolume;
 
