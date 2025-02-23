@@ -9,7 +9,26 @@ Dolby_STA310::Dolby_STA310( uint8_t addr, I2CBUSPtr bus ) : mAddr( addr ), mBus(
 
 void
 Dolby_STA310::init() {
+    mInitialized = false;
+    mRunning = false;
 
+    softReset();
+    if ( mInitialized ) {
+        AMP_DEBUG_I( "Starting Dolby Play Routines" );
+
+        configureAudioPLL();
+        configureInterrupts();
+        configureSync();
+        configureSPDIF();
+        configurePCMOUT();
+        configureDecoder();
+        configureAC3();
+
+        mute( false );
+        run();
+
+        mInitialized = true;
+    }
 }
 
 void 
@@ -29,24 +48,10 @@ Dolby_STA310::tick() {
 
 void 
 Dolby_STA310::startDolby() {
-    softReset();
-
-    if ( mInitialized ) {
-        AMP_DEBUG_I( "Starting Dolby Play Routines" );
-
-        configureAudioPLL();
-        configureInterrupts( true );
-        configureSync();
-        configureSPDIF();
-        configurePCMOUT();
-        configureDecoder();
-        configureAC3();
-
-        mute( false );
-        run();
-
-        mRunning = true;
-    }    
+    init();
+    mute( false );
+    run();
+    play( true );
 }
 
 void 
@@ -126,13 +131,10 @@ Dolby_STA310::softReset( bool output ) {
 			mInitialized = true;
 
             AMP_DEBUG_I( "Initalized" );
-
-            if ( output ) {
-                enableAudioPLL();
-                mute( true );
-            }
-        
             
+            enableAudioPLL();
+            mute( true );
+   
 		} else {
 			attempts++;
 			// if it's not ready, let's wait 5ms and try again
@@ -180,7 +182,7 @@ Dolby_STA310::configureAudioPLL() {
     AMP_DEBUG_I( "Configuring audio pll" );
     // 22 is only one that works
 
-   // mBus->writeRegisterByte( mAddr, Dolby_STA310::PLL_CTRL, 30 );
+    //mBus->writeRegisterByte( mAddr, Dolby_STA310::PLL_CTRL, 0b11110 );
     mBus->writeRegisterByte( mAddr, Dolby_STA310::PLL_CTRL, 22 );
 }
 
@@ -200,8 +202,8 @@ Dolby_STA310::configureInterrupts( bool enableHDR  ){
 void
 Dolby_STA310::configureSync() {
     AMP_DEBUG_I( "Configuring sync" );
-    mBus->writeRegisterByte( mAddr, Dolby_STA310::PACKET_LOCK, 1 );
-    mBus->writeRegisterByte( mAddr, Dolby_STA310::SYNC_LOCK, 3 );
+    mBus->writeRegisterByte( mAddr, Dolby_STA310::PACKET_LOCK, 0 );
+    mBus->writeRegisterByte( mAddr, Dolby_STA310::SYNC_LOCK, 0 );
     mBus->writeRegisterByte( mAddr, Dolby_STA310::ID_EN, 0 );
     mBus->writeRegisterByte( mAddr, Dolby_STA310::ID, 0 );
     mBus->writeRegisterByte( mAddr, Dolby_STA310::ID_EXT, 0 );
@@ -230,7 +232,7 @@ Dolby_STA310::configurePCMOUT() {
     // Looks like {d23-d0}{8*0}
     // 3 + 8 + 32 = FORMAT_SONY for DAC
     // 3 = FORMAT_I2S
-    mBus->writeRegisterByte( mAddr, Dolby_STA310::PCM_CONF, 3 + 32 );
+    mBus->writeRegisterByte( mAddr, Dolby_STA310::PCM_CONF,  3 + 8 + 32 );
 }
 
 void 
@@ -245,7 +247,7 @@ Dolby_STA310::configureAC3() {
     mBus->writeRegisterByte( mAddr, Dolby_STA310::AC3_RPC, 0 );
     mBus->writeRegisterByte( mAddr, Dolby_STA310::AC3_KARAOKE, 0 );
     mBus->writeRegisterByte( mAddr, Dolby_STA310::AC3_DUALMODE, 0 );
-    mBus->writeRegisterByte( mAddr, Dolby_STA310::AC3_DOWNMIX, 4 );
+    mBus->writeRegisterByte( mAddr, Dolby_STA310::AC3_DOWNMIX, 7 );
     mBus->writeRegisterByte( mAddr, Dolby_STA310::OCFG, 2 + 64 );
 }
 
@@ -370,11 +372,12 @@ Dolby_STA310::handleInterrupt( QueuePtr queue ) {
 
         AMP_DEBUG_I( "...STream/Decode set to %d %d", (int)stream, (int)decode );
 
+        play( true );
         mute( false );
         run();
 
         // Maybe defer this until we have a valid header?
-        play( true );
+       
     }
 
     AMP_DEBUG_I( "Interrupt processed" );

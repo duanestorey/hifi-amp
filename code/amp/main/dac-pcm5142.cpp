@@ -32,7 +32,7 @@ DAC_PCM5142::init() {
     switchToPage( 0 );
 
     // switch from 8x interpolation to 16x, and enable double speed
-    //mI2C->writeRegisterByte( mAddress, DAC_PCM5142::PCM5142_REG_INT_SPEED, 0 | 16 );
+    mI2C->writeRegisterByte( mAddress, DAC_PCM5142::PCM5142_REG_INT_SPEED, 0 | 16 );
 
     // set auto clock to on
     mI2C->writeRegisterByte( mAddress, DAC_PCM5142::PCM5142_REG_AUTO_CLOCK, 0 );
@@ -44,6 +44,58 @@ DAC_PCM5142::init() {
     switchToPage( 1 );
     mI2C->writeRegisterByte( mAddress, DAC_PCM5142::PCM5142_REG_GAIN_CTRL, 0 );
     
+}
+
+void 
+DAC_PCM5142::debug() {
+    uint8_t data;
+
+    switchToPage( 0 );
+    mI2C->readRegisterByte( mAddress, 94, data );
+
+    if ( data & 0x40 ) {
+        AMP_DEBUG_I( "...SCK is missing" );
+    } else {
+        AMP_DEBUG_I( "...SCK is detected" );
+    }
+
+    if ( data & 0x20 ) {
+        AMP_DEBUG_I( "...PLL is unlocked" );
+    } else {
+        AMP_DEBUG_I( "...PLL is locked" );
+    }
+
+     if ( data & 0x10 ) {
+        AMP_DEBUG_I( "...LR + BCLK are missing" );
+    } else {
+        AMP_DEBUG_I( "...LR and/or BCLK are detected" );
+    }
+
+    if ( data & 0x08 ) {
+        AMP_DEBUG_I( "...SCLK autoclock/error" );
+    } else {
+        AMP_DEBUG_I( "...SCLK valid" );
+    }
+
+    if ( data & 0x04 ) {
+        AMP_DEBUG_I( "...SCLK is not valid" );
+    } else {
+        AMP_DEBUG_I( "...SCLK is valid" );
+    }
+
+    if ( data & 0x02 ) {
+        AMP_DEBUG_I( "...BCLK is not valid" );
+    } else {
+        AMP_DEBUG_I( "...BCLK is valid" );
+    }
+
+    if ( data & 0x01 ) {
+        AMP_DEBUG_I( "...Samping rate invalid" );
+    } else {
+        AMP_DEBUG_I( "...Samping rate is valid" );
+    }
+
+
 }
 
 void 
@@ -117,6 +169,7 @@ DAC_PCM5142::enable( bool state ) {
 
 void 
 DAC_PCM5142::mute( bool setMute ) {
+    AMP_DEBUG_I( "Setting mute to %d", (int)setMute );
     if ( setMute != mMuted ) {
         return;
     }
@@ -188,7 +241,7 @@ DAC_PCM5142::_setAttenuation( int att ) {
 
 void 
 DAC_PCM5142::switchToPage( uint8_t page ) {
-    AMP_DEBUG_I( "Setting page to %d", (int)page );
+   // AMP_DEBUG_I( "Setting page to %d", (int)page );
     mI2C->writeRegisterByte( mAddress, DAC_PCM5142::PCM5142_PAGE_SELECT, page );
 
     mCurrentPage = page;

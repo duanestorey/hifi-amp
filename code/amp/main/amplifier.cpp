@@ -228,11 +228,16 @@ Amplifier::init() {
 
     AMP_DEBUG_I( "Setting up digital receiver" );
     mDigitalReceiver = DigitalReceiverPtr( new DigitalReceiver( mI2C, AMP_I2C_ADDR_RECEIVER, mPinManager ) );
+    mDolby = Dolby_STA310Ptr( new Dolby_STA310( 0x5c, mI2C ) );
+    mDolby->init();
+    mDolby->mute( false );
+    mDolby->run();
+    mDolby->play( true );
 
     // Setup output DACs
     AMP_DEBUG_I( "Setting up DACs" );
     for ( int i = 0; i < AMP_DAC_TOTAL_NUM; i++ ) {
-        mDAC[i] = DACPtr( new DAC_PCM5142( 0x4e + i, mI2C ) );
+        mDAC[i] = DACPtr( new DAC_PCM5142( 0x4d + i, mI2C ) );
         mDAC[i]->init();
         mDAC[i]->setFormat( DAC::FORMAT_I2S );
 
@@ -241,8 +246,6 @@ Amplifier::init() {
 
     AMP_DEBUG_I( "Setting up DSP" );
     mDSP = DSPPtr( new DSP( 0x58, mI2C ) );
-
-    mDolby = Dolby_STA310Ptr( new Dolby_STA310( 0x5c, mI2C ) );
 
     // Setup digital inputs
     AMP_DEBUG_I( "Setting up digital transceiver" );
@@ -697,7 +700,8 @@ Amplifier::startAudio() {
     audioChangeInput();
 
     AMP_DEBUG_I( "Setting previous volume" );    
-    mMasterVolume->setAttenuation( mState.mCurrentAttenuation );
+    // mMasterVolume->setAttenuation( mState.mCurrentAttenuation );
+    mMasterVolume->setAttenuation( 15 );
 
     AMP_DEBUG_I( "Enabling DACs" );
     for ( int i = 0; i < AMP_DAC_TOTAL_NUM; i++ ) {
@@ -791,7 +795,11 @@ Amplifier::handleAudioThread() {
                             AMP_DEBUG_W( "Dolby interrupt" );
                             mDolby->handleInterrupt( mAudioQueue );
                         }
-                    } 
+
+                        for ( int i = 0; i < AMP_DAC_TOTAL_NUM; i++ ) {
+                            mDAC[i]->debug();
+                        }
+                                        } 
                     
                     break;
                 case Message::MSG_AUDIO_SAMPLING_RATE_CHANGE:

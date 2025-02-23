@@ -44,6 +44,7 @@ public:
     virtual int16_t getMinAttenuation() const;
     virtual int16_t getAttenuationStep() const;
     virtual void setAttenuation( uint16_t attenuation ); 
+    virtual void debug();
 
     virtual void setPrecision( uint8_t precision );
 protected:
