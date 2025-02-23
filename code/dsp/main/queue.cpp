@@ -15,10 +15,13 @@ Queue::add( Message msg ) {
     xQueueSendToBack( mQueueHandle, (void *)&msg, 10 );
 }
 
-void 
+BaseType_t 
 Queue::addFromISR( Message msg ) {
     BaseType_t taskWoken;
+   // AMP_DEBUG_INT_I( "adding to isr queue" );
     xQueueSendToBackFromISR( mQueueHandle, (void *)&msg, &taskWoken );
+   // AMP_DEBUG_INT_I( "finished adding to isr queue" );
+    return taskWoken;
 }
 
 bool 

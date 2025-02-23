@@ -9,11 +9,11 @@
 class DigitalReceiver {
     public:
         enum {
-            INPUT_NONE,
-            INPUT_SPDIF1,
-            INPUT_SPDIF2,
-            INPUT_SPDIF3,
-            INPUT_SPDIF4,
+            INPUT_NONE = -1,
+            INPUT_SPDIF1 = 0,
+            INPUT_SPDIF2 = 1,
+            INPUT_SPDIF3 = 2,
+            INPUT_SPDIF4 = 3,
             INPUT_I2S_1,
             INPUT_I2S_2
         };  

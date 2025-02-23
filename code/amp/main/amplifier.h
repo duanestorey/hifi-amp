@@ -24,7 +24,9 @@
 #include "digital-receiver.h"
 #include "mdns-net.h"
 #include "input.h"
+#include "dsp.h"
 #include "diagnostics.h"
+#include "dolby-sta310.h"
 #include <vector>
 
 typedef std::vector<InputPtr> InputVector;
@@ -53,8 +55,11 @@ protected:
     void asyncUpdateDisplay();
 
     PinPtr mStandbyLED;
-    PinPtr mEncoderResetPin;
+  //  PinPtr mEncoderResetPin;
     PinPtr mDolbyResetPin;
+    PinPtr mMonoblockEnablePin;
+    PinPtr mDACXSMT;
+    PinPtr mDolbyInterrupt;
 
     bool mWifiEnabled;   
     bool mWifiConnectionAttempts;
@@ -95,6 +100,8 @@ protected:
     AnalogChannelSelectorPtr mChannelSel;
     DigitalReceiverPtr mDigitalReceiver;
     DiagnosticsPtr mDiagnostics;
+    DSPPtr mDSP;
+    Dolby_STA310Ptr mDolby;
 
     Encoder mVolumeEncoder;
     Encoder mInputEncoder;
@@ -111,7 +118,7 @@ protected:
 
     std::vector<TickPtr> mNeedsTick;
 
-    uint8_t mIRBuffer[ 218 ];
+    uint8_t *mIRBuffer;
     rmt_channel_handle_t mIRChannel;
 
     //PinMcpManagerPtr mMcpPinManager;

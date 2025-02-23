@@ -9,6 +9,9 @@ DSP::DSP() : mSamplingRate( 48000 ), mSamplesPerPayload( 0 ), mBytesPerPayload( 
 
     mTimer = new Timer();
     mProfile = new Profile();
+
+    mGeneralQueue = QueuePtr( new Queue() );
+    mAudioQueue = QueuePtr( new Queue() );
 }
 
 DSP::~DSP() {
@@ -56,7 +59,7 @@ DSP::start() {
         "General Thread",
         8192,
         (void *)this,
-        1,
+        2,
         NULL
     );
 
@@ -65,7 +68,7 @@ DSP::start() {
         "Audio Thread",
         8192,
         (void *)this,
-        2,
+        1,
         NULL
     );   
 
@@ -147,7 +150,7 @@ void
 DSP::handleTimerThread() {
     AMP_DEBUG_I( "Starting timer thread" );
     while( true ) {
-        mTimer->processTick();
+       // mTimer->processTick();
 
         vTaskDelay( 10 / portTICK_PERIOD_MS );
     }     
@@ -176,7 +179,7 @@ DSP::handleAudioThread() {
     }
 
     AMP_DEBUG_I( "Setting up timer" );
-    mTimerID = mTimer->setTimer( 1000, mAudioQueue, true );
+   // mTimerID = mTimer->setTimer( 1000, mAudioQueue, true );
 
     /*
     AMP_DEBUG_I( "Adding Biquad filters" );
@@ -204,7 +207,7 @@ DSP::handleAudioThread() {
     uint32_t count = 0;
 
     while ( true ) {
-        while ( mAudioQueue.waitForMessage( msg, 5 ) ) {
+        while ( mAudioQueue->waitForMessage( msg, 20 ) ) {
             switch( msg.mMessageType ) {
                 case Message::MSG_I2S_RECV:
                     { 
@@ -295,19 +298,21 @@ DSP::handleGeneralThread() {
     uint8_t addr = getI2CAddress();
     AMP_DEBUG_I( "Starting up I2C on address 0x%x", addr );
     mI2C = new I2CBUS( addr, mGeneralQueue );
+   // mI2C->addEventListener( this );
 
     gpio_set_direction( DSP_PIN_ACTIVE, GPIO_MODE_OUTPUT );
     gpio_set_level( DSP_PIN_ACTIVE, 1 );
     
     AMP_DEBUG_I( "Waiting for messages on General Thread" );
     while ( true ) {
-        while ( mGeneralQueue.waitForMessage( msg, 50 ) ) {
-            switch( msg.mMessageType ) {
-                case Message::MSG_I2C:
-                    mI2C->processData();
-                    break;
-                default:
-                    break;
+        uint8_t *buffer;
+        uint8_t length;
+
+        if ( mI2C->readData( buffer, length, 1, 50 ) ) {
+            AMP_DEBUG_I( "Message received, %d length", length );
+
+            if ( length > 0 ) {
+                processI2C( buffer[ 0 ], buffer, length );
             }
         }
     }
@@ -326,7 +331,7 @@ DSP::startAudio() {
     mPipeline->generate( mSamplingRate );
     mI2S->start( mSamplingRate, mBitDepth, mSlotDepth );
 
-    mTimerID = mTimer->setTimer( 1000, mAudioQueue, true );
+   // mTimerID = mTimer->setTimer( 1000, mAudioQueue, true );
 }
 
 void 
@@ -341,19 +346,22 @@ DSP::stopAudio() {
 }
 
 void 
-DSP::onNewI2CData( uint8_t reg, uint8_t *buffer, uint8_t dataSize ) {
+DSP::processI2C( uint8_t reg, uint8_t *buffer, uint8_t dataSize ) {
+    AMP_DEBUG_I( "Receiving new I2C data for register %d", reg );
     // this will be on the general thread
     switch( reg ) {
-        case REGISTER_RESET:
+        case REGISTER_RESET:    
+            AMP_DEBUG_I( "RESET COMMAND" );
             if ( dataSize == 1 && !mAudioStarted ) {
                 uint8_t command = buffer[ 0 ];
                 if ( command == 1 ) {
                     // perform full reset
-                    mAudioQueue.add( Message::MSG_AUDIO_FULL_RESET );
+                    mAudioQueue->add( Message::MSG_AUDIO_FULL_RESET );
                 }
             }
             break;
         case REGISTER_SET_MODE:
+            AMP_DEBUG_I( "SET MODE" );
             if ( dataSize == 1 && !mAudioStarted ) {
                 uint8_t command = ( buffer[ 0 ] & 0x0f );
                 if ( command == 1 ) {
@@ -394,6 +402,7 @@ DSP::onNewI2CData( uint8_t reg, uint8_t *buffer, uint8_t dataSize ) {
             }
             break;
         case REGISTER_SET_FREQ_DEPTH:
+            AMP_DEBUG_I( "SET FREQ/DEPTH COMMAND" );
             if ( dataSize == 1 && !mAudioStarted ) {
                 uint8_t bitDepth = ( buffer[ 0 ] & 0x0f );
                 switch( bitDepth ) {
@@ -435,6 +444,7 @@ DSP::onNewI2CData( uint8_t reg, uint8_t *buffer, uint8_t dataSize ) {
             }
             break;
         case REGISTER_ADD_FILTER:
+            AMP_DEBUG_I( "ADD FILTER COMMAND" );
             if ( dataSize >= 9 && !mAudioStarted ) {
                 uint8_t filterType = buffer[ 0 ] & 0x1f;
                 uint8_t filterLoc = ( buffer[ 0 ] & 0xe0 ) >> 5;
@@ -449,30 +459,31 @@ DSP::onNewI2CData( uint8_t reg, uint8_t *buffer, uint8_t dataSize ) {
 
                 if ( filterLoc & 0b001 ) {  
                     // add right
-                    mAudioQueue.add( Message::MSG_AUDIO_ADD_FILTER_RIGHT, (uint32_t)new Biquad( filterType, cutoffFreq, qFactor, gain ) );
+                    mAudioQueue->add( Message::MSG_AUDIO_ADD_FILTER_RIGHT, (uint32_t)new Biquad( filterType, cutoffFreq, qFactor, gain ) );
                 } 
                 
                 if ( filterLoc & 0b010 ) {
                     // add left
-                    mAudioQueue.add( Message::MSG_AUDIO_ADD_FILTER_LEFT, (uint32_t)new Biquad( filterType, cutoffFreq, qFactor, gain ) );
+                    mAudioQueue->add( Message::MSG_AUDIO_ADD_FILTER_LEFT, (uint32_t)new Biquad( filterType, cutoffFreq, qFactor, gain ) );
                 }
             }
             break;
         case REGISTER_START:
+            AMP_DEBUG_I( "START COMMAND" );
             if ( dataSize == 1 ) {
                 uint8_t command = ( buffer[ 0 ] & 0x0f );
                 if ( command == 1 ) {
                     // start
                     if ( !mAudioStarted ) {
                         mAudioStarted = false;
-                        mAudioQueue.add( Message::MSG_AUDIO_START );
+                        mAudioQueue->add( Message::MSG_AUDIO_START );
                     }
                     
                 } else if ( command == 0 ) {
                     // standby
                     if ( mAudioStarted ) {
                         mAudioStarted = false;
-                        mAudioQueue.add( Message::MSG_AUDIO_STOP );
+                        mAudioQueue->add( Message::MSG_AUDIO_STOP );
                     }
                     
                 }
@@ -480,10 +491,19 @@ DSP::onNewI2CData( uint8_t reg, uint8_t *buffer, uint8_t dataSize ) {
  
             break;
         case REGISTER_CPU:
+            AMP_DEBUG_I( "CPU COMMAND" );
             break;
-        case REGISTER_VERSION:
+        case REGISTER_VERSION:  
+            {
+                AMP_DEBUG_I( "VERSION request" );
+                uint8_t backToTheFuture = 0x88;
+                mI2C->writeBytes( &backToTheFuture, 1 );
+            }
+            
             break;
     }
+
+    //free( buffer );
 }
 
 uint8_t 

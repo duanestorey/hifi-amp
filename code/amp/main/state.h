@@ -12,7 +12,7 @@ public:
     AmplifierState() : 
         mState( STATE_INIT ), 
         mSpeakerConfig( AUDIO_2_DOT_1 ), 
-        mCurrentAttenuation( 30 ), 
+        mCurrentAttenuation( 20 ), 
         mSamplingRate( 48000 ), 
         mBitDepth( 24 ), 
         mConnected( false ), 

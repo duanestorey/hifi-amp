@@ -3,12 +3,13 @@
 #include "debug.h"
 
 PinMcpManager::PinMcpManager( I2CBUSPtr bus, uint8_t addr, QueuePtr queue ) : mBus( bus ), mAddr( addr ), mInterruptQueue( queue ) {
-   
 }
 
 void
 PinMcpManager::reset() {
-
+    // enable interrupt mirroring
+    mBus->writeRegisterByte( mAddr, 0x0a, 0b01000000 );
+    mBus->writeRegisterByte( mAddr, 0x0b, 0x01000000 );
 }
 
 uint8_t 
@@ -118,6 +119,7 @@ PinMcpManager::updateConfig() {
 
             AMP_DEBUG_I( "Setting PortA Dir to %d for pin %d", portADir, i->second->getPinID() );
             mBus->writeRegisterByte( mAddr, 0x00, portADir );
+
             AMP_DEBUG_I( "Setting PortB Dir to %d for pin %d", portBDir, i->second->getPinID() );
             mBus->writeRegisterByte( mAddr, 0x01, portBDir );
             mBus->writeRegisterByte( mAddr, 0x0c, pullupA );

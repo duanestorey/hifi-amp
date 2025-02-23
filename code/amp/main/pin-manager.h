@@ -31,6 +31,8 @@ class PinManager {
 
         void _handlePortA();
         void _handlePortB();
+
+        void reset();
     protected:
         QueuePtr mInterruptQueue;
         PinMcpManagerPtr mPinManagerMCP1;

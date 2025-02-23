@@ -1,0 +1,2 @@
+source /Users/duane/Code/personal/projects/hifi-amp/code/i2c_slave_network_sensor/build/gdbinit/symbols
+source /Users/duane/Code/personal/projects/hifi-amp/code/i2c_slave_network_sensor/build/gdbinit/connect

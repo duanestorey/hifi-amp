@@ -12,7 +12,7 @@
 #include "timer.h"
 #include "profile.h"
 
-class DSP : public I2C_Listener {
+class DSP {
     public:
         enum {
             REGISTER_RESET = 1,
@@ -38,8 +38,9 @@ class DSP : public I2C_Listener {
         void handleGeneralThread();
         void handleTimerThread();
         void fullReset();
+        void processI2C( uint8_t reg, uint8_t *buffer, uint8_t dataSize );
     protected:
-        virtual void onNewI2CData( uint8_t reg, uint8_t *buffer, uint8_t dataSize );
+       
 
         uint32_t mSamplingRate;
         uint32_t mSamplesPerPayload;
@@ -49,8 +50,8 @@ class DSP : public I2C_Listener {
         uint8_t mSlotDepth;
         uint8_t mMode;
 
-        Queue mGeneralQueue;
-        Queue mAudioQueue;
+        QueuePtr mGeneralQueue;
+        QueuePtr mAudioQueue;
         I2CBUS *mI2C;
         I2S *mI2S;
         Timer *mTimer;

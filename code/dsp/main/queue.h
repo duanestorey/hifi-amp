@@ -7,6 +7,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 #include "freertos/task.h"
+#include <memory>
 
 #define MESSAGE_QUEUE_SIZE 50
 
@@ -18,8 +19,9 @@ public:
     void add( Message msg );
     void add( Message::MessageType msgType, uint32_t param = 0 ) { add( Message( msgType, param ) ); }
 
-    void addFromISR( Message msg );
-    void addFromISR( Message::MessageType msgType, uint32_t param = 0 ) { addFromISR( Message( msgType, param ) ); }
+    BaseType_t addFromISR( Message msg );
+    BaseType_t addFromISR( Message::MessageType msgType, uint32_t param = 0 ) { return addFromISR( Message( msgType, param ) ); }
+    BaseType_t addFromISR( Message::MessageType msgType, uint32_t param = 0, uint32_t param2 = 0 ) { return addFromISR( Message( msgType, param, param2 ) ); }
 
     bool hasMessage();
     Message getMessage();
@@ -27,5 +29,7 @@ public:
 protected:
     QueueHandle_t mQueueHandle;
 };
+
+typedef std::shared_ptr<Queue> QueuePtr;
 
 #endif

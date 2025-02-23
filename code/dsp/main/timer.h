@@ -31,7 +31,7 @@ class Timer {
 public:
     Timer();
 
-    uint32_t setTimer( uint32_t timeout, Queue &queue, bool recurring = false );
+    uint32_t setTimer( uint32_t timeout, QueuePtr queue, bool recurring = false );
     void cancelTimer( uint32_t timerID );
 
     void processTick();

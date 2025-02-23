@@ -1,0 +1,147 @@
+[0;33m--- esp-idf-monitor 1.5.0 on /dev/cu.wchusbserial10 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0;33m--- 0x403c8700: _stext at ??:?
+[0m
+[0;33m--- 0x403c8924: call_start_cpu0 at /Users/duane/Code/Github/esp-idf/components/bootloader/subproject/main/bootloader_start.c:25
+[0m
+[0;33m--- 0x40375df5: panic_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/panic.c:454
+0x4037d7b1: esp_system_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x40385a95: __assert_func at /Users/duane/Code/Github/esp-idf/components/newlib/src/assert.c:80
+0x4037e4f6: spinlock_acquire at /Users/duane/Code/Github/esp-idf/components/esp_hw_support/include/spinlock.h:142 (discriminator 1)
+ (inlined by) xPortEnterCriticalTimeout at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:479 (discriminator 1)
+0x4037e0c0: vPortEnterCritical at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:567
+ (inlined by) xQueueSemaphoreTake at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1727
+0x4200c6e5: example_wifi_sta_do_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:174
+0x4200c8fc: example_wifi_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:247
+0x4200c147: example_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/connect.c:99
+0x4200b4e1: app_main at /Users/duane/Code/personal/projects/hifi-amp/code/i2c_slave_network_sensor/main/i2c_slave_main.c:225
+0x4209efe3: main_task at /Users/duane/Code/Github/esp-idf/components/freertos/app_startup.c:208
+0x4037e289: vPortTaskWrapper at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40375d34: esp_restart_noos at /Users/duane/Code/Github/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x403c8700: _stext at ??:?
+[0m
+[0;33m--- 0x403c8924: call_start_cpu0 at /Users/duane/Code/Github/esp-idf/components/bootloader/subproject/main/bootloader_start.c:25
+[0m
+[0;33m--- 0x40375df5: panic_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/panic.c:454
+0x4037d7b1: esp_system_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x40385a95: __assert_func at /Users/duane/Code/Github/esp-idf/components/newlib/src/assert.c:80
+0x4037e4f6: spinlock_acquire at /Users/duane/Code/Github/esp-idf/components/esp_hw_support/include/spinlock.h:142 (discriminator 1)
+ (inlined by) xPortEnterCriticalTimeout at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:479 (discriminator 1)
+0x4037e0c0: vPortEnterCritical at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:567
+ (inlined by) xQueueSemaphoreTake at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1727
+0x4200c6e5: example_wifi_sta_do_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:174
+0x4200c8fc: example_wifi_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:247
+0x4200c147: example_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/connect.c:99
+0x4200b4e1: app_main at /Users/duane/Code/personal/projects/hifi-amp/code/i2c_slave_network_sensor/main/i2c_slave_main.c:225
+0x4209efe3: main_task at /Users/duane/Code/Github/esp-idf/components/freertos/app_startup.c:208
+0x4037e289: vPortTaskWrapper at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40375d34: esp_restart_noos at /Users/duane/Code/Github/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x403c8700: _stext at ??:?
+[0m
+[0;33m--- 0x403c8924: call_start_cpu0 at /Users/duane/Code/Github/esp-idf/components/bootloader/subproject/main/bootloader_start.c:25
+[0m
+[0;33m--- 0x40375df5: panic_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/panic.c:454
+0x4037d7b1: esp_system_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x40385a95: __assert_func at /Users/duane/Code/Github/esp-idf/components/newlib/src/assert.c:80
+0x4037e4f6: spinlock_acquire at /Users/duane/Code/Github/esp-idf/components/esp_hw_support/include/spinlock.h:142 (discriminator 1)
+ (inlined by) xPortEnterCriticalTimeout at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:479 (discriminator 1)
+0x4037e0c0: vPortEnterCritical at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:567
+ (inlined by) xQueueSemaphoreTake at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1727
+0x4200c6e5: example_wifi_sta_do_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:174
+0x4200c8fc: example_wifi_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:247
+0x4200c147: example_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/connect.c:99
+0x4200b4e1: app_main at /Users/duane/Code/personal/projects/hifi-amp/code/i2c_slave_network_sensor/main/i2c_slave_main.c:225
+0x4209efe3: main_task at /Users/duane/Code/Github/esp-idf/components/freertos/app_startup.c:208
+0x4037e289: vPortTaskWrapper at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40375d34: esp_restart_noos at /Users/duane/Code/Github/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x403c8700: _stext at ??:?
+[0m
+[0;33m--- 0x403c8924: call_start_cpu0 at /Users/duane/Code/Github/esp-idf/components/bootloader/subproject/main/bootloader_start.c:25
+[0m
+[0;33m--- 0x40375df5: panic_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/panic.c:454
+0x4037d7b1: esp_system_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x40385a95: __assert_func at /Users/duane/Code/Github/esp-idf/components/newlib/src/assert.c:80
+0x4037e4f6: spinlock_acquire at /Users/duane/Code/Github/esp-idf/components/esp_hw_support/include/spinlock.h:142 (discriminator 1)
+ (inlined by) xPortEnterCriticalTimeout at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:479 (discriminator 1)
+0x4037e0c0: vPortEnterCritical at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:567
+ (inlined by) xQueueSemaphoreTake at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1727
+0x4200c6e5: example_wifi_sta_do_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:174
+0x4200c8fc: example_wifi_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:247
+0x4200c147: example_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/connect.c:99
+0x4200b4e1: app_main at /Users/duane/Code/personal/projects/hifi-amp/code/i2c_slave_network_sensor/main/i2c_slave_main.c:225
+0x4209efe3: main_task at /Users/duane/Code/Github/esp-idf/components/freertos/app_startup.c:208
+0x4037e289: vPortTaskWrapper at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40375d34: esp_restart_noos at /Users/duane/Code/Github/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x403c8700: _stext at ??:?
+[0m
+[0;33m--- 0x403c8924: call_start_cpu0 at /Users/duane/Code/Github/esp-idf/components/bootloader/subproject/main/bootloader_start.c:25
+[0m
+[0;33m--- 0x40375df5: panic_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/panic.c:454
+0x4037d7b1: esp_system_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x40385a95: __assert_func at /Users/duane/Code/Github/esp-idf/components/newlib/src/assert.c:80
+0x4037e4f6: spinlock_acquire at /Users/duane/Code/Github/esp-idf/components/esp_hw_support/include/spinlock.h:142 (discriminator 1)
+ (inlined by) xPortEnterCriticalTimeout at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:479 (discriminator 1)
+0x4037e0c0: vPortEnterCritical at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:567
+ (inlined by) xQueueSemaphoreTake at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1727
+0x4200c6e5: example_wifi_sta_do_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:174
+0x4200c8fc: example_wifi_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:247
+0x4200c147: example_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/connect.c:99
+0x4200b4e1: app_main at /Users/duane/Code/personal/projects/hifi-amp/code/i2c_slave_network_sensor/main/i2c_slave_main.c:225
+0x4209efe3: main_task at /Users/duane/Code/Github/esp-idf/components/freertos/app_startup.c:208
+0x4037e289: vPortTaskWrapper at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40375d34: esp_restart_noos at /Users/duane/Code/Github/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x403c8700: _stext at ??:?
+[0m
+[0;33m--- 0x403c8924: call_start_cpu0 at /Users/duane/Code/Github/esp-idf/components/bootloader/subproject/main/bootloader_start.c:25
+[0m
+[0;33m--- 0x40375df5: panic_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/panic.c:454
+0x4037d7b1: esp_system_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x40385a95: __assert_func at /Users/duane/Code/Github/esp-idf/components/newlib/src/assert.c:80
+0x4037e4f6: spinlock_acquire at /Users/duane/Code/Github/esp-idf/components/esp_hw_support/include/spinlock.h:142 (discriminator 1)
+ (inlined by) xPortEnterCriticalTimeout at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:479 (discriminator 1)
+0x4037e0c0: vPortEnterCritical at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:567
+ (inlined by) xQueueSemaphoreTake at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1727
+0x4200c6e5: example_wifi_sta_do_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:174
+0x4200c8fc: example_wifi_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:247
+0x4200c147: example_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/connect.c:99
+0x4200b4e1: app_main at /Users/duane/Code/personal/projects/hifi-amp/code/i2c_slave_network_sensor/main/i2c_slave_main.c:225
+0x4209efe3: main_task at /Users/duane/Code/Github/esp-idf/components/freertos/app_startup.c:208
+0x4037e289: vPortTaskWrapper at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40375d34: esp_restart_noos at /Users/duane/Code/Github/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x403c8700: _stext at ??:?
+[0m
+[0;33m--- 0x403c8924: call_start_cpu0 at /Users/duane/Code/Github/esp-idf/components/bootloader/subproject/main/bootloader_start.c:25
+[0m
+[0;33m--- 0x40375df5: panic_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/panic.c:454
+0x4037d7b1: esp_system_abort at /Users/duane/Code/Github/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x40385a95: __assert_func at /Users/duane/Code/Github/esp-idf/components/newlib/src/assert.c:80
+0x4037e4f6: spinlock_acquire at /Users/duane/Code/Github/esp-idf/components/esp_hw_support/include/spinlock.h:142 (discriminator 1)
+ (inlined by) xPortEnterCriticalTimeout at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:479 (discriminator 1)
+0x4037e0c0: vPortEnterCritical at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:567
+ (inlined by) xQueueSemaphoreTake at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1727
+0x4200c6e5: example_wifi_sta_do_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:174
+0x4200c8fc: example_wifi_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c:247
+0x4200c147: example_connect at /Users/duane/Code/Github/esp-idf/examples/common_components/protocol_examples_common/connect.c:99
+0x4200b4e1: app_main at /Users/duane/Code/personal/projects/hifi-amp/code/i2c_slave_network_sensor/main/i2c_slave_main.c:225
+0x4209efe3: main_task at /Users/duane/Code/Github/esp-idf/components/freertos/app_startup.c:208
+0x4037e289: vPortTaskWrapper at /Users/duane/Code/Github/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x40375d34: esp_restart_noos at /Users/duane/Code/Github/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x403c8700: _stext at ??:?
+[0m
+[0;33m--- 0x403c8924: call_start_cpu0 at /Users/duane/Code/Github/esp-idf/components/bootloader/subproject/main/bootloader_start.c:25
+[0m
+[0m

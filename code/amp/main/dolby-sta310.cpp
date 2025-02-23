@@ -3,7 +3,7 @@
 #include "pins.h"
 #include "message.h"
 
-Dolby_STA310::Dolby_STA310( uint8_t addr, I2CBUS *bus ) : mAddr( addr ), mBus( bus ), mInitialized( false ), mRunning( false ), mMuted( true ), mPlaying( false ) {
+Dolby_STA310::Dolby_STA310( uint8_t addr, I2CBUSPtr bus ) : mAddr( addr ), mBus( bus ), mInitialized( false ), mRunning( false ), mMuted( true ), mPlaying( false ) {
 
 }
 
@@ -268,7 +268,7 @@ Dolby_STA310::checkForInterrupt() {
 }
 
 void 
-Dolby_STA310::handleInterrupt( Queue &queue ) {
+Dolby_STA310::handleInterrupt( QueuePtr queue ) {
     AMP_DEBUG_I( "Attempting to handle interrupt" );
     uint8_t result1 = 0;
     uint8_t result2 = 0;
@@ -309,7 +309,7 @@ Dolby_STA310::handleInterrupt( Queue &queue ) {
 
         }
 
-        queue.add( Message::MSG_AUDIO_SAMPLING_RATE_CHANGE, samplingRate );
+        queue->add( Message::MSG_AUDIO_SAMPLING_RATE_CHANGE, samplingRate );
         configureInterrupts( false );
     }
 
@@ -362,7 +362,7 @@ Dolby_STA310::handleInterrupt( Queue &queue ) {
         if ( stream == 3 ) {
             // This means we've crapped out
             // let's force going to 5, 0
-           // configureDecoder();
+          // configureDecoder();
         }  else {
             configureAC3();
         }

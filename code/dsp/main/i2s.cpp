@@ -3,7 +3,7 @@
 #include "debug.h"
 #include <memory.h>
 
-I2S::I2S( Queue &queue ) : mQueue( queue ) , mSamplingRate( 0 ), mPreloadedAmount( 0 ), mBitDepth( 16 ), mSlotDepth( 16 ),  
+I2S::I2S( QueuePtr queue ) : mQueue( queue ) , mSamplingRate( 0 ), mPreloadedAmount( 0 ), mBitDepth( 16 ), mSlotDepth( 16 ),  
      mTransmitStarted( false ), mBuffer( 0 ) {
     memset( &mConfig, 0, sizeof( mConfig ) );
 }
@@ -13,7 +13,7 @@ I2S::handleReceiveCallback( i2s_event_data_t *event ) {
   //  AMP_DEBUG_INT_I( "In I2S callback %d", event->size );
     if ( event->size ) {
      //   mBuffer->write( (uint8_t *)event->dma_buf, event->size );
-        mQueue.addFromISR( Message( Message::MSG_I2S_RECV, (int32_t) event->dma_buf, event->size ) );
+        mQueue->addFromISR( Message( Message::MSG_I2S_RECV, (int32_t) event->dma_buf, event->size ) );
     }
 }
 

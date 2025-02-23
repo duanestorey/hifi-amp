@@ -3,67 +3,67 @@
 #include "sdkconfig.h"
 #include "config.h"
 #include "debug.h"
-#include "driver/i2c_slave.h"
+#include "driver/i2c.h"
+#include <stdlib.h>
+#include <memory>
+#include <cstring>
 
-static bool i2c_slave_request_cb(i2c_slave_dev_handle_t channel, const i2c_slave_request_event_data_t *edata, void *userData ) {
-   // ((I2CBUS *)userData)->handleReceiveData( edata ); 
-    return false;
-}
-
-static bool i2c_slave_receive_cb(i2c_slave_dev_handle_t channel, const i2c_slave_rx_done_event_data_t *edata, void *userData )
-{
-    ((I2CBUS *)userData)->handleReceiveData( edata ); 
-    return false;
-}
-
-I2CBUS::I2CBUS( uint8_t slaveAddr, Queue &queue ) : mQueue( queue ), mSlaveAddr( slaveAddr ), mBusHandle( 0 ) {  
+I2CBUS::I2CBUS( uint8_t slaveAddr, QueuePtr queue ) : mQueue( queue ), mSlaveAddr( slaveAddr ), mBusHandle( 0 ) {  
     AMP_DEBUG_I( "Starting I2C bus on addr %x", slaveAddr );
-    i2c_slave_config_t conf = {};
+    i2c_config_t conf = {};
 
-    conf.i2c_port = I2C_NUM_0;
     conf.sda_io_num = DSP_PIN_SDA;
+    conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
     conf.scl_io_num = DSP_PIN_SCL;
-    conf.addr_bit_len = I2C_ADDR_BIT_LEN_7;
-    conf.send_buf_depth = 100;
-    conf.receive_buf_depth = 100,
-    conf.clk_source = I2C_CLK_SRC_DEFAULT;
-    conf.slave_addr = slaveAddr;
+    conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
+    conf.mode = I2C_MODE_SLAVE;
 
-    ESP_ERROR_CHECK( i2c_new_slave_device( &conf, &mBusHandle ) );
+    conf.slave.slave_addr = slaveAddr;
+    conf.slave.addr_10bit_en = 0;
+
+    i2c_param_config( I2C_NUM_0, &conf );
+    ESP_ERROR_CHECK( i2c_driver_install( I2C_NUM_0, conf.mode, I2C_BUF_LEN, I2C_BUF_LEN, 0 ) );
 }
 
-void 
-I2CBUS::processData() {
-    if ( mRecvBufferData.length >= 1 ) {
-        uint8_t reg = mRecvBufferData.buffer[ 0 ];
+bool 
+I2CBUS::readData( uint8_t *&buffer, uint8_t &length, uint16_t maxLength, uint16_t timeout ) {
+    size_t size = i2c_slave_read_buffer( I2C_NUM_0, mReceiveBuffer, maxLength, timeout / portTICK_PERIOD_MS );
+    if ( size ) {
+        buffer = mReceiveBuffer;
+        length = (uint8_t)size;
 
-        for ( Listeners::iterator i = mListeners.begin(); i != mListeners.end(); i++ ) {
-            (*i)->onNewI2CData( reg, &mRecvBufferData.buffer[ 1 ], mRecvBufferData.length - 1 );
-        }
+        return true;
+    } else {
+        return false;
     }
 }
 
 void 
-I2CBUS::startReceive() {
-    i2c_slave_event_callbacks_t cbs;
-    cbs.on_receive = i2c_slave_receive_cb;
-    cbs.on_request = i2c_slave_request_cb;
+I2CBUS::processData( uint8_t *buffer, uint32_t length ) {
+    AMP_DEBUG_I( "Processing data %d", (uint8_t)length );
+    if ( length >= 1 ) {
+        uint8_t reg = buffer[ 0 ];
 
-    ESP_ERROR_CHECK( i2c_slave_register_event_callbacks( mBusHandle, &cbs, this ) );
-}
-
-void 
-I2CBUS::handleReceiveData( const i2c_slave_rx_done_event_data_t *data ) {
-    mRecvBufferData = *data;
-
-    mQueue.addFromISR( Message::MSG_I2C );
+        for ( Listeners::iterator i = mListeners.begin(); i != mListeners.end(); i++ ) {
+            AMP_DEBUG_I( "Executing callback for register %d", reg );
+            (*i)->onNewI2CData( reg, buffer, length );
+        }
+    }
 }
 
 bool 
 I2CBUS::writeBytes( uint8_t *data, uint32_t bytesToWrite ) {
-    uint32_t bytesWritten = 0;
+    AMP_DEBUG_I( "Writing bytes" );
+    int ret = i2c_reset_tx_fifo( I2C_NUM_0 );
+    if (ret != ESP_OK) {
+        AMP_DEBUG_W( "failed to reset fifo" );
+    }
+    
+    ret = i2c_slave_write_buffer( I2C_NUM_0, data, bytesToWrite, 1000 / portTICK_PERIOD_MS );
+    if (ret <= 0) {
+        AMP_DEBUG_W( "failed to write data" );
+    }
+ //  vTaskDelay( 100 / portTICK_PERIOD_MS );
 
-    i2c_slave_write( mBusHandle, data, bytesToWrite, &bytesWritten, 100 );
-
-    return ( bytesToWrite == bytesWritten );
+    return true;
 }

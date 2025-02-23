@@ -181,6 +181,7 @@ DAC_PCM5142::_setChannelAttenuation( int channel, int att ) {
 
 void 
 DAC_PCM5142::_setAttenuation( int att ) {
+    AMP_DEBUG_I( "Setting attenuation to %d", att );
     _setChannelAttenuation( DAC::FRONT_LEFT, att );
     _setChannelAttenuation( DAC::FRONT_RIGHT, att );
 }

@@ -41,7 +41,7 @@ I2CBUS::scanBus() {
         i2c_master_start(cmd);
         i2c_master_write_byte(cmd, (address << 1) | I2C_MASTER_WRITE, true);
         i2c_master_stop(cmd);
-        if(i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000 / portTICK_PERIOD_MS) == ESP_OK) {
+        if( i2c_master_cmd_begin(I2C_NUM_0, cmd, 100 / portTICK_PERIOD_MS) == ESP_OK) {
             printf("-> found device with address 0x%02x\r\n", address);
             devices_found++;
         }

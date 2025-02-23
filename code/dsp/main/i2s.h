@@ -7,7 +7,7 @@
 
 class I2S {
     public:
-        I2S( Queue &queue );
+        I2S( QueuePtr queue );
         void start( uint32_t samplingRate, uint8_t bitDepth, uint8_t slotDepth );
         void stop();
 
@@ -17,7 +17,7 @@ class I2S {
 
         uint32_t bytesWaiting() { return mBuffer->dataReady(); }
     protected:
-        Queue mQueue;
+        QueuePtr mQueue;
         uint32_t mSamplingRate;
         uint32_t mPreloadedAmount;
         

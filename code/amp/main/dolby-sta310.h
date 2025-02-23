@@ -3,6 +3,7 @@
 
 #include "i2c-bus.h"
 #include "queue.h"
+#include <memory>
 
 class Dolby_STA310 {
 public:
@@ -78,13 +79,13 @@ public:
 		AUTODETECT_SENS = 0xe1
 	} REGISTERS;
 
-    Dolby_STA310( uint8_t addr, I2CBUS *bus );
+    Dolby_STA310( uint8_t addr, I2CBUSPtr bus );
 
     void init();
     void mute( bool enable = true );
 	void run();
 	void play( bool enable = true );
-    void handleInterrupt( Queue &queue );
+    void handleInterrupt( QueuePtr queue );
     void checkForInterrupt();
     void setAttenuation( uint8_t db = 0 );
 
@@ -92,9 +93,10 @@ public:
     void stopDolby();
 
     void tick();
+	bool isRunning() const { return mRunning; }
 protected:
     uint8_t mAddr;
-    I2CBUS *mBus;
+    I2CBUSPtr mBus;
     bool mInitialized;
     bool mRunning;
     bool mMuted;
@@ -110,5 +112,7 @@ private:
 	void configureAC3();
 	void configureDecoder();
 };
+
+typedef std::shared_ptr<Dolby_STA310> Dolby_STA310Ptr;
 
 #endif

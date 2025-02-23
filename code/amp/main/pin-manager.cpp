@@ -3,6 +3,7 @@
 #include "pin-mcp.h"
 #include "debug.h"
 #include "config.h"
+#include "driver/gpio.h"
 
 void 
 ESP32_GPIO_ISR( void *arg ) {
@@ -12,28 +13,38 @@ ESP32_GPIO_ISR( void *arg ) {
 
 void 
 ESP32_GPIO_ISR_PORTA( void *arg ) {
+    AMP_DEBUG_INT_W( "In PORTA Interrupt" );
     ((PinManager *)arg)->_handlePortA();
 }
 
 void 
 ESP32_GPIO_ISR_PORTB( void *arg ) {
+    AMP_DEBUG_INT_W( "In PORTB Interrupt" );
     ((PinManager *)arg)->_handlePortB();
 }
 
 PinManager::PinManager( I2CBUSPtr i2c, QueuePtr interruptQueue ) : mInterruptQueue( interruptQueue ), mI2C( i2c ) {
-    // disable reset, enable MCP
-    gpio_set_direction( (gpio_num_t)AMP_PIN_MCP_RESET, GPIO_MODE_OUTPUT );
-    gpio_set_level( (gpio_num_t)AMP_PIN_MCP_RESET, 0 );
+    // set up global interrupts
+    gpio_install_isr_service( ESP_INTR_FLAG_LEVEL3 );
 
     mPinManagerMCP1 = PinMcpManagerPtr( new PinMcpManager( i2c, AMP_I2C_ADDR_MCP_1, interruptQueue ) );
     mPinManagerMCP2 = PinMcpManagerPtr( new PinMcpManager( i2c, AMP_I2C_ADDR_MCP_2, interruptQueue ) );
 
-    vTaskDelay( 1 / portTICK_PERIOD_MS );
-
     configureMCPInterrupts();
 
-    gpio_set_level( (gpio_num_t)AMP_PIN_MCP_RESET, 1 );
+    reset();
 
+}
+
+void 
+PinManager::reset() {
+    // disable reset, enable MCP
+    gpio_set_direction( (gpio_num_t)AMP_PIN_MCP_RESET, GPIO_MODE_OUTPUT );
+    gpio_set_level( (gpio_num_t)AMP_PIN_MCP_RESET, 0 );
+    gpio_set_pull_mode( (gpio_num_t)AMP_PIN_MCP_RESET, GPIO_FLOATING );
+
+    vTaskDelay( 1 / portTICK_PERIOD_MS );
+    gpio_set_level( (gpio_num_t)AMP_PIN_MCP_RESET, 1 );
     vTaskDelay( 1 / portTICK_PERIOD_MS );
 
     mPinManagerMCP1->reset();
