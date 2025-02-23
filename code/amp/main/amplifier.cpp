@@ -189,6 +189,16 @@ Amplifier::init() {
     mDACXSMT = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A3, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_ENABLE );
     mDolbyInterrupt = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A6, Pin::PIN_TYPE_INPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
 
+    mChannel1 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B0, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+    mChannel2 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B1, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+    mChannel3 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B2, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+    mChannelEnable = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B3, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+
+    mChannelEnable->enable();
+    mChannel1->disable();
+    mChannel2->disable();
+    mChannel3->enable();
+
     AMP_DEBUG_I( "Activing DAC XSMT" );
     mDACXSMT->enable();
 

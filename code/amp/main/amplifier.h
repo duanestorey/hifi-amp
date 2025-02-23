@@ -60,6 +60,10 @@ protected:
     PinPtr mMonoblockEnablePin;
     PinPtr mDACXSMT;
     PinPtr mDolbyInterrupt;
+    PinPtr mChannel1;
+    PinPtr mChannel2;
+    PinPtr mChannel3;
+    PinPtr mChannelEnable;
 
     bool mWifiEnabled;   
     bool mWifiConnectionAttempts;

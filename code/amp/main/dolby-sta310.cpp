@@ -182,8 +182,8 @@ Dolby_STA310::configureAudioPLL() {
     AMP_DEBUG_I( "Configuring audio pll" );
     // 22 is only one that works
 
-    //mBus->writeRegisterByte( mAddr, Dolby_STA310::PLL_CTRL, 0b11110 );
-    mBus->writeRegisterByte( mAddr, Dolby_STA310::PLL_CTRL, 22 );
+    mBus->writeRegisterByte( mAddr, Dolby_STA310::PLL_CTRL, 0b11110 );
+    //mBus->writeRegisterByte( mAddr, Dolby_STA310::PLL_CTRL, 22 );
 }
 
 void
@@ -202,8 +202,8 @@ Dolby_STA310::configureInterrupts( bool enableHDR  ){
 void
 Dolby_STA310::configureSync() {
     AMP_DEBUG_I( "Configuring sync" );
-    mBus->writeRegisterByte( mAddr, Dolby_STA310::PACKET_LOCK, 0 );
-    mBus->writeRegisterByte( mAddr, Dolby_STA310::SYNC_LOCK, 0 );
+    mBus->writeRegisterByte( mAddr, Dolby_STA310::PACKET_LOCK, 1 );
+    mBus->writeRegisterByte( mAddr, Dolby_STA310::SYNC_LOCK, 1 );
     mBus->writeRegisterByte( mAddr, Dolby_STA310::ID_EN, 0 );
     mBus->writeRegisterByte( mAddr, Dolby_STA310::ID, 0 );
     mBus->writeRegisterByte( mAddr, Dolby_STA310::ID_EXT, 0 );
