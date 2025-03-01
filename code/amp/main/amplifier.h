@@ -64,6 +64,7 @@ protected:
     PinPtr mChannel2;
     PinPtr mChannel3;
     PinPtr mChannelEnable;
+    PinPtr mSPDIFEnable;
 
     bool mWifiEnabled;   
     bool mWifiConnectionAttempts;

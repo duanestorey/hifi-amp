@@ -24,7 +24,7 @@ Dolby_STA310::init() {
         configureDecoder();
         configureAC3();
 
-        mute( false );
+        mute( true );
         run();
 
         mInitialized = true;
@@ -50,7 +50,6 @@ void
 Dolby_STA310::startDolby() {
     init();
     mute( false );
-    run();
     play( true );
 }
 
@@ -182,8 +181,9 @@ Dolby_STA310::configureAudioPLL() {
     AMP_DEBUG_I( "Configuring audio pll" );
     // 22 is only one that works
 
-    mBus->writeRegisterByte( mAddr, Dolby_STA310::PLL_CTRL, 0b11110 );
+    //mBus->writeRegisterByte( mAddr, Dolby_STA310::PLL_CTRL, 0b11110 );
     //mBus->writeRegisterByte( mAddr, Dolby_STA310::PLL_CTRL, 22 );
+    mBus->writeRegisterByte( mAddr, Dolby_STA310::PLL_CTRL, 6 + 8 );
 }
 
 void
@@ -232,7 +232,7 @@ Dolby_STA310::configurePCMOUT() {
     // Looks like {d23-d0}{8*0}
     // 3 + 8 + 32 = FORMAT_SONY for DAC
     // 3 = FORMAT_I2S
-    mBus->writeRegisterByte( mAddr, Dolby_STA310::PCM_CONF,  3 + 8 + 32 );
+    mBus->writeRegisterByte( mAddr, Dolby_STA310::PCM_CONF,  3 + 32 );
 }
 
 void 

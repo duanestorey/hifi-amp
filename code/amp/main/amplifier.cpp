@@ -168,6 +168,17 @@ Amplifier::init() {
 -> found device with address 0x58 - Duane's DSP!
 -> found device with address 0x5c - Dolby
 
+
+-> found device with address 0x20
+-> found device with address 0x21
+-> found device with address 0x27
+-> found device with address 0x40
+-> found device with address 0x41
+-> found device with address 0x44
+-> found device with address 0x45
+-> found device with address 0x48
+-> found device with address 0x4c
+-> found device with address 0x5c
 ...scan completed!
     */
 
@@ -193,11 +204,13 @@ Amplifier::init() {
     mChannel2 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B1, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
     mChannel3 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B2, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
     mChannelEnable = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B3, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+    mSPDIFEnable = mPinManager->createPin( PinManager::PIN_TYPE_MCP2, PinMcp::PIN_A2, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
 
     mChannelEnable->enable();
-    mChannel1->disable();
+    mChannel1->enable();
     mChannel2->disable();
     mChannel3->enable();
+    mSPDIFEnable->enable();
 
     AMP_DEBUG_I( "Activing DAC XSMT" );
     mDACXSMT->enable();
@@ -241,13 +254,12 @@ Amplifier::init() {
     mDolby = Dolby_STA310Ptr( new Dolby_STA310( 0x5c, mI2C ) );
     mDolby->init();
     mDolby->mute( false );
-    mDolby->run();
     mDolby->play( true );
 
     // Setup output DACs
     AMP_DEBUG_I( "Setting up DACs" );
     for ( int i = 0; i < AMP_DAC_TOTAL_NUM; i++ ) {
-        mDAC[i] = DACPtr( new DAC_PCM5142( 0x4d + i, mI2C ) );
+        mDAC[i] = DACPtr( new DAC_PCM5142( 0x4e + i, mI2C ) );
         mDAC[i]->init();
         mDAC[i]->setFormat( DAC::FORMAT_I2S );
 

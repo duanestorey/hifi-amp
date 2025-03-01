@@ -49,7 +49,7 @@
         "silk_text_upright": false,
         "zones": {
           "45_degree_only": false,
-          "min_clearance": 0.3
+          "min_clearance": 0.25
         }
       },
       "diff_pair_dimensions": [
@@ -193,10 +193,9 @@
       ],
       "track_widths": [
         0.0,
-        0.3,
         0.4,
-        0.8,
-        2.0
+        0.5,
+        0.8
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -231,15 +230,11 @@
         },
         {
           "diameter": 0.8,
-          "drill": 0.4
+          "drill": 0.5
         },
         {
-          "diameter": 1.4,
-          "drill": 0.8
-        },
-        {
-          "diameter": 3.0,
-          "drill": 1.8
+          "diameter": 1.0,
+          "drill": 0.5
         }
       ],
       "zones_allow_external_fillets": false,
@@ -486,7 +481,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "multipsu.kicad_pro",
+    "filename": "dsp.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -504,9 +499,9 @@
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.4,
-        "via_diameter": 0.8,
-        "via_drill": 0.4,
+        "track_width": 0.25,
+        "via_diameter": 0.5,
+        "via_drill": 0.3,
         "wire_width": 6
       }
     ],
@@ -524,7 +519,7 @@
       "netlist": "",
       "plot": "",
       "pos_files": "",
-      "specctra_dsn": "",
+      "specctra_dsn": "../../../../../../Desktop/ChannelSelector.dsn",
       "step": "",
       "svg": "",
       "vrml": ""
@@ -644,7 +639,7 @@
   },
   "sheets": [
     [
-      "a750f240-64b5-4a83-bfe7-2cb3a3f58e07",
+      "ad933f83-dd94-4dcc-b4f2-96fd54138c43",
       "Root"
     ]
   ],

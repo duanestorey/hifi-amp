@@ -18,6 +18,7 @@ Please browse the following sections for more information about the project.
 - [Philosophy](philosophy.md)
 - [Design Guides](design-guides.md)
 - [Enclosures](enclosures.md)
+- [I2C](i2c.md)
 - [Cables & Connectors](cables.md)
 - [Hardware](hardware/index.md)
 - [Build](build/index.md)

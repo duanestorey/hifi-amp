@@ -60,9 +60,11 @@ PinManager::createPin( uint8_t pinType, uint8_t pinReference, uint8_t direction,
             pin = PinPtr( new PinESP32( this, (gpio_num_t)pinReference, direction, pulldown, pullup ) ); 
             break;
         case PIN_TYPE_MCP1:
+            AMP_DEBUG_I( "Creating pin %d on MCP1", pinReference );
             pin = mPinManagerMCP1->createPin( pinReference, direction, pulldown, pullup ); 
             break;
         case PIN_TYPE_MCP2:
+            AMP_DEBUG_I( "Creating pin %d on MCP2", pinReference );
             pin = mPinManagerMCP2->createPin( pinReference, direction, pulldown, pullup ); 
             break;    
         default:
