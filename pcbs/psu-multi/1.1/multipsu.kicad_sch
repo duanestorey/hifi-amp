@@ -3492,7 +3492,7 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 156.21) (xy 118.11 158.75)
+			(xy 107.95 171.45) (xy 107.95 173.99)
 		)
 		(stroke
 			(width 0)
@@ -4712,7 +4712,7 @@
 	)
 	(global_label "3V3"
 		(shape input)
-		(at 118.11 156.21 90)
+		(at 107.95 171.45 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4722,7 +4722,7 @@
 		)
 		(uuid "3ad170f5-1149-4f7f-8805-24b33875d50b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 118.11 149.7172 90)
+			(at 107.95 164.9572 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5152,7 +5152,7 @@
 	)
 	(global_label "SDA"
 		(shape input)
-		(at 107.95 163.83 180)
+		(at 97.79 179.07 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5162,7 +5162,7 @@
 		)
 		(uuid "829dce66-9592-4d9b-81a1-7ef9e38e172b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 101.3967 163.83 0)
+			(at 91.2367 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5240,7 +5240,7 @@
 	)
 	(global_label "SCL"
 		(shape input)
-		(at 107.95 166.37 180)
+		(at 97.79 181.61 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5250,29 +5250,7 @@
 		)
 		(uuid "92cd7f37-2fc0-4cd7-af50-a2b0fcd0dbed")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 101.4572 166.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "3V3"
-		(shape input)
-		(at 107.95 173.99 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "97214c5d-e3a0-4a83-be39-c9f2c3eb91dd")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 101.4572 173.99 0)
+			(at 91.2972 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5350,7 +5328,29 @@
 	)
 	(global_label "PGND"
 		(shape input)
-		(at 118.11 179.07 270)
+		(at 97.79 189.23 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "9fa9dea5-a124-42d7-b8d0-307e2b07ec2b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 89.6643 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "PGND"
+		(shape input)
+		(at 107.95 194.31 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5360,7 +5360,7 @@
 		)
 		(uuid "a048a0e2-c569-4d91-a0e5-22f5976c7b47")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 118.11 187.1957 90)
+			(at 107.95 202.4357 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5889,28 +5889,6 @@
 		(uuid "ec8a1522-9318-4918-a66c-758db58ec1b3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 58.6642 32.639 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "PGND"
-		(shape input)
-		(at 107.95 171.45 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "f7f7f1ee-cbf3-48d0-9b2a-3699ed799a66")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 99.8243 171.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9210,7 +9188,7 @@
 	)
 	(symbol
 		(lib_id "Sensor_Temperature:TMP100")
-		(at 118.11 168.91 0)
+		(at 107.95 184.15 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9219,7 +9197,7 @@
 		(fields_autoplaced yes)
 		(uuid "d2bdb00c-fe83-4095-845b-57924eb67452")
 		(property "Reference" "U6"
-			(at 127 167.6399 0)
+			(at 116.84 182.8799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9228,7 +9206,7 @@
 			)
 		)
 		(property "Value" "TMP100"
-			(at 127 170.1799 0)
+			(at 116.84 185.4199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9237,7 +9215,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
-			(at 118.11 177.8 0)
+			(at 107.95 193.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9246,7 +9224,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.ti.com/lit/gpn/tmp100"
-			(at 116.84 168.91 0)
+			(at 106.68 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9255,7 +9233,7 @@
 			)
 		)
 		(property "Description" "Temperature Sensor with I2C/SMBus Interface, SOT-23-6"
-			(at 118.11 168.91 0)
+			(at 107.95 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)

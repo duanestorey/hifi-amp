@@ -1859,7 +1859,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "I2C_ADDR = 0x4a"
+	(text "I2C_ADDR = 0x41"
 		(exclude_from_sim no)
 		(at 90.678 123.698 0)
 		(effects
@@ -1869,7 +1869,7 @@
 		)
 		(uuid "90b375f4-bd9b-49c9-8311-b5bad3485a5e")
 	)
-	(text "I2C_ADDR = 0x4b"
+	(text "I2C_ADDR = 0x42"
 		(exclude_from_sim no)
 		(at 90.17 184.404 0)
 		(effects
@@ -2147,7 +2147,7 @@
 			)
 		)
 	)
-	(global_label "SCL"
+	(global_label "SDA"
 		(shape input)
 		(at 100.33 180.34 180)
 		(fields_autoplaced yes)
@@ -2159,7 +2159,7 @@
 		)
 		(uuid "15f61264-d85c-4e07-91a7-a4d7c9e176bf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 93.8372 180.34 0)
+			(at 93.7767 180.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2939,6 +2939,28 @@
 			)
 		)
 	)
+	(global_label "PGND"
+		(shape input)
+		(at 100.33 116.84 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "aae32878-9b76-4cdb-8e8b-0c25dc59e147")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 92.2043 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "SCL"
 		(shape input)
 		(at 123.19 119.38 0)
@@ -2979,28 +3001,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "SDA"
-		(shape input)
-		(at 100.33 116.84 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "ae437b54-553e-438f-ba36-e151d5f2721a")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 93.7767 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -3291,7 +3291,7 @@
 			)
 		)
 	)
-	(global_label "SDA"
+	(global_label "PGND"
 		(shape input)
 		(at 100.33 177.8 180)
 		(fields_autoplaced yes)
@@ -3303,7 +3303,7 @@
 		)
 		(uuid "d6a18d32-81a6-4866-8180-dc86631fc69d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 93.7767 177.8 0)
+			(at 92.2043 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3445,7 +3445,7 @@
 			)
 		)
 	)
-	(global_label "SDA"
+	(global_label "3V3"
 		(shape input)
 		(at 100.33 119.38 180)
 		(fields_autoplaced yes)
@@ -3455,9 +3455,9 @@
 			)
 			(justify right)
 		)
-		(uuid "f315b530-e132-4101-920c-03178b340853")
+		(uuid "f1aff0b8-f079-4c27-841c-dbef0118daa2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 93.7767 119.38 0)
+			(at 93.8372 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
