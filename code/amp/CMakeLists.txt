@@ -2,6 +2,6 @@
 # CMakeLists in this exact order for cmake to work correctly
 cmake_minimum_required(VERSION 3.5)
 
-set(EXTRA_COMPONENT_DIRS /Users/duane/Code/Github/esp-idf-lib/components)
+set(EXTRA_COMPONENT_DIRS /Users/duane/Code/Personal/Projects/esp-idf-lib/components)
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(hifi-amp)
