@@ -240,17 +240,19 @@ Amplifier::init() {
 
     // Setup power sensors
     AMP_DEBUG_I( "Setting up power sensors" );
-    mDiagnostics->addPowerSensor( "5V", PowerSensorPtr( new INA260( 0x40, mI2C ) ) );
+   // mDiagnostics->addPowerSensor( "5V", PowerSensorPtr( new INA260( 0x40, mI2C ) ) );
     mDiagnostics->addPowerSensor( "3V3", PowerSensorPtr( new INA260( 0x41, mI2C ) ) );
     mDiagnostics->addPowerSensor( "OPAMP", PowerSensorPtr( new INA260( 0x44, mI2C ) ) );
     mDiagnostics->addPowerSensor( "BUCK", PowerSensorPtr( new INA260( 0x45, mI2C ) ) );
+
+    // Setting up ADC
+    AMP_DEBUG_I( "Setting up ADC" );
+    mADC = PCM1863Ptr( new PCM1863( 0x4a, mI2C, PCM1863::SAMPLING_RATE_48K ) );
 
     // setup channel selector
     AMP_DEBUG_I( "Setting up channel selectors" );
     mChannelSel = AnalogChannelSelectorPtr( new AnalogChannelSelector( mI2C, mPinManager ) );
 
-    AMP_DEBUG_I( "Setting up digital receiver" );
-    mDigitalReceiver = DigitalReceiverPtr( new DigitalReceiver( mI2C, AMP_I2C_ADDR_RECEIVER, mPinManager ) );
     mDolby = Dolby_STA310Ptr( new Dolby_STA310( 0x5c, mI2C ) );
     mDolby->init();
     mDolby->mute( false );
@@ -270,7 +272,8 @@ Amplifier::init() {
     mDSP = DSPPtr( new DSP( 0x58, mI2C ) );
 
     // Setup digital inputs
-    AMP_DEBUG_I( "Setting up digital transceiver" );
+    AMP_DEBUG_I( "Setting up digital receiver" );
+    mDigitalReceiver = DigitalReceiverPtr( new DigitalReceiver( mI2C, 0x40 ) );
     mDigitalReceiver->init();
 
     AMP_DEBUG_W( "TODO: Activate button light here" );

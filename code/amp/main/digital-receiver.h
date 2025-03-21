@@ -40,7 +40,7 @@ class DigitalReceiver {
             REGISTER_CONFIG = 0x6f
         };
 
-        DigitalReceiver( I2CBUSPtr i2c, uint8_t addr, PinManagerPtr pinManager );
+        DigitalReceiver( I2CBUSPtr i2c, uint8_t addr );
         virtual void init();
         virtual void setInput( uint8_t input );
 
@@ -49,8 +49,6 @@ class DigitalReceiver {
         
         uint8_t mAddr;
         uint8_t mCurrentInput;
-
-        PinPtr mReset;
 };
 
 typedef std::shared_ptr<DigitalReceiver> DigitalReceiverPtr;

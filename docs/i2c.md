@@ -4,6 +4,7 @@ The following are the I2C addresses and alternates in the amplifier.
 
 | Description | Address | Alternative |
 | ----- | ----------- | ------ | 
+| CS8416 | 0x10 | 0x10 - 0x17 |
 | MCP1 | 0x20 | |
 | MCP2 | 0x21 | |
 | 4 Line LCD | 0x27 | |

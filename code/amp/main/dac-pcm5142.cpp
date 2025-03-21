@@ -95,7 +95,23 @@ DAC_PCM5142::debug() {
         AMP_DEBUG_I( "...Samping rate is valid" );
     }
 
+    mI2C->readRegisterByte( mAddress, 91, data );
+    uint8_t samplingRate = ( data & 0x70 ) >> 4;
+    uint8_t mult = ( data & 0x0f );
 
+    if ( samplingRate == 3 ) {
+        AMP_DEBUG_I( "Sampling rate is 32-48kHz" );
+    } else if ( samplingRate == 4 ) {
+        AMP_DEBUG_I( "Sampling rate is 88.2-96kHz" );
+    }
+
+    if ( mult == 4 ) {
+        AMP_DEBUG_I( "Clock is 128xFS" );
+    } else if ( mult == 6 ) {
+        AMP_DEBUG_I( "Clock is 256xFS" );
+    } else if ( mult == 8 ) {
+        AMP_DEBUG_I( "Clock is 512xFS" );
+    }
 }
 
 void 
