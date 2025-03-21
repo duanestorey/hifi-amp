@@ -2,8 +2,7 @@
 #include "debug.h"
 
 
-DigitalReceiver::DigitalReceiver( I2CBUSPtr i2c, uint8_t addr, PinManagerPtr pinManager ) : mI2C( i2c ), mAddr( addr ), mCurrentInput( INPUT_NONE ) {
-    mReset = pinManager->createPin( Pin::PIN_TYPE_OUTPUT, PinMcp::PIN_A7, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_ENABLE );
+DigitalReceiver::DigitalReceiver( I2CBUSPtr i2c, uint8_t addr ) : mI2C( i2c ), mAddr( addr ), mCurrentInput( INPUT_NONE ) {
 }
 
 void 
@@ -12,6 +11,8 @@ DigitalReceiver::init() {
 
    // Set MPIO_A to be more SPDIF inputs
    mI2C->writeRegisterByte( mAddr, REGISTER_CONFIG, 0 );
+
+   setInput( DigitalReceiver::INPUT_SPDIF1 );
 }
 
 void 

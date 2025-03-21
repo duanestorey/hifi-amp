@@ -1,7 +1,7 @@
 (kicad_pcb
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(general
 		(thickness 1.6)
 		(legacy_teardrops no)
@@ -9,34 +9,34 @@
 	(paper "A4")
 	(layers
 		(0 "F.Cu" signal)
-		(31 "B.Cu" signal)
-		(32 "B.Adhes" user "B.Adhesive")
-		(33 "F.Adhes" user "F.Adhesive")
-		(34 "B.Paste" user)
-		(35 "F.Paste" user)
-		(36 "B.SilkS" user "B.Silkscreen")
-		(37 "F.SilkS" user "F.Silkscreen")
-		(38 "B.Mask" user)
-		(39 "F.Mask" user)
-		(40 "Dwgs.User" user "User.Drawings")
-		(41 "Cmts.User" user "User.Comments")
-		(42 "Eco1.User" user "User.Eco1")
-		(43 "Eco2.User" user "User.Eco2")
-		(44 "Edge.Cuts" user)
-		(45 "Margin" user)
-		(46 "B.CrtYd" user "B.Courtyard")
-		(47 "F.CrtYd" user "F.Courtyard")
-		(48 "B.Fab" user)
-		(49 "F.Fab" user)
-		(50 "User.1" user)
-		(51 "User.2" user)
-		(52 "User.3" user)
-		(53 "User.4" user)
-		(54 "User.5" user)
-		(55 "User.6" user)
-		(56 "User.7" user)
-		(57 "User.8" user)
-		(58 "User.9" user)
+		(2 "B.Cu" signal)
+		(9 "F.Adhes" user "F.Adhesive")
+		(11 "B.Adhes" user "B.Adhesive")
+		(13 "F.Paste" user)
+		(15 "B.Paste" user)
+		(5 "F.SilkS" user "F.Silkscreen")
+		(7 "B.SilkS" user "B.Silkscreen")
+		(1 "F.Mask" user)
+		(3 "B.Mask" user)
+		(17 "Dwgs.User" user "User.Drawings")
+		(19 "Cmts.User" user "User.Comments")
+		(21 "Eco1.User" user "User.Eco1")
+		(23 "Eco2.User" user "User.Eco2")
+		(25 "Edge.Cuts" user)
+		(27 "Margin" user)
+		(31 "F.CrtYd" user "F.Courtyard")
+		(29 "B.CrtYd" user "B.Courtyard")
+		(35 "F.Fab" user)
+		(33 "B.Fab" user)
+		(39 "User.1" user)
+		(41 "User.2" user)
+		(43 "User.3" user)
+		(45 "User.4" user)
+		(47 "User.5" user)
+		(49 "User.6" user)
+		(51 "User.7" user)
+		(53 "User.8" user)
+		(55 "User.9" user)
 	)
 	(setup
 		(stackup
@@ -80,10 +80,11 @@
 		)
 		(pad_to_mask_clearance 0)
 		(allow_soldermask_bridges_in_footprints no)
+		(tenting front back)
 		(grid_origin 119.9 106)
 		(pcbplotparams
-			(layerselection 0x00010fc_ffffffff)
-			(plot_on_all_layers_selection 0x0000000_00000000)
+			(layerselection 0x00000000_00000000_55555555_5755f5ff)
+			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
 			(disableapertmacros no)
 			(usegerberextensions no)
 			(usegerberattributes yes)
@@ -93,7 +94,6 @@
 			(dashed_line_gap_ratio 3.000000)
 			(svgprecision 6)
 			(plotframeref no)
-			(viasonmask no)
 			(mode 1)
 			(useauxorigin no)
 			(hpglpennumber 1)
@@ -101,16 +101,20 @@
 			(hpglpendiameter 15.000000)
 			(pdf_front_fp_property_popups yes)
 			(pdf_back_fp_property_popups yes)
+			(pdf_metadata yes)
+			(pdf_single_document no)
 			(dxfpolygonmode yes)
 			(dxfimperialunits yes)
 			(dxfusepcbnewfont yes)
 			(psnegative no)
 			(psa4output no)
-			(plotreference yes)
-			(plotvalue yes)
-			(plotfptext yes)
+			(plot_black_and_white yes)
 			(plotinvisibletext no)
 			(sketchpadsonfab no)
+			(plotpadnumbers no)
+			(hidednponfab no)
+			(sketchdnponfab yes)
+			(crossoutdnponfab yes)
 			(subtractmaskfromsilk no)
 			(outputformat 1)
 			(mirror no)
@@ -120,7 +124,7 @@
 		)
 	)
 	(net 0 "")
-	(footprint "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopOnly"
+	(footprint "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom"
 		(layer "F.Cu")
 		(uuid "23b84966-92fd-4855-9743-b2864e2c7bda")
 		(at 88.4 66 90)
@@ -128,14 +132,13 @@
 		(tags "mounting hole 3.2mm m3 din965")
 		(property "Reference" "H1"
 			(at 0 -3.8 90)
-			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "ab96fa95-7b7e-4fa6-87f1-7acb27fd5b31")
 			(effects
 				(font
-					(size 0.8 0.8)
-					(thickness 0.1)
+					(size 1 1)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -146,19 +149,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopOnly"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "2c870170-b8b4-4e23-b41e-e0a0024ba1e3")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -191,7 +181,7 @@
 		)
 		(property ki_fp_filters "MountingHole*")
 		(path "/8cf6e2b8-8fa7-48fa-b752-c30cf88c86c3")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "blank.kicad_sch")
 		(attr exclude_from_pos_files)
 		(fp_circle
@@ -201,9 +191,9 @@
 				(width 0.15)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "Cmts.User")
-			(uuid "a41987d9-c6b7-4763-a452-830b43b5120d")
+			(uuid "966f3993-4cf8-4d6a-8065-09ca4b8a63fc")
 		)
 		(fp_circle
 			(center 0 0)
@@ -212,9 +202,9 @@
 				(width 0.05)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.CrtYd")
-			(uuid "8551ee31-6eab-410a-bde3-0f749e14dbc7")
+			(uuid "ce20a289-9223-46fd-9b7c-ecf57723de26")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 90)
@@ -231,7 +221,12 @@
 			(at 0 0 90)
 			(size 3.6 3.6)
 			(drill 3.2)
-			(layers "*.Cu" "*.Mask")
+			(layers "*.Cu" "*.Mask" "In1.Cu" "In2.Cu" "In3.Cu" "In4.Cu" "In5.Cu" "In6.Cu"
+				"In7.Cu" "In8.Cu" "In9.Cu" "In10.Cu" "In11.Cu" "In12.Cu" "In13.Cu" "In14.Cu"
+				"In15.Cu" "In16.Cu" "In17.Cu" "In18.Cu" "In19.Cu" "In20.Cu" "In21.Cu"
+				"In22.Cu" "In23.Cu" "In24.Cu" "In25.Cu" "In26.Cu" "In27.Cu" "In28.Cu"
+				"In29.Cu" "In30.Cu"
+			)
 			(remove_unused_layers no)
 			(uuid "63c7ccf7-67f8-45fa-a186-e6f0bf216425")
 		)
@@ -239,10 +234,17 @@
 			(at 0 0 90)
 			(size 5.6 5.6)
 			(layers "F.Cu" "F.Mask")
-			(uuid "1b550535-ab45-49b8-bbb6-76ef41255ce1")
+			(uuid "63c7ccf7-67f8-45fa-a186-e6f0bf216425")
 		)
+		(pad "1" connect circle
+			(at 0 0 90)
+			(size 5.6 5.6)
+			(layers "B.Cu" "B.Mask")
+			(uuid "63c7ccf7-67f8-45fa-a186-e6f0bf216425")
+		)
+		(embedded_fonts no)
 	)
-	(footprint "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopOnly"
+	(footprint "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom"
 		(layer "F.Cu")
 		(uuid "259e1c50-9afc-4c6b-bc4c-831f1d39d435")
 		(at 88.4 116 90)
@@ -250,21 +252,9 @@
 		(tags "mounting hole 3.2mm m3 din965")
 		(property "Reference" "H3"
 			(at 0 -3.8 90)
-			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "5ab18ab1-de67-404a-8a3f-672ea72e43be")
-			(effects
-				(font
-					(size 0.8 0.8)
-					(thickness 0.1)
-				)
-			)
-		)
-		(property "Value" "MountingHole"
-			(at 0 3.8 90)
-			(layer "F.Fab")
-			(uuid "6a80e913-20e8-4a0b-853b-47b8abeff09c")
 			(effects
 				(font
 					(size 1 1)
@@ -272,15 +262,14 @@
 				)
 			)
 		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopOnly"
-			(at 0 0 90)
-			(unlocked yes)
+		(property "Value" "MountingHole"
+			(at 0 3.8 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "5cd0637c-19b7-45d0-90d7-846049ed163c")
+			(uuid "6a80e913-20e8-4a0b-853b-47b8abeff09c")
 			(effects
 				(font
-					(size 1.27 1.27)
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -313,7 +302,7 @@
 		)
 		(property ki_fp_filters "MountingHole*")
 		(path "/80afb172-165c-4e28-b100-8a9987078020")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "blank.kicad_sch")
 		(attr exclude_from_pos_files)
 		(fp_circle
@@ -323,9 +312,9 @@
 				(width 0.15)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "Cmts.User")
-			(uuid "87245fc8-bb07-4152-8d62-a0cfc0525ff7")
+			(uuid "93a5e744-bafc-4cf2-9c1d-1e1c455cd933")
 		)
 		(fp_circle
 			(center 0 0)
@@ -334,9 +323,9 @@
 				(width 0.05)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.CrtYd")
-			(uuid "5f4c44e1-dbd5-404f-b57b-2918d9f2c0a1")
+			(uuid "589b5b35-99be-4a6f-9322-f4331b892f7f")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 90)
@@ -353,7 +342,12 @@
 			(at 0 0 90)
 			(size 3.6 3.6)
 			(drill 3.2)
-			(layers "*.Cu" "*.Mask")
+			(layers "*.Cu" "*.Mask" "In1.Cu" "In2.Cu" "In3.Cu" "In4.Cu" "In5.Cu" "In6.Cu"
+				"In7.Cu" "In8.Cu" "In9.Cu" "In10.Cu" "In11.Cu" "In12.Cu" "In13.Cu" "In14.Cu"
+				"In15.Cu" "In16.Cu" "In17.Cu" "In18.Cu" "In19.Cu" "In20.Cu" "In21.Cu"
+				"In22.Cu" "In23.Cu" "In24.Cu" "In25.Cu" "In26.Cu" "In27.Cu" "In28.Cu"
+				"In29.Cu" "In30.Cu"
+			)
 			(remove_unused_layers no)
 			(uuid "92b6f18a-8602-44cd-88b9-7fe58dc98d39")
 		)
@@ -361,10 +355,17 @@
 			(at 0 0 90)
 			(size 5.6 5.6)
 			(layers "F.Cu" "F.Mask")
-			(uuid "d0e2964c-309f-4781-ac82-7d28084297cb")
+			(uuid "92b6f18a-8602-44cd-88b9-7fe58dc98d39")
 		)
+		(pad "1" connect circle
+			(at 0 0 90)
+			(size 5.6 5.6)
+			(layers "B.Cu" "B.Mask")
+			(uuid "92b6f18a-8602-44cd-88b9-7fe58dc98d39")
+		)
+		(embedded_fonts no)
 	)
-	(footprint "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopOnly"
+	(footprint "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom"
 		(layer "F.Cu")
 		(uuid "272ee38a-bb8a-4016-89f7-e9eefba04b79")
 		(at 168.4 66 90)
@@ -372,14 +373,13 @@
 		(tags "mounting hole 3.2mm m3 din965")
 		(property "Reference" "H2"
 			(at 0 -3.8 90)
-			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "d99b7bf8-aa4e-409e-a984-9cd11171e3c2")
 			(effects
 				(font
-					(size 0.8 0.8)
-					(thickness 0.1)
+					(size 1 1)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -390,19 +390,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopOnly"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "4e66b203-9bb2-41e2-a519-4e71fd4d7b7e")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -435,7 +422,7 @@
 		)
 		(property ki_fp_filters "MountingHole*")
 		(path "/d34f1e58-6c53-4a5c-8466-935b170d610a")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "blank.kicad_sch")
 		(attr exclude_from_pos_files)
 		(fp_circle
@@ -445,9 +432,9 @@
 				(width 0.15)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "Cmts.User")
-			(uuid "190e81b6-b4d9-455d-8b9f-c3b4eb71a2d2")
+			(uuid "3233b966-b7eb-4fd1-bd38-9b6a9149bd5a")
 		)
 		(fp_circle
 			(center 0 0)
@@ -456,9 +443,9 @@
 				(width 0.05)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.CrtYd")
-			(uuid "306b8415-4c7d-4afc-8ce4-ec6cc5e981f0")
+			(uuid "bf1c6a1b-c46e-4af9-b006-4096cc7c30e8")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 90)
@@ -475,7 +462,12 @@
 			(at 0 0 90)
 			(size 3.6 3.6)
 			(drill 3.2)
-			(layers "*.Cu" "*.Mask")
+			(layers "*.Cu" "*.Mask" "In1.Cu" "In2.Cu" "In3.Cu" "In4.Cu" "In5.Cu" "In6.Cu"
+				"In7.Cu" "In8.Cu" "In9.Cu" "In10.Cu" "In11.Cu" "In12.Cu" "In13.Cu" "In14.Cu"
+				"In15.Cu" "In16.Cu" "In17.Cu" "In18.Cu" "In19.Cu" "In20.Cu" "In21.Cu"
+				"In22.Cu" "In23.Cu" "In24.Cu" "In25.Cu" "In26.Cu" "In27.Cu" "In28.Cu"
+				"In29.Cu" "In30.Cu"
+			)
 			(remove_unused_layers no)
 			(uuid "7a363b17-329f-4d9d-9c84-02611e09333f")
 		)
@@ -483,10 +475,17 @@
 			(at 0 0 90)
 			(size 5.6 5.6)
 			(layers "F.Cu" "F.Mask")
-			(uuid "88c26184-bbe0-416f-8a7a-ca690ded58ef")
+			(uuid "7a363b17-329f-4d9d-9c84-02611e09333f")
 		)
+		(pad "1" connect circle
+			(at 0 0 90)
+			(size 5.6 5.6)
+			(layers "B.Cu" "B.Mask")
+			(uuid "7a363b17-329f-4d9d-9c84-02611e09333f")
+		)
+		(embedded_fonts no)
 	)
-	(footprint "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopOnly"
+	(footprint "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom"
 		(layer "F.Cu")
 		(uuid "d6a1b7d2-06ce-49c5-9ac9-ac2275a3f890")
 		(at 168.4 116 90)
@@ -494,14 +493,13 @@
 		(tags "mounting hole 3.2mm m3 din965")
 		(property "Reference" "H4"
 			(at 0 -3.8 90)
-			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "db9015f4-edda-4995-ac4d-e0dfbaae4243")
 			(effects
 				(font
-					(size 0.8 0.8)
-					(thickness 0.1)
+					(size 1 1)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -512,19 +510,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopOnly"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "05a79757-36f0-479f-b589-c46a46c8c4f6")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -557,7 +542,7 @@
 		)
 		(property ki_fp_filters "MountingHole*")
 		(path "/0c5200db-ea66-4ec2-a27b-701d2fecc0bc")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "blank.kicad_sch")
 		(attr exclude_from_pos_files)
 		(fp_circle
@@ -567,9 +552,9 @@
 				(width 0.15)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "Cmts.User")
-			(uuid "e35e6d48-18aa-4295-b7c0-c0e347ff5340")
+			(uuid "3defa34d-5957-41bd-af60-9c6ce8c87724")
 		)
 		(fp_circle
 			(center 0 0)
@@ -578,9 +563,9 @@
 				(width 0.05)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.CrtYd")
-			(uuid "bb928239-1f29-4505-8389-f1d5d1006391")
+			(uuid "739d5f2b-30bc-4692-85bf-e7c17c4d613a")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 90)
@@ -597,7 +582,12 @@
 			(at 0 0 90)
 			(size 3.6 3.6)
 			(drill 3.2)
-			(layers "*.Cu" "*.Mask")
+			(layers "*.Cu" "*.Mask" "In1.Cu" "In2.Cu" "In3.Cu" "In4.Cu" "In5.Cu" "In6.Cu"
+				"In7.Cu" "In8.Cu" "In9.Cu" "In10.Cu" "In11.Cu" "In12.Cu" "In13.Cu" "In14.Cu"
+				"In15.Cu" "In16.Cu" "In17.Cu" "In18.Cu" "In19.Cu" "In20.Cu" "In21.Cu"
+				"In22.Cu" "In23.Cu" "In24.Cu" "In25.Cu" "In26.Cu" "In27.Cu" "In28.Cu"
+				"In29.Cu" "In30.Cu"
+			)
 			(remove_unused_layers no)
 			(uuid "e3fc3412-bf98-4fd7-a9c4-f31ca3f6a6a8")
 		)
@@ -605,17 +595,24 @@
 			(at 0 0 90)
 			(size 5.6 5.6)
 			(layers "F.Cu" "F.Mask")
-			(uuid "4c79a62c-ec3e-4784-9527-47a7b633fbe5")
+			(uuid "e3fc3412-bf98-4fd7-a9c4-f31ca3f6a6a8")
 		)
+		(pad "1" connect circle
+			(at 0 0 90)
+			(size 5.6 5.6)
+			(layers "B.Cu" "B.Mask")
+			(uuid "e3fc3412-bf98-4fd7-a9c4-f31ca3f6a6a8")
+		)
+		(embedded_fonts no)
 	)
 	(gr_rect
-		(start 92.1 112.2)
-		(end 97.1 117.2)
+		(start 159.5 64.2)
+		(end 164.5 69.2)
 		(stroke
 			(width 0.1)
 			(type solid)
 		)
-		(fill solid)
+		(fill yes)
 		(layer "F.SilkS")
 		(uuid "02086a58-ee04-41ca-b6a1-992c40a6bdc8")
 	)
@@ -778,7 +775,7 @@
 	(zone
 		(net 0)
 		(net_name "")
-		(layers "F&B.Cu")
+		(layers "F.Cu" "B.Cu")
 		(uuid "9e2b7229-32fc-4df6-805b-bc797d3edac0")
 		(hatch edge 0.5)
 		(connect_pads
@@ -933,4 +930,5 @@
 			)
 		)
 	)
+	(embedded_fonts no)
 )

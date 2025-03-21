@@ -27,6 +27,7 @@
 #include "dsp.h"
 #include "diagnostics.h"
 #include "dolby-sta310.h"
+#include "adc-pcm1863.h"
 #include <vector>
 
 typedef std::vector<InputPtr> InputVector;
@@ -107,6 +108,7 @@ protected:
     DiagnosticsPtr mDiagnostics;
     DSPPtr mDSP;
     Dolby_STA310Ptr mDolby;
+    PCM1863Ptr mADC;
 
     Encoder mVolumeEncoder;
     Encoder mInputEncoder;
