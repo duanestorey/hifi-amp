@@ -4388,7 +4388,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "RED"
+		(property "Value" "YELLOW"
 			(at 468.63 60.8964 90)
 			(effects
 				(font
@@ -4799,7 +4799,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "5K"
 			(at 468.63 69.8499 0)
 			(effects
 				(font
@@ -5212,7 +5212,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "4.7K"
 			(at 487.68 69.8499 0)
 			(effects
 				(font
@@ -5762,7 +5762,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "1.5K"
 			(at 415.29 68.5799 0)
 			(effects
 				(font
@@ -6323,7 +6323,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "RED"
+		(property "Value" "BLUE"
 			(at 487.68 60.8964 90)
 			(effects
 				(font
@@ -7071,7 +7071,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "330R"
 			(at 430.53 68.5799 0)
 			(effects
 				(font
@@ -7488,7 +7488,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "RED"
+		(property "Value" "YELLOW"
 			(at 415.29 59.6264 90)
 			(effects
 				(font
@@ -7966,7 +7966,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "RED"
+		(property "Value" "BLUE"
 			(at 430.53 59.6264 90)
 			(effects
 				(font
@@ -8176,7 +8176,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "5K"
 			(at 445.77 69.8499 0)
 			(effects
 				(font
