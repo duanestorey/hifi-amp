@@ -35,6 +35,7 @@ set(COMPONENT_SRCS
     "dsp.cpp"
     "dolby-sta310.cpp"
     "adc-pcm1863.cpp"
+    "ble.cpp"
 )
 set(COMPONENT_ADD_INCLUDEDIRS)
 
