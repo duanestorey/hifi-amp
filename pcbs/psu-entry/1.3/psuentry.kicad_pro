@@ -49,7 +49,7 @@
         "silk_text_upright": false,
         "zones": {
           "45_degree_only": false,
-          "min_clearance": 0.5
+          "min_clearance": 0.3
         }
       },
       "diff_pair_dimensions": [
@@ -195,8 +195,10 @@
         0.0,
         0.3,
         0.4,
-        0.6,
-        0.8
+        0.8,
+        1.0,
+        2.0,
+        3.0
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -230,20 +232,20 @@
           "drill": 0.0
         },
         {
-          "diameter": 0.6,
-          "drill": 0.3
-        },
-        {
-          "diameter": 0.7,
-          "drill": 0.4
-        },
-        {
-          "diameter": 0.9,
-          "drill": 0.6
-        },
-        {
           "diameter": 1.2,
           "drill": 0.8
+        },
+        {
+          "diameter": 1.6,
+          "drill": 1.0
+        },
+        {
+          "diameter": 2.5,
+          "drill": 2.0
+        },
+        {
+          "diameter": 3.5,
+          "drill": 2.0
         }
       ],
       "zones_allow_external_fillets": false,
@@ -490,7 +492,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "dac.kicad_pro",
+    "filename": "psuentry.kicad_pro",
     "version": 3
   },
   "net_settings": {

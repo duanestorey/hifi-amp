@@ -234,16 +234,19 @@ Amplifier::init() {
 
     // Setup temperature sensors
     AMP_DEBUG_I( "Setting up temperature sensors" );
-
+    
     mDiagnostics->addTemperatureSensor( "CPU", TempSensorPtr( new TMP100( 0x48, mI2C ) ) );
-    mDiagnostics->addTemperatureSensor( "PSU", TempSensorPtr( new TMP100( 0x4c, mI2C ) ) );
+    mDiagnostics->addTemperatureSensor( "PSU", TempSensorPtr( new TMP100( 0x49, mI2C ) ) );
 
     // Setup power sensors
     AMP_DEBUG_I( "Setting up power sensors" );
-   // mDiagnostics->addPowerSensor( "5V", PowerSensorPtr( new INA260( 0x40, mI2C ) ) );
-    mDiagnostics->addPowerSensor( "3V3", PowerSensorPtr( new INA260( 0x41, mI2C ) ) );
-    mDiagnostics->addPowerSensor( "OPAMP", PowerSensorPtr( new INA260( 0x44, mI2C ) ) );
-    mDiagnostics->addPowerSensor( "BUCK", PowerSensorPtr( new INA260( 0x45, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "CHAN", PowerSensorPtr( new INA260( 0x41, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "PSU", PowerSensorPtr( new INA260( 0x42, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "DCPOS", PowerSensorPtr( new INA260( 0x43, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "BUCK", PowerSensorPtr( new INA260( 0x44, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "5V", PowerSensorPtr( new INA260( 0x45, mI2C ) ) );
+   // mDiagnostics->addPowerSensor( "12V", PowerSensorPtr( new INA260( 0x46, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "3V3", PowerSensorPtr( new INA260( 0x47, mI2C ) ) );
 
     // Setting up ADC
     AMP_DEBUG_I( "Setting up ADC" );

@@ -2554,6 +2554,12 @@
 		(uuid "2615d481-84d2-4433-b4ac-92bace199f5b")
 	)
 	(junction
+		(at 396.24 48.26)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "37a634e7-f944-4a94-9b06-709d69161f22")
+	)
+	(junction
 		(at 406.4 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2570,6 +2576,18 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "43c5f90e-9134-486f-b0a1-1ef03745384e")
+	)
+	(junction
+		(at 397.51 92.71)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4b994407-a5fb-48d8-a5c1-dff96c7e27d2")
+	)
+	(junction
+		(at 396.24 58.42)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "52ac3565-7f8e-4293-9c20-687cc4fc7304")
 	)
 	(junction
 		(at 407.67 102.87)
@@ -2660,6 +2678,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "86f557c0-879f-4f75-ba21-c10fae7f8714")
+	)
+	(junction
+		(at 397.51 102.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8adc25c1-fab8-47d6-98df-fbbfd287243b")
 	)
 	(junction
 		(at 212.09 149.86)
@@ -2949,6 +2973,16 @@
 	)
 	(wire
 		(pts
+			(xy 396.24 48.26) (xy 386.08 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "11c0bd8a-62fd-4e01-b495-64468de6e5d6")
+	)
+	(wire
+		(pts
 			(xy 325.12 194.31) (xy 322.58 194.31)
 		)
 		(stroke
@@ -3026,6 +3060,16 @@
 			(type default)
 		)
 		(uuid "1718739f-552a-4fdd-9937-0b2155fafb8c")
+	)
+	(wire
+		(pts
+			(xy 386.08 58.42) (xy 396.24 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "19031d4f-35d3-4579-bf33-f7cfc9388946")
 	)
 	(wire
 		(pts
@@ -3479,6 +3523,16 @@
 	)
 	(wire
 		(pts
+			(xy 388.62 102.87) (xy 397.51 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5d7b1f18-8f44-4060-b035-f9134b8ff986")
+	)
+	(wire
+		(pts
 			(xy 467.36 35.56) (xy 467.36 45.72)
 		)
 		(stroke
@@ -3869,6 +3923,16 @@
 	)
 	(wire
 		(pts
+			(xy 386.08 48.26) (xy 386.08 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "88266621-3a50-4a07-9160-be17751b1112")
+	)
+	(wire
+		(pts
 			(xy 181.61 153.67) (xy 181.61 149.86)
 		)
 		(stroke
@@ -4209,6 +4273,16 @@
 	)
 	(wire
 		(pts
+			(xy 386.08 55.88) (xy 386.08 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "af98ec9a-d755-4851-818e-640ff4f8e024")
+	)
+	(wire
+		(pts
 			(xy 86.36 161.29) (xy 86.36 165.1)
 		)
 		(stroke
@@ -4256,6 +4330,16 @@
 			(type default)
 		)
 		(uuid "ba507e44-6cb6-413c-8e66-fdabbe06c8eb")
+	)
+	(wire
+		(pts
+			(xy 388.62 92.71) (xy 388.62 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bc8b4c67-8e50-467f-8f4d-f732563510d1")
 	)
 	(wire
 		(pts
@@ -4539,6 +4623,16 @@
 	)
 	(wire
 		(pts
+			(xy 388.62 100.33) (xy 388.62 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e147974e-7d4d-4486-91c3-0d5ebf67f9cb")
+	)
+	(wire
+		(pts
 			(xy 325.12 48.26) (xy 322.58 48.26)
 		)
 		(stroke
@@ -4546,6 +4640,16 @@
 			(type default)
 		)
 		(uuid "e2a1a1fa-d407-4b3e-9951-fd3253ba6f88")
+	)
+	(wire
+		(pts
+			(xy 397.51 92.71) (xy 388.62 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e2b7e1a3-93df-41d3-ac0e-6b8a4ff8e1ae")
 	)
 	(wire
 		(pts
@@ -7686,7 +7790,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0a62755d-bb1f-49ca-8a12-16dfefec9e6e")
-		(property "Reference" "C28"
+		(property "Reference" "C30"
 			(at 190.627 71.8439 0)
 			(effects
 				(font
@@ -7740,7 +7844,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C28")
+					(reference "C30")
 					(unit 1)
 				)
 			)
@@ -8193,6 +8297,76 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
+		(at 386.08 53.34 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "21077db9-9df2-48d2-8e75-ab712eef68f7")
+		(property "Reference" "C5"
+			(at 388.62 52.0762 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10u"
+			(at 388.62 54.6162 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
+			(at 386.08 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 386.08 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 386.08 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "b494f6ce-f7bb-4295-a72c-e313e292612f")
+		)
+		(pin "1"
+			(uuid "dc589dab-6767-4ffa-a20f-0ea7e39edbc8")
+		)
+		(instances
+			(project "dac"
+				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
+					(reference "C5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
 		(at 455.93 157.48 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8201,7 +8375,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "215af9f4-8aab-4652-8b27-7158c548b6da")
-		(property "Reference" "C15"
+		(property "Reference" "C17"
 			(at 458.47 156.2162 0)
 			(effects
 				(font
@@ -8264,7 +8438,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C15")
+					(reference "C17")
 					(unit 1)
 				)
 			)
@@ -8351,7 +8525,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "227fb26a-338b-443c-a272-923439c2eaf0")
-		(property "Reference" "C19"
+		(property "Reference" "C21"
 			(at 172.72 189.2362 0)
 			(effects
 				(font
@@ -8405,7 +8579,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C19")
+					(reference "C21")
 					(unit 1)
 				)
 			)
@@ -8595,7 +8769,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2921068e-046e-4496-84a0-0eec2575130a")
-		(property "Reference" "C24"
+		(property "Reference" "C26"
 			(at 273.05 184.1562 0)
 			(effects
 				(font
@@ -8649,7 +8823,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C24")
+					(reference "C26")
 					(unit 1)
 				)
 			)
@@ -8665,7 +8839,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2982c066-2494-468c-8971-008544bd334e")
-		(property "Reference" "C17"
+		(property "Reference" "C19"
 			(at 194.31 189.2362 0)
 			(effects
 				(font
@@ -8719,7 +8893,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C17")
+					(reference "C19")
 					(unit 1)
 				)
 			)
@@ -8889,7 +9063,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3371bb44-cded-47a9-87b4-540c9a2340bc")
-		(property "Reference" "C18"
+		(property "Reference" "C20"
 			(at 184.15 189.2362 0)
 			(effects
 				(font
@@ -8943,7 +9117,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C18")
+					(reference "C20")
 					(unit 1)
 				)
 			)
@@ -9112,7 +9286,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3f623e95-17e3-41e1-b1c1-79708c7a147f")
-		(property "Reference" "C5"
+		(property "Reference" "C6"
 			(at 398.78 52.0762 0)
 			(effects
 				(font
@@ -9166,7 +9340,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C5")
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -9406,7 +9580,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "48c94eae-372c-4bca-acbc-1a12413f2acd")
-		(property "Reference" "C25"
+		(property "Reference" "C28"
 			(at 215.9 189.2362 0)
 			(effects
 				(font
@@ -9460,7 +9634,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C25")
+					(reference "C28")
 					(unit 1)
 				)
 			)
@@ -9707,7 +9881,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4dd8565d-f422-4051-9ec9-090318e07759")
-		(property "Reference" "C22"
+		(property "Reference" "C24"
 			(at 203.2 154.9462 0)
 			(effects
 				(font
@@ -9761,7 +9935,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C22")
+					(reference "C24")
 					(unit 1)
 				)
 			)
@@ -9777,7 +9951,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5192afeb-4a8e-409b-8128-f63943fd1110")
-		(property "Reference" "C8"
+		(property "Reference" "C9"
 			(at 203.327 47.7139 0)
 			(effects
 				(font
@@ -9831,7 +10005,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C8")
+					(reference "C9")
 					(unit 1)
 				)
 			)
@@ -10073,7 +10247,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5583abc2-0ddb-49ee-a54e-719159110aea")
-		(property "Reference" "C6"
+		(property "Reference" "C7"
 			(at 408.94 52.0762 0)
 			(effects
 				(font
@@ -10127,7 +10301,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C6")
+					(reference "C7")
 					(unit 1)
 				)
 			)
@@ -10143,7 +10317,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5732a5f7-24e6-4f50-8345-61664f8e7638")
-		(property "Reference" "C14"
+		(property "Reference" "C16"
 			(at 471.1763 82.55 90)
 			(effects
 				(font
@@ -10204,7 +10378,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C14")
+					(reference "C16")
 					(unit 1)
 				)
 			)
@@ -10591,7 +10765,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "760f2ffd-1aca-4cb2-9c0b-05c019eebf0e")
-		(property "Reference" "C21"
+		(property "Reference" "C23"
 			(at 184.15 154.9462 0)
 			(effects
 				(font
@@ -10645,7 +10819,77 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C21")
+					(reference "C23")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 388.62 97.79 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7b831718-bd75-4541-b740-07ee9eec2115")
+		(property "Reference" "C11"
+			(at 391.16 96.5262 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10u"
+			(at 391.16 99.0662 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
+			(at 388.62 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 388.62 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 388.62 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "6eec39fd-1f34-4bcc-835d-ad4edddcdc2d")
+		)
+		(pin "1"
+			(uuid "40525184-2794-4870-8db2-1c8e7e38df0a")
+		)
+		(instances
+			(project "dac"
+				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
+					(reference "C11")
 					(unit 1)
 				)
 			)
@@ -11096,7 +11340,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8794f172-7f61-4213-ad2c-e81d475128a1")
-		(property "Reference" "C11"
+		(property "Reference" "C13"
 			(at 410.21 96.5262 0)
 			(effects
 				(font
@@ -11150,7 +11394,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C11")
+					(reference "C13")
 					(unit 1)
 				)
 			)
@@ -11388,7 +11632,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8e966707-b004-45f6-81fd-b5fb7d576234")
-		(property "Reference" "C7"
+		(property "Reference" "C8"
 			(at 417.83 52.0762 0)
 			(effects
 				(font
@@ -11442,7 +11686,7 @@
 		(instances
 			(project ""
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C7")
+					(reference "C8")
 					(unit 1)
 				)
 			)
@@ -11458,7 +11702,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "95444b86-47ae-4e4e-8cb4-0de674d62c52")
-		(property "Reference" "C9"
+		(property "Reference" "C10"
 			(at 190.627 45.1739 0)
 			(effects
 				(font
@@ -11512,7 +11756,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C9")
+					(reference "C10")
 					(unit 1)
 				)
 			)
@@ -12062,7 +12306,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "af349e12-ce2e-42a6-a357-e29eb62c768d")
-		(property "Reference" "C23"
+		(property "Reference" "C25"
 			(at 172.72 154.9462 0)
 			(effects
 				(font
@@ -12116,7 +12360,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C23")
+					(reference "C25")
 					(unit 1)
 				)
 			)
@@ -12377,7 +12621,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c22f5dff-74eb-4e54-bb1b-4e46c4cd98e4")
-		(property "Reference" "C10"
+		(property "Reference" "C12"
 			(at 419.1 96.5262 0)
 			(effects
 				(font
@@ -12431,7 +12675,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C10")
+					(reference "C12")
 					(unit 1)
 				)
 			)
@@ -12525,7 +12769,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cd35024a-54b1-47d0-ab20-c235e943d85e")
-		(property "Reference" "C16"
+		(property "Reference" "C18"
 			(at 458.47 135.8962 0)
 			(effects
 				(font
@@ -12588,7 +12832,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C16")
+					(reference "C18")
 					(unit 1)
 				)
 			)
@@ -12746,7 +12990,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "da8119f6-dfc3-4b6e-926a-6fa4c3090479")
-		(property "Reference" "C27"
+		(property "Reference" "C29"
 			(at 203.327 71.8439 0)
 			(effects
 				(font
@@ -12800,7 +13044,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C27")
+					(reference "C29")
 					(unit 1)
 				)
 			)
@@ -12977,7 +13221,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ea29e2c1-6b7e-4816-8d33-23b64bd3e8cd")
-		(property "Reference" "C20"
+		(property "Reference" "C22"
 			(at 214.63 154.9462 0)
 			(effects
 				(font
@@ -13031,7 +13275,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C20")
+					(reference "C22")
 					(unit 1)
 				)
 			)
@@ -13047,7 +13291,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f1619a79-0956-4b7a-8b40-35dae2fb8520")
-		(property "Reference" "C26"
+		(property "Reference" "C27"
 			(at 204.47 189.2362 0)
 			(effects
 				(font
@@ -13101,7 +13345,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C26")
+					(reference "C27")
 					(unit 1)
 				)
 			)
@@ -13421,7 +13665,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fbc2ef1f-082d-4812-82f2-b450bc585af4")
-		(property "Reference" "C12"
+		(property "Reference" "C14"
 			(at 400.05 96.5262 0)
 			(effects
 				(font
@@ -13475,7 +13719,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C12")
+					(reference "C14")
 					(unit 1)
 				)
 			)
@@ -13491,7 +13735,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ffbc336d-3099-41f0-be90-a1cf27ff059d")
-		(property "Reference" "C13"
+		(property "Reference" "C15"
 			(at 474.9863 39.37 90)
 			(effects
 				(font
@@ -13552,7 +13796,7 @@
 		(instances
 			(project "dac"
 				(path "/a750f240-64b5-4a83-bfe7-2cb3a3f58e07"
-					(reference "C13")
+					(reference "C15")
 					(unit 1)
 				)
 			)
