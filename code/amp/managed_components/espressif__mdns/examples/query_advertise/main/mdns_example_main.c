@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022-2023 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2022-2025 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Unlicense OR CC0-1.0
  */
@@ -21,6 +21,12 @@
 #include "driver/gpio.h"
 #include "netdb.h"
 
+#if ESP_IDF_VERSION < ESP_IDF_VERSION_VAL(5, 1, 0)
+/* CONFIG_LWIP_IPV4 was introduced in IDF v5.1, set CONFIG_LWIP_IPV4 to 1 by default for IDF v5.0 */
+#ifndef CONFIG_LWIP_IPV4
+#define CONFIG_LWIP_IPV4 1
+#endif // CONFIG_LWIP_IPV4
+#endif // ESP_IDF_VERSION < ESP_IDF_VERSION_VAL(5, 1, 0)
 
 #define EXAMPLE_MDNS_INSTANCE CONFIG_MDNS_INSTANCE
 #define EXAMPLE_BUTTON_GPIO   CONFIG_MDNS_BUTTON_GPIO
@@ -38,12 +44,12 @@ static void initialise_mdns(void)
     char *hostname = generate_hostname();
 
     //initialize mDNS
-    ESP_ERROR_CHECK( mdns_init() );
+    ESP_ERROR_CHECK(mdns_init());
     //set mDNS hostname (required if you want to advertise services)
-    ESP_ERROR_CHECK( mdns_hostname_set(hostname) );
+    ESP_ERROR_CHECK(mdns_hostname_set(hostname));
     ESP_LOGI(TAG, "mdns hostname set to: [%s]", hostname);
     //set default mDNS instance name
-    ESP_ERROR_CHECK( mdns_instance_name_set(EXAMPLE_MDNS_INSTANCE) );
+    ESP_ERROR_CHECK(mdns_instance_name_set(EXAMPLE_MDNS_INSTANCE));
 
     //structure with TXT records
     mdns_txt_item_t serviceTxtData[3] = {
@@ -53,10 +59,10 @@ static void initialise_mdns(void)
     };
 
     //initialize service
-    ESP_ERROR_CHECK( mdns_service_add("ESP32-WebServer", "_http", "_tcp", 80, serviceTxtData, 3) );
-    ESP_ERROR_CHECK( mdns_service_subtype_add_for_host("ESP32-WebServer", "_http", "_tcp", NULL, "_server") );
+    ESP_ERROR_CHECK(mdns_service_add("ESP32-WebServer", "_http", "_tcp", 80, serviceTxtData, 3));
+    ESP_ERROR_CHECK(mdns_service_subtype_add_for_host("ESP32-WebServer", "_http", "_tcp", NULL, "_server"));
 #if CONFIG_MDNS_MULTIPLE_INSTANCE
-    ESP_ERROR_CHECK( mdns_service_add("ESP32-WebServer1", "_http", "_tcp", 80, NULL, 0) );
+    ESP_ERROR_CHECK(mdns_service_add("ESP32-WebServer1", "_http", "_tcp", 80, NULL, 0));
 #endif
 
 #if CONFIG_MDNS_PUBLISH_DELEGATE_HOST
@@ -72,15 +78,15 @@ static void initialise_mdns(void)
     addr6.addr.type = ESP_IPADDR_TYPE_V6;
     addr4.next = &addr6;
     addr6.next = NULL;
-    ESP_ERROR_CHECK( mdns_delegate_hostname_add(delegated_hostname, &addr4) );
-    ESP_ERROR_CHECK( mdns_service_add_for_host("test0", "_http", "_tcp", delegated_hostname, 1234, serviceTxtData, 3) );
+    ESP_ERROR_CHECK(mdns_delegate_hostname_add(delegated_hostname, &addr4));
+    ESP_ERROR_CHECK(mdns_service_add_for_host("test0", "_http", "_tcp", delegated_hostname, 1234, serviceTxtData, 3));
     free(delegated_hostname);
 #endif // CONFIG_MDNS_PUBLISH_DELEGATE_HOST
 
     //add another TXT item
-    ESP_ERROR_CHECK( mdns_service_txt_item_set("_http", "_tcp", "path", "/foobar") );
+    ESP_ERROR_CHECK(mdns_service_txt_item_set("_http", "_tcp", "path", "/foobar"));
     //change TXT item value
-    ESP_ERROR_CHECK( mdns_service_txt_item_set_with_explicit_value_len("_http", "_tcp", "u", "admin", strlen("admin")) );
+    ESP_ERROR_CHECK(mdns_service_txt_item_set_with_explicit_value_len("_http", "_tcp", "u", "admin", strlen("admin")));
     free(hostname);
 }
 
@@ -94,7 +100,7 @@ static void mdns_print_results(mdns_result_t *results)
     int i = 1, t;
     while (r) {
         if (r->esp_netif) {
-            printf("%d: Interface: %s, Type: %s, TTL: %u\n", i++, esp_netif_get_ifkey(r->esp_netif),
+            printf("%d: Interface: %s, Type: %s, TTL: %" PRIu32 "\n", i++, esp_netif_get_ifkey(r->esp_netif),
                    ip_protocol_str[r->ip_protocol], r->ttl);
         }
         if (r->instance_name) {
@@ -227,7 +233,7 @@ static void query_mdns_hosts_async(const char *host_name)
         vTaskDelay(50 / portTICK_PERIOD_MS);
     }
 }
-
+#ifdef CONFIG_LWIP_IPV4
 static void query_mdns_host(const char *host_name)
 {
     ESP_LOGI(TAG, "Query A: %s.local", host_name);
@@ -247,6 +253,7 @@ static void query_mdns_host(const char *host_name)
 
     ESP_LOGI(TAG, "Query A: %s.local resolved to: " IPSTR, host_name, IP2STR(&addr));
 }
+#endif // CONFIG_LWIP_IPV4
 
 static void initialise_button(void)
 {
@@ -265,7 +272,9 @@ static void check_button(void)
     bool new_level = gpio_get_level(EXAMPLE_BUTTON_GPIO);
     if (!new_level && old_level) {
         query_mdns_hosts_async("esp32-mdns");
+#ifdef CONFIG_LWIP_IPV4
         query_mdns_host("esp32");
+#endif
         query_mdns_service("_arduino", "_tcp");
         query_mdns_service("_http", "_tcp");
         query_mdns_service("_printer", "_tcp");
@@ -286,7 +295,9 @@ static void mdns_example_task(void *pvParameters)
 {
 #if CONFIG_MDNS_RESOLVE_TEST_SERVICES == 1
     /* Send initial queries that are started by CI tester */
+#ifdef CONFIG_LWIP_IPV4
     query_mdns_host("tinytester");
+#endif
     query_mdns_host_with_gethostbyname("tinytester-lwip.local");
     query_mdns_host_with_getaddrinfo("tinytester-lwip.local");
 #endif
@@ -302,6 +313,8 @@ void app_main(void)
     ESP_ERROR_CHECK(nvs_flash_init());
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
+
+    ESP_LOGI(TAG, "mDNS Ver: %s", ESP_MDNS_VERSION_NUMBER);
 
     initialise_mdns();
 
@@ -362,7 +375,16 @@ static void  query_mdns_host_with_gethostbyname(char *host)
     if (res) {
         unsigned int i = 0;
         while (res->h_addr_list[i] != NULL) {
-            ESP_LOGI(TAG, "gethostbyname: %s resolved to: %s", host, inet_ntoa(*(struct in_addr *) (res->h_addr_list[i])));
+            ESP_LOGI(TAG, "gethostbyname: %s resolved to: %s", host,
+#if defined(CONFIG_LWIP_IPV6) && defined(CONFIG_LWIP_IPV4)
+                     res->h_addrtype == AF_INET ? inet_ntoa(*(struct in_addr *)(res->h_addr_list[i])) :
+                     inet6_ntoa(*(struct in6_addr *)(res->h_addr_list[i]))
+#elif defined(CONFIG_LWIP_IPV6)
+                     inet6_ntoa(*(struct in6_addr *)(res->h_addr_list[i]))
+#else
+                     inet_ntoa(*(struct in_addr *)(res->h_addr_list[i]))
+#endif
+                    );
             i++;
         }
     }
@@ -384,10 +406,12 @@ static void  query_mdns_host_with_getaddrinfo(char *host)
     if (!getaddrinfo(host, NULL, &hints, &res)) {
         while (res) {
             char *resolved_addr;
-#if CONFIG_LWIP_IPV6
+#if defined(CONFIG_LWIP_IPV6) && defined(CONFIG_LWIP_IPV4)
             resolved_addr = res->ai_family == AF_INET ?
                             inet_ntoa(((struct sockaddr_in *) res->ai_addr)->sin_addr) :
-                            inet_ntoa(((struct sockaddr_in6 *) res->ai_addr)->sin6_addr);
+                            inet6_ntoa(((struct sockaddr_in6 *) res->ai_addr)->sin6_addr);
+#elif defined(CONFIG_LWIP_IPV6)
+            resolved_addr = inet6_ntoa(((struct sockaddr_in6 *) res->ai_addr)->sin6_addr);
 #else
             resolved_addr = inet_ntoa(((struct sockaddr_in *) res->ai_addr)->sin_addr);
 #endif // CONFIG_LWIP_IPV6
