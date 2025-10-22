@@ -2467,6 +2467,12 @@
 		(uuid "21d9030b-30d0-440f-a56b-553af0b1c468")
 	)
 	(junction
+		(at 308.61 138.43)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3bf07ff5-c124-4c82-8261-c9d2ba9c05d2")
+	)
+	(junction
 		(at 374.65 144.78)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2564,6 +2570,16 @@
 	)
 	(wire
 		(pts
+			(xy 308.61 120.65) (xy 308.61 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e57f854-db70-4d7a-9ee5-16a8ec62a39e")
+	)
+	(wire
+		(pts
 			(xy 229.87 226.06) (xy 229.87 243.84)
 		)
 		(stroke
@@ -2651,6 +2667,16 @@
 			(type default)
 		)
 		(uuid "481cd169-a0d2-40d8-aa44-d46762ccd594")
+	)
+	(wire
+		(pts
+			(xy 308.61 138.43) (xy 318.77 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5198578a-54d8-4deb-a082-e082d704dc4c")
 	)
 	(wire
 		(pts
@@ -2744,6 +2770,16 @@
 	)
 	(wire
 		(pts
+			(xy 308.61 130.81) (xy 308.61 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7640a6f2-c6be-44ec-bf3c-82bdbf90729a")
+	)
+	(wire
+		(pts
 			(xy 120.65 210.82) (xy 125.73 210.82)
 		)
 		(stroke
@@ -2761,6 +2797,16 @@
 			(type default)
 		)
 		(uuid "7f0efbe2-fb3f-4755-88f7-19b17a5b0dc5")
+	)
+	(wire
+		(pts
+			(xy 304.8 138.43) (xy 308.61 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7fada300-40a7-4bc3-ab1a-3e5bd23ff2df")
 	)
 	(wire
 		(pts
@@ -3954,6 +4000,28 @@
 			)
 		)
 	)
+	(global_label "RESET"
+		(shape input)
+		(at 59.69 125.73 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "7031de1d-469a-4e17-87fe-a1b0c96a0939")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 50.9597 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "DGND"
 		(shape input)
 		(at 55.88 64.77 180)
@@ -4548,6 +4616,50 @@
 			)
 		)
 	)
+	(global_label "RESET"
+		(shape input)
+		(at 304.8 138.43 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e8237e2c-21de-41a9-b7b6-19d5bb4415ba")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 296.0697 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "3V3"
+		(shape input)
+		(at 308.61 120.65 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e82525c6-8ecb-4a76-ac21-a7248babb63e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 308.61 114.1572 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "V-_SW"
 		(shape input)
 		(at 54.61 21.59 180)
@@ -4746,6 +4858,28 @@
 			)
 		)
 	)
+	(global_label "DGND"
+		(shape input)
+		(at 59.69 123.19 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ffb643ee-116b-4aa3-a37d-2228cf9c06da")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 51.5643 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x03")
 		(at 59.69 24.13 0)
@@ -4756,7 +4890,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "01d672dc-a020-44b4-bebb-96aeb3e5a9de")
-		(property "Reference" "J9"
+		(property "Reference" "J3"
 			(at 62.23 22.8599 0)
 			(effects
 				(font
@@ -4814,7 +4948,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "J9")
+					(reference "J3")
 					(unit 1)
 				)
 			)
@@ -4954,7 +5088,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1cb60de3-76fc-4a80-885c-fb65a3ca8bfb")
-		(property "Reference" "J11"
+		(property "Reference" "J6"
 			(at 62.23 50.7999 0)
 			(effects
 				(font
@@ -5013,7 +5147,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "J11")
+					(reference "J6")
 					(unit 1)
 				)
 			)
@@ -5029,7 +5163,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1cd195e0-1b7c-4b73-8a56-0694c94f5fec")
-		(property "Reference" "R3"
+		(property "Reference" "R6"
 			(at 260.35 236.2199 0)
 			(effects
 				(font
@@ -5083,7 +5217,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "R3")
+					(reference "R6")
 					(unit 1)
 				)
 			)
@@ -5099,7 +5233,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2402824a-7b61-4e56-b99b-9803ea8f97f2")
-		(property "Reference" "R6"
+		(property "Reference" "R8"
 			(at 382.27 120.6499 0)
 			(effects
 				(font
@@ -5153,7 +5287,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "R6")
+					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -5245,7 +5379,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2724f98b-5105-482c-8279-4ceb26ab01d5")
-		(property "Reference" "D3"
+		(property "Reference" "D6"
 			(at 242.57 237.49 0)
 			(effects
 				(font
@@ -5315,7 +5449,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "D3")
+					(reference "D6")
 					(unit 1)
 				)
 			)
@@ -5331,7 +5465,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "34f6dd6e-7a6c-49bd-95cb-54e9f18f860a")
-		(property "Reference" "J7"
+		(property "Reference" "J8"
 			(at 35.56 36.8299 0)
 			(effects
 				(font
@@ -5389,7 +5523,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "J7")
+					(reference "J8")
 					(unit 1)
 				)
 			)
@@ -5405,7 +5539,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "36371a5a-d45e-4cfc-bb71-2c3abc84ee19")
-		(property "Reference" "D6"
+		(property "Reference" "D3"
 			(at 276.7965 236.22 0)
 			(effects
 				(font
@@ -5466,7 +5600,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "D6")
+					(reference "D3")
 					(unit 1)
 				)
 			)
@@ -5550,7 +5684,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "38ee745e-60a1-4aa0-8f3e-cc4ab5e84ffb")
-		(property "Reference" "D4"
+		(property "Reference" "D1"
 			(at 96.4565 223.52 0)
 			(effects
 				(font
@@ -5611,7 +5745,7 @@
 		(instances
 			(project ""
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "D4")
+					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -5627,7 +5761,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3db3c783-9aea-4849-897d-2397d5bf17ef")
-		(property "Reference" "D5"
+		(property "Reference" "D2"
 			(at 168.8465 220.98 0)
 			(effects
 				(font
@@ -5688,7 +5822,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "D5")
+					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -5704,7 +5838,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3df27327-977c-4319-a244-bd0fb65592ba")
-		(property "Reference" "R1"
+		(property "Reference" "R4"
 			(at 80.01 220.9799 0)
 			(effects
 				(font
@@ -5758,7 +5892,77 @@
 		(instances
 			(project ""
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "R1")
+					(reference "R4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 127 135.89 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "42f77669-b4e9-4307-8a75-ccf35945e9cf")
+		(property "Reference" "J12"
+			(at 129.54 135.8899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Conn_01x02"
+			(at 129.54 138.4299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 127 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 127 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 127 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "527e0699-1810-4547-a994-0a2e267b02f0")
+		)
+		(pin "2"
+			(uuid "015cddd3-db2f-4ed5-ad68-2e93ad25415d")
+		)
+		(instances
+			(project ""
+				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
+					(reference "J12")
 					(unit 1)
 				)
 			)
@@ -5774,7 +5978,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4e2c9c94-ea7d-48f8-82ee-78f5f2be563b")
-		(property "Reference" "R4"
+		(property "Reference" "R7"
 			(at 377.19 135.8899 0)
 			(effects
 				(font
@@ -5828,7 +6032,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "R4")
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -6005,7 +6209,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5a784ebb-eda9-4f7d-99c3-280c483d076a")
-		(property "Reference" "Q3"
+		(property "Reference" "Q2"
 			(at 257.81 219.71 90)
 			(effects
 				(font
@@ -6063,7 +6267,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "Q3")
+					(reference "Q2")
 					(unit 1)
 				)
 			)
@@ -6079,7 +6283,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6118d033-3445-409f-8dac-be316faec8be")
-		(property "Reference" "J18"
+		(property "Reference" "J2"
 			(at 38.1 132.0799 0)
 			(effects
 				(font
@@ -6133,7 +6337,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "J18")
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -6149,7 +6353,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "769304d0-b271-4dd0-b657-060cf4c99acb")
-		(property "Reference" "J6"
+		(property "Reference" "J7"
 			(at 35.56 22.8599 0)
 			(effects
 				(font
@@ -6207,7 +6411,7 @@
 		(instances
 			(project ""
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "J6")
+					(reference "J7")
 					(unit 1)
 				)
 			)
@@ -6310,7 +6514,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "79b5eba7-13c2-4e8f-8f44-fae0d519645c")
-		(property "Reference" "J19"
+		(property "Reference" "J11"
 			(at 38.1 123.1899 0)
 			(effects
 				(font
@@ -6364,7 +6568,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "J19")
+					(reference "J11")
 					(unit 1)
 				)
 			)
@@ -6380,7 +6584,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8579bdfc-d0c2-4c13-b902-f65147a73843")
-		(property "Reference" "J10"
+		(property "Reference" "J4"
 			(at 65.7959 36.9956 0)
 			(effects
 				(font
@@ -6438,7 +6642,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "J10")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -6454,7 +6658,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "85fa214d-ce7a-4e99-82f2-4f9a8004d397")
-		(property "Reference" "D1"
+		(property "Reference" "D4"
 			(at 62.23 222.25 0)
 			(effects
 				(font
@@ -6524,7 +6728,7 @@
 		(instances
 			(project ""
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "D1")
+					(reference "D4")
 					(unit 1)
 				)
 			)
@@ -6540,7 +6744,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "91c47018-0493-41c4-a26d-77d94f89f8c2")
-		(property "Reference" "R7"
+		(property "Reference" "R1"
 			(at 88.9 224.79 90)
 			(effects
 				(font
@@ -6592,7 +6796,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "R7")
+					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -6664,6 +6868,76 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
+		(at 308.61 128.27 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9c2d33ad-b3e2-405c-8d71-29a933584c9b")
+		(property "Reference" "R10"
+			(at 311.15 126.9999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "4.7k"
+			(at 311.15 129.5399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 308.61 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 308.61 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 308.61 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4fbacb96-9442-49aa-b3d6-0a86779ac7f7")
+		)
+		(pin "2"
+			(uuid "9eb8a1b0-949f-4f85-8c8b-70c8df5b9655")
+		)
+		(instances
+			(project "monitors"
+				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
+					(reference "R10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
 		(at 269.24 242.57 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6672,7 +6946,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9d02d8fc-407b-44c6-b0ae-4e1846ff0f3e")
-		(property "Reference" "R9"
+		(property "Reference" "R3"
 			(at 269.24 237.49 90)
 			(effects
 				(font
@@ -6724,7 +6998,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "R9")
+					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -6804,7 +7078,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a87a0331-7290-4755-b50b-c11d2ab3486a")
-		(property "Reference" "R8"
+		(property "Reference" "R2"
 			(at 161.29 222.25 90)
 			(effects
 				(font
@@ -6856,7 +7130,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "R8")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -6872,7 +7146,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a93be61c-056d-49a6-8037-f20ce2723c28")
-		(property "Reference" "Q2"
+		(property "Reference" "Q3"
 			(at 149.86 204.47 90)
 			(effects
 				(font
@@ -6930,7 +7204,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "Q2")
+					(reference "Q3")
 					(unit 1)
 				)
 			)
@@ -6946,7 +7220,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ab6327d5-41af-4ba7-9dfd-91c3b65f4472")
-		(property "Reference" "R2"
+		(property "Reference" "R5"
 			(at 152.4 220.9799 0)
 			(effects
 				(font
@@ -7000,7 +7274,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "R2")
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -7235,7 +7509,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c87e6397-0564-4364-8c79-f9b162c1fb0d")
-		(property "Reference" "J8"
+		(property "Reference" "J9"
 			(at 35.56 50.7999 0)
 			(effects
 				(font
@@ -7294,7 +7568,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "J8")
+					(reference "J9")
 					(unit 1)
 				)
 			)
@@ -7365,6 +7639,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 64.77 123.19 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "cd181800-a110-4fbf-986a-6dd9442b6484")
+		(property "Reference" "J10"
+			(at 67.31 123.1899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Conn_01x02"
+			(at 67.31 125.7299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical"
+			(at 64.77 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 64.77 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 64.77 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "f05e7c48-d120-4c0e-b52e-25a6a722375c")
+		)
+		(pin "1"
+			(uuid "cd61b427-ee77-4aa1-b38d-2e7324bfd621")
+		)
+		(instances
+			(project "monitors"
+				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
+					(reference "J10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_Small")
 		(at 377.19 129.54 0)
 		(unit 1)
@@ -7374,7 +7718,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d9c557cd-848b-4b69-a3ab-e1677425e933")
-		(property "Reference" "R5"
+		(property "Reference" "R9"
 			(at 379.73 128.2699 0)
 			(effects
 				(font
@@ -7428,7 +7772,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "R5")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -7444,7 +7788,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ea589594-2536-4caa-9a66-496929555d87")
-		(property "Reference" "D2"
+		(property "Reference" "D5"
 			(at 133.35 222.25 0)
 			(effects
 				(font
@@ -7514,7 +7858,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "D2")
+					(reference "D5")
 					(unit 1)
 				)
 			)
@@ -7530,7 +7874,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fad0f756-f2fd-4aaa-b36a-4afe77ae81b0")
-		(property "Reference" "J12"
+		(property "Reference" "J5"
 			(at 63.5 63.4999 0)
 			(effects
 				(font
@@ -7589,7 +7933,7 @@
 		(instances
 			(project "monitors"
 				(path "/6a55afbe-e669-44e2-8ba8-97f8a48c9e0e"
-					(reference "J12")
+					(reference "J5")
 					(unit 1)
 				)
 			)

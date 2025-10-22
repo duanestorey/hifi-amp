@@ -1,15 +1,15 @@
 
 // The outside width of the enclosure
-base_width = 150;
+base_width = 100;
 
 // The outside depth of the enclosure
-base_depth = 150;
+base_depth = 100;
 
 // The outside height of the enclosure
-base_height = 80;
+base_height = 40;
 
 base_lid_thickness = 3;
-split_amount = 0;
+split_amount = 30;
 
 front_back_thickness = 6;
 front_overhang = 3;
@@ -38,11 +38,11 @@ foot_offset = 10;
 foot_recess = 1;
 foot_recess_size = 0.1;
 
-back_working_area = 20;
-front_working_area = 20;
+back_working_area = 25;
+front_working_area = 15;
 plate_interface_size = 3;
 plate_interface_slop = 0.2;
-plate_z = 5;
+plate_z = 10;
 plate_thickness = 2;
 plate_grid_spacing = 10;
 plate_hole_size = 3.5;
@@ -50,6 +50,8 @@ plate_hole_size = 3.5;
 include_front = true;
 include_back = true;
 include_plate = true;
+include_lid = false;
+include_lcd = false;
 
 module draw_lid( pos ) {
     difference() {
@@ -199,9 +201,11 @@ module draw_front() {
 
             color( "blue" ) draw_front_with_standoffs();
             
-            draw_lcd();
+            if ( include_lcd ) {
+                draw_lcd();
             
-            draw_lcd_holes();
+                draw_lcd_holes();
+             }
         }
       
     }
@@ -326,7 +330,7 @@ module draw_plate() {
 }
 
 draw_bottom();
-draw_top();
+if ( include_lid ) draw_top();
 if ( include_front ) {
     draw_front();
 
