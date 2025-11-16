@@ -1,7 +1,7 @@
 (footprint "500nH Inductor Aliexpress Air Gap"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
 		(at 0 -8 0)
@@ -23,18 +23,6 @@
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 0 0 0)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "93308272-6a5c-4ce2-84b1-2ef2b5601595")
-		(effects
-			(font
-				(size 1.27 1.27)
 				(thickness 0.15)
 			)
 		)
@@ -71,7 +59,7 @@
 			(width 0.12)
 			(type default)
 		)
-		(fill none)
+		(fill no)
 		(layer "F.SilkS")
 		(uuid "e66fd49f-2d86-4ab3-b939-e1d094db16b7")
 	)
@@ -82,7 +70,7 @@
 			(width 0.12)
 			(type default)
 		)
-		(fill none)
+		(fill no)
 		(layer "F.CrtYd")
 		(uuid "b30754cc-a4bd-405d-82df-e2f2bcd9316f")
 	)
@@ -99,19 +87,20 @@
 		)
 	)
 	(pad "1" thru_hole circle
-		(at -8 0)
-		(size 2.2 2.2)
+		(at -6.5 0)
+		(size 2.5 2.5)
 		(drill 1.6)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(uuid "8408ac86-db48-4cbe-8ef4-617f44a833a2")
 	)
 	(pad "2" thru_hole circle
-		(at 8 0)
-		(size 2.2 2.2)
+		(at 6.5 0)
+		(size 2.5 2.5)
 		(drill 1.6)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(uuid "4515f862-221d-4c9a-a53f-d16fa45bfc0a")
 	)
+	(embedded_fonts no)
 )

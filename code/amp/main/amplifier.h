@@ -11,6 +11,7 @@
 #include "lcd.h"
 #include "abstract/dac.h"
 #include "abstract/channel-sel.h"
+#include "driver/temperature_sensor.h"
 
 #include "tmp100.h"
 #include "encoder.h"
@@ -129,10 +130,11 @@ protected:
     rmt_channel_handle_t mIRChannel;
 
     //PinMcpManagerPtr mMcpPinManager;
-    PinManagerPtr mPinManager;
-    
+   // PinManagerPtr mPinManager;
 
     VolumeControllerPtr mMasterVolume;
+
+    temperature_sensor_handle_t mTempSensorHandle;
 
 private:
     void setupWifi();

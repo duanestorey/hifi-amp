@@ -1,15 +1,15 @@
 
 // The outside width of the enclosure
-base_width = 100;
+base_width = 120;
 
 // The outside depth of the enclosure
-base_depth = 100;
+base_depth = 120;
 
 // The outside height of the enclosure
 base_height = 40;
 
 base_lid_thickness = 3;
-split_amount = 30;
+split_amount = 25;
 
 front_back_thickness = 6;
 front_overhang = 3;
@@ -19,18 +19,19 @@ sides_thickness = 8.8;
 lcd_cutout_thickness = 2;
 
 screw_recess = 1;
-screw_size = 3.5;
-screw_hole = 4.4;
+screw_size = 3.6;
+screw_hole = 4.3;
+screw_hole_depth = 5.5;
 screw_offset_z = 12.5;
 screw_head = 5;
 
-$fn = 32;
+$fn = 64;
 
-lcd_x = 97.5;
-lcd_y = 40.5;
-lcd_hole_offset_y = 7.5;
+lcd_x = 80;
+lcd_y = 36;
+lcd_hole_offset_y = 2.5;
 lcd_hole_offset_x = 2.5;
-lcd_hole_d = 2.5;
+lcd_hole_d = 3.5;
 
 foot_d = 30;
 foot_h = 10;
@@ -41,8 +42,8 @@ foot_recess_size = 0.1;
 back_working_area = 25;
 front_working_area = 15;
 plate_interface_size = 3;
-plate_interface_slop = 0.2;
-plate_z = 10;
+plate_interface_slop = 0.75;
+plate_z = 8;
 plate_thickness = 2;
 plate_grid_spacing = 10;
 plate_hole_size = 3.5;
@@ -50,7 +51,7 @@ plate_hole_size = 3.5;
 include_front = true;
 include_back = true;
 include_plate = true;
-include_lid = false;
+include_lid = true;
 include_lcd = false;
 
 module draw_lid( pos ) {
@@ -159,19 +160,19 @@ module draw_lcd_holes() {
     lcd_start_x = (base_width + 2*front_overhang - lcd_x)/2;
     lcd_start_y = (base_height + 2*front_overhang - lcd_y )/2;
     
-    translate( [ lcd_start_x + lcd_hole_offset_x, 0, lcd_start_y - lcd_hole_offset_y ] ) {
+    translate( [ lcd_start_x + lcd_hole_offset_x, 0, lcd_start_y + lcd_hole_offset_y ] ) {
         rotate( [270, 0, 0 ] ) cylinder( h=front_back_thickness, r=lcd_hole_d/2 );
     }
     
-    translate( [ lcd_start_x + lcd_x - lcd_hole_offset_x, 0, lcd_start_y - lcd_hole_offset_y ] ) {
+    translate( [ lcd_start_x + lcd_x - lcd_hole_offset_x, 0, lcd_start_y + lcd_hole_offset_y ] ) {
         rotate( [270, 0, 0 ] ) cylinder( h=front_back_thickness, r=lcd_hole_d/2 );
     }
     
-    translate( [ lcd_start_x + lcd_hole_offset_x, 0, lcd_start_y + lcd_y + lcd_hole_offset_y ] ) {
+    translate( [ lcd_start_x + lcd_hole_offset_x, 0, lcd_start_y + lcd_y - lcd_hole_offset_y ] ) {
         rotate( [270, 0, 0 ] ) cylinder( h=front_back_thickness, r=lcd_hole_d/2 );
     }
     
-    translate( [ lcd_start_x + lcd_x - lcd_hole_offset_x, 0, lcd_y + lcd_start_y + lcd_hole_offset_y ] ) {
+    translate( [ lcd_start_x + lcd_x - lcd_hole_offset_x, 0, lcd_y + lcd_start_y - lcd_hole_offset_y ] ) {
         rotate( [270, 0, 0 ] ) cylinder( h=front_back_thickness, r=lcd_hole_d/2 );
     }
 }
@@ -183,8 +184,9 @@ module draw_lcd() {
        // translate( [ 6, 5, lcd_y ] ) cube( [ 50, 10, 5 ] );
     }
     
+    
     cutout_x = 71;
-    cutout_y = 21;
+    cutout_y = 25;
     
     translate( [ (base_width + 2*front_overhang - cutout_x)/2, 0, (base_height + 2*front_overhang - cutout_y )/2 ] ) {
         cube( [ cutout_x, lcd_cutout_thickness, cutout_y ] );
@@ -201,10 +203,12 @@ module draw_front() {
 
             color( "blue" ) draw_front_with_standoffs();
             
+          //  translate( [ 50, 0,  base_height/2 + front_overhang ]  ) rotate( [ 270, 0, 0 ] ) cylinder( h=front_back_thickness, r=6.05 );
+            
             if ( include_lcd ) {
                 draw_lcd();
             
-                draw_lcd_holes();
+               draw_lcd_holes();
              }
         }
       
@@ -224,35 +228,35 @@ module draw_one_side() {
             color( "red" ) cube( [ sides_thickness, base_depth - back_thickness, base_height - 2*base_lid_thickness ] ); 
             
             translate( [ sides_thickness/2, 0, sides_thickness/2 ] ) {
-                rotate( [ 270, 0, 0 ] ) cylinder( h=5, r=screw_hole/2 );
+                rotate( [ 270, 0, 0 ] ) cylinder( h=screw_hole_depth, r=screw_hole/2 );
             }
             
             translate( [ sides_thickness/2, 0, base_height - 2*base_lid_thickness - sides_thickness/2 ] ) {
-                rotate( [ 270, 0, 0 ] ) cylinder( h=5, r=screw_hole/2 );
+                rotate( [ 270, 0, 0 ] ) cylinder( h=screw_hole_depth, r=screw_hole/2 );
             }
             
             translate( [ sides_thickness/2, base_depth - back_thickness, sides_thickness/2 ] ) {
-                rotate( [ 90, 0, 0 ] ) cylinder( h=5, r=screw_hole/2 );
+                rotate( [ 90, 0, 0 ] ) cylinder( h=screw_hole_depth, r=screw_hole/2 );
             }
             
             translate( [ sides_thickness/2, base_depth - back_thickness, base_height - 2*base_lid_thickness - sides_thickness/2 ] ) {
-                rotate( [ 90, 0, 0 ] ) cylinder( h=5, r=screw_hole/2 );
+                rotate( [ 90, 0, 0 ] ) cylinder( h=screw_hole_depth, r=screw_hole/2 );
             }
             
             translate( [ sides_thickness/2, screw_offset_z, 0 ] ) {
-                rotate( [ 0, 0, 0 ] ) cylinder( h=5, r=screw_hole/2 );
+                rotate( [ 0, 0, 0 ] ) cylinder( h=screw_hole_depth, r=screw_hole/2 );
             }
             
             translate( [ sides_thickness/2, screw_offset_z, base_height - 2*base_lid_thickness ] ) {
-                rotate( [ 0, 180, 0 ] ) cylinder( h=5, r=screw_hole/2 );
+                rotate( [ 0, 180, 0 ] ) cylinder( h=screw_hole_depth, r=screw_hole/2 );
             }
             
             translate( [ sides_thickness/2, base_depth - back_thickness - screw_offset_z, 0 ] ) {
-                rotate( [ 0, 0, 0 ] ) cylinder( h=5, r=screw_hole/2 );
+                rotate( [ 0, 0, 0 ] ) cylinder( h=screw_hole_depth, r=screw_hole/2 );
             }
             
             translate( [ sides_thickness/2, base_depth - back_thickness - screw_offset_z, base_height - 2*base_lid_thickness ] ) {
-                rotate( [ 0, 180, 0 ] ) cylinder( h=5, r=screw_hole/2 );
+                rotate( [ 0, 180, 0 ] ) cylinder( h=screw_hole_depth, r=screw_hole/2 );
             }
         }
 }
@@ -307,7 +311,7 @@ module draw_feet() {
 module draw_plate() {
     translate( [0, 0, base_lid_thickness ] ) {
         plate_depth = base_depth  - back_working_area - front_working_area;
-        plate_width = base_width - 2*sides_thickness + plate_interface_size*2;
+        plate_width = base_width - 2*sides_thickness + plate_interface_size*2 - plate_interface_slop*2;
         total_x = floor( plate_width/plate_grid_spacing );
         total_y = floor( plate_depth/plate_grid_spacing );
         left_over_x = plate_width - total_x*plate_grid_spacing;

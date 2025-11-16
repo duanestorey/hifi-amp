@@ -10,6 +10,7 @@ set(COMPONENT_SRCS
     "mutex.cpp" 
     "queue.cpp" 
     "i2c-bus.cpp" 
+    "i2c-device.cpp" 
     "lcd.cpp" 
     "tmp100.cpp" 
     "encoder.cpp" 
@@ -28,14 +29,11 @@ set(COMPONENT_SRCS
     "input.cpp"
     "state.cpp"
     "analog-channel-selector.cpp"
-    "digital-receiver.cpp"
-    "adc-pcm1863.cpp"
     "diagnostics.cpp"
     "ina260.cpp"
     "dsp.cpp"
     "dolby-sta310.cpp"
     "adc-pcm1863.cpp"
-    "ble.cpp"
 )
 set(COMPONENT_ADD_INCLUDEDIRS)
 

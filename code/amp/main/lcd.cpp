@@ -3,7 +3,9 @@
 #include "debug.h"
 #include <string.h>
 
-LCD::LCD( uint8_t addr, I2CBUSPtr bus ) : mAddr( addr ), mI2C( bus ), mBacklight( BACKLIGHT_ON ) {
+LCD::LCD( uint8_t addr, I2CBUSPtr bus ) : mAddr( addr ), mBacklight( BACKLIGHT_ON ) {
+	mI2C = bus->bindAddress( addr );
+
 	mRowOffsets[0] = 0;
 	mRowOffsets[1] = 0x40;
 	mRowOffsets[2] = 20;
@@ -21,7 +23,7 @@ LCD::sendCommand( uint8_t command ) {
 	data_t[2] = data_l|0x0C;	// en=1, rs=0
 	data_t[3] = data_l|0x08;	// en=0, rs=0
 
-	mI2C->writeBytes( mAddr, data_t, 4 );
+	mI2C->writeBytes( data_t, 4 );
 }
 
 void 
@@ -125,7 +127,7 @@ LCD::write4Bits( uint8_t data ) {
 void 
 LCD::write8Bits( uint8_t data ) {
 	data = data | mBacklight;
-	mI2C->writeBytes( mAddr, &data, 1 );
+	mI2C->writeBytes( &data, 1 );
 }
 
 void 

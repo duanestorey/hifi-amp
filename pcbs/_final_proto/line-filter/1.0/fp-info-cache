@@ -1,4 +1,4 @@
-24953487010316665
+24974666626549003
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -55272,12 +55272,47 @@ Button Aliexpress 4x4
 4
 2
 Custom
+C_0603_1608Metric_HandSolder_Duane
+Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator
+capacitor handsolder
+0
+2
+2
+Custom
+C_0805_2012Metric_Pad1.18x1.45mm_HandSolder_Duane
+Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator
+capacitor handsolder
+0
+2
+2
+Custom
+C_1206_3216Metric_Pad1.33x1.80mm_HandSolder_Duane
+Capacitor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator
+capacitor handsolder
+0
+2
+2
+Custom
 DA101C
 
 
 0
 4
 4
+Custom
+ESP32 P4 C6 Module SoC Duane
+
+
+0
+0
+0
+Custom
+Fuse_1812_AliExpress
+Fuse SMD 1812 (4532 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: https://www.nikhef.nl/pub/departments/mt/projects/detectorR_D/dtddice/ERJ2G.pdf), generated with kicad-footprint-generator
+fuse handsolder
+0
+2
+2
 Custom
 GBPC-W Bridge Rectifier
 
@@ -55307,6 +55342,27 @@ KEMET EA2
 10
 10
 Custom
+LED_0603_1608Metric_HandSolder_Duane
+LED SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator
+LED handsolder
+0
+2
+2
+Custom
+LED_0805_2012Metric_Pad_HandSolder_Duane
+LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator
+LED handsolder
+0
+2
+2
+Custom
+LM3886
+TO-220-11, Vertical, RM 1.7mm, Multiwatt-11, staggered type-1, see http://www.st.com/resource/en/datasheet/tda7391lv.pdf
+TO-220-11 Vertical RM 1.7mm Multiwatt-11 staggered type-1
+0
+11
+11
+Custom
 M3 Slot
 
 
@@ -55321,19 +55377,40 @@ PE-65612NL
 4
 4
 Custom
+R_0603_1608Metric_Pad0.98x0.95mm_HandSolder_Duane
+Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator
+resistor handsolder
+0
+2
+2
+Custom
+R_0805_2012Metric_Pad1.20x1.40mm_HandSolder_Duane
+Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator
+resistor handsolder
+0
+2
+2
+Custom
+R_1206_3216Metric_Pad1.30x1.75mm_HandSolder_Duane
+Resistor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator
+resistor handsolder
+0
+2
+2
+Custom
+Relay_DPDT_Omron_G2RL-2
+Omron Relay, DPDT, https://omronfs.omron.com/en_US/ecb/products/pdf/en-g2rl.pdf
+Omron Relay DPDT
+0
+8
+8
+Custom
 SSR21NV-M
 
 
 0
 4
 4
-Custom
-Untitled
-
-
-0
-4
-2
 Diode_SMD
 D_0201_0603Metric
 Diode SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator
@@ -100169,6 +100246,13 @@ QFN-104_L10.0-W10.0-P0.35-TL-EP8.5-ESP32-P4
 0
 105
 105
+easyeda2kicad
+RELAY-TH_G3MB-202PL
+
+
+0
+4
+4
 easyeda2kicad
 SENSOR-SMD_EML7700-TT
 

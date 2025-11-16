@@ -4,18 +4,19 @@
 #include "mutex.h"
 #include "config.h"
 #include <memory>
+#include "driver/i2c_master.h"
+
+#include "i2c-device.h"
 
 class I2CBUS {
 public:
     I2CBUS();
 
-    bool writeRegisterByte( uint8_t address, uint8_t reg, uint8_t data );
-    bool writeRegisterBytes( uint8_t address, uint8_t reg, uint8_t dataSize, uint8_t *data );
-    bool writeBytes( uint8_t address, uint8_t *data, uint8_t size );
-    bool readRegisterByte( uint8_t address, uint8_t reg, uint8_t &data  );
-    bool readRegisterBytes( uint8_t address, uint8_t reg, uint8_t dataSize, uint8_t *data  );
-    bool readRegisterWord( uint8_t address, uint8_t reg, uint8_t *data );
+    I2C_Device_Ptr bindAddress( uint8_t addr );
+
     void scanBus();
+protected:
+    i2c_master_bus_handle_t mBusHandle;
 private:
     Mutex mMutex;
 };

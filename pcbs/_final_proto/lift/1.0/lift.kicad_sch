@@ -2327,7 +2327,7 @@
 				)
 			)
 		)
-		(property "Value" "100n X2 250V"
+		(property "Value" "100n X2 (Switch to Y2) 250V"
 			(at 39.116 71.374 90)
 			(effects
 				(font

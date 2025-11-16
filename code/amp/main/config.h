@@ -4,8 +4,8 @@
 #define AMP_DAC_TOTAL_NUM            1
 
 // I2C parameters
-#define I2C_MS_TO_WAIT              50
-#define I2C_MASTER_FREQ_HZ          100000
+#define I2C_PROBE_MS_TO_WAIT        20
+#define I2C_MASTER_FREQ_HZ          200000
 
 // I2C addresses
 #define AMP_I2C_ADDR_MCP_1          0x20

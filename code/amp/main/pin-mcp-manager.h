@@ -22,7 +22,7 @@ class PinMcpManager {
 
         void reset();
     protected:
-        I2CBUSPtr mBus;
+        I2C_Device_Ptr mBus;
         PinMap mPinMap;
         uint8_t mAddr;
 

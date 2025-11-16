@@ -11,7 +11,7 @@ public:
     virtual float readTemperature();
 protected:
     uint8_t mAddress;
-    I2CBUSPtr mI2C;
+    I2C_Device_Ptr mI2C;
 };
 
 #endif

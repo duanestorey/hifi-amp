@@ -18,14 +18,17 @@ Diagnostics::addTemperatureSensor(  const std::string &str, TempSensorPtr sensor
 void 
 Diagnostics::dumpAllTemperatures() {
     for ( std::map<std::string, TempSensorPtr>::iterator i = mTempSensors.begin(); i != mTempSensors.end(); i++ ) {
-        AMP_DEBUG_I( "Temperature of [%s] is [%0.2f]", i->first.c_str(), i->second->readTemperature() );
+        AMP_DEBUG_I( "Temperature of [%s] is [%0.3f]", i->first.c_str(), i->second->readTemperature() );
     }
 }
 
 void 
 Diagnostics::dumpAllPower() {
     for ( std::map<std::string, PowerSensorPtr>::iterator i = mPowerSensors.begin(); i != mPowerSensors.end(); i++ ) {
-        AMP_DEBUG_I( "Power Sensor of [%s] is [%0.2f]V, [%0.2f]ma, [%0.2f]W", i->first.c_str(), i->second->getVoltage(), i->second->getCurrent(), i->second->getPowerUsage() );
+        float voltage = i->second->getVoltage();
+        float current = i->second->getCurrent();
+        float power = abs( voltage * current/1000.0 );
+        AMP_DEBUG_I( "Power Sensor of [%s] is [%0.3f]V, [%0.3f]ma, [%0.3f]W", i->first.c_str(), voltage, current, power );
     }
 }
 

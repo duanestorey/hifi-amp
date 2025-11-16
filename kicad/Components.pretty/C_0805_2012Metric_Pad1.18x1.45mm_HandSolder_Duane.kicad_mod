@@ -54,85 +54,16 @@
 		)
 	)
 	(attr smd)
-	(fp_line
-		(start -1.7 -0.8)
-		(end -1.7 0.8)
+	(fp_rect
+		(start -1.83 -0.92)
+		(end 1.82 0.91)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
+		(fill no)
 		(layer "F.SilkS")
-		(uuid "c4f0a88f-ba0e-4c90-8bf9-a0b2f3825656")
-	)
-	(fp_line
-		(start -1.7 0.8)
-		(end -0.261252 0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "c212cc4c-272b-497f-82cb-a63e7cb38f3b")
-	)
-	(fp_line
-		(start -0.3 -0.8)
-		(end 0.261252 -0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "19e5fe57-2f17-46a7-ba38-075334c00b8a")
-	)
-	(fp_line
-		(start -0.261252 -0.8)
-		(end -1.7 -0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "36c5a978-bfd3-42d8-9c5b-62c8f473a1ab")
-	)
-	(fp_line
-		(start -0.261252 0.8)
-		(end 0.261252 0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "29aa4a97-71a2-4dcb-8c3b-d71cc38b4176")
-	)
-	(fp_line
-		(start 0.261252 -0.8)
-		(end 1.7 -0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "af5f9eb1-eb3c-4947-ad7e-a9b5b1ebe865")
-	)
-	(fp_line
-		(start 1.7 -0.8)
-		(end 1.7 0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "8e81cb3f-219b-4d23-adb5-e7961fe131e8")
-	)
-	(fp_line
-		(start 1.7 0.8)
-		(end 0.261252 0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "d2aaf369-daba-4419-b62b-0ce3fa041dc1")
+		(uuid "b23fc02d-a345-436f-86d3-ad9cb456c04e")
 	)
 	(fp_line
 		(start -1.88 -0.98)
@@ -225,18 +156,16 @@
 			)
 		)
 	)
-	(pad "1" smd roundrect
+	(pad "1" smd rect
 		(at -1.0375 0)
 		(size 1.175 1.45)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(roundrect_rratio 0.212766)
 		(uuid "5c952ec8-c980-4a94-a972-30f730128869")
 	)
-	(pad "2" smd roundrect
+	(pad "2" smd rect
 		(at 1.0375 0)
 		(size 1.175 1.45)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(roundrect_rratio 0.212766)
 		(uuid "26b8f07a-78fd-4334-a627-c22ac9be221b")
 	)
 	(embedded_fonts no)

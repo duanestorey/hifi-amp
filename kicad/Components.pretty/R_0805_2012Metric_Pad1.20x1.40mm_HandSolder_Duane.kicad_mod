@@ -54,85 +54,16 @@
 		)
 	)
 	(attr smd)
-	(fp_line
-		(start -1.7 0.8)
-		(end -1.7 -0.8)
+	(fp_rect
+		(start -1.81 -0.9)
+		(end 1.79 0.91)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
+		(fill no)
 		(layer "F.SilkS")
-		(uuid "1d1614ab-b986-4afd-9193-6233d2d16c7e")
-	)
-	(fp_line
-		(start -0.227064 -0.8)
-		(end -1.7 -0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "ce4f2b04-2f4c-4591-95aa-ca3af1ba5a25")
-	)
-	(fp_line
-		(start -0.227064 0.8)
-		(end -1.7 0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "4899a1e3-0444-4db0-85f0-4644363d1c68")
-	)
-	(fp_line
-		(start 0.2 -0.8)
-		(end -0.2 -0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "12b2456d-fa49-416c-b4f9-b7f13a5aac54")
-	)
-	(fp_line
-		(start 0.2 -0.8)
-		(end 1.7 -0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "caf81965-d51e-474a-8f15-5d0c4383710d")
-	)
-	(fp_line
-		(start 0.227064 0.8)
-		(end -0.227064 0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "72abaa1e-ca9c-4ad8-ab63-3317b10623c6")
-	)
-	(fp_line
-		(start 0.227064 0.8)
-		(end 1.7 0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "d629ef04-22d3-4d85-9ae1-811c126541bb")
-	)
-	(fp_line
-		(start 1.7 -0.8)
-		(end 1.7 0.8)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "44d3f954-4863-429a-9a51-ef011cce18c5")
+		(uuid "0ed258d0-e846-4af4-970f-a5789e21c1be")
 	)
 	(fp_line
 		(start -1.85 -0.95)
@@ -225,18 +156,16 @@
 			)
 		)
 	)
-	(pad "1" smd roundrect
+	(pad "1" smd rect
 		(at -1 0)
 		(size 1.2 1.4)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(roundrect_rratio 0.208333)
 		(uuid "4937d829-fe33-4310-b24e-1c4f5b5702fa")
 	)
-	(pad "2" smd roundrect
+	(pad "2" smd rect
 		(at 1 0)
 		(size 1.2 1.4)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(roundrect_rratio 0.208333)
 		(uuid "1bdfed4a-fb38-4162-b692-6c86bd617303")
 	)
 	(embedded_fonts no)

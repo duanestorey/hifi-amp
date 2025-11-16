@@ -2,14 +2,15 @@
 #include <memory.h>
 #include "debug.h"
 
-PinMcpManager::PinMcpManager( I2CBUSPtr bus, uint8_t addr, QueuePtr queue ) : mBus( bus ), mAddr( addr ), mInterruptQueue( queue ) {
+PinMcpManager::PinMcpManager( I2CBUSPtr bus, uint8_t addr, QueuePtr queue ) : mAddr( addr ), mInterruptQueue( queue ) {
+    mBus = bus->bindAddress( addr );
 }
 
 void
 PinMcpManager::reset() {
     // enable interrupt mirroring
-    mBus->writeRegisterByte( mAddr, 0x0a, 0b01000000 );
-    mBus->writeRegisterByte( mAddr, 0x0b, 0x01000000 );
+    mBus->writeRegisterByte( 0x0a, 0b01000000 );
+    mBus->writeRegisterByte( 0x0b, 0x01000000 );
 }
 
 uint8_t 
@@ -18,9 +19,9 @@ PinMcpManager::getState( uint8_t pin ) {
     uint8_t portState = 0;
 
     if ( isPortA( pin ) ) {
-        mBus->readRegisterByte( mAddr, 0x12, portState );
+        mBus->readRegisterByte( 0x12, portState );
     } else {
-        mBus->readRegisterByte( mAddr, 0x13, portState );
+        mBus->readRegisterByte( 0x13, portState );
     }
    
     if ( portState ) {
@@ -35,7 +36,7 @@ PinMcpManager::getState( uint8_t pin ) {
 void 
 PinMcpManager::processPortAInterrupt() {
     uint8_t intState = 0;
-    mBus->readRegisterByte( mAddr, 0x0e, intState );
+    mBus->readRegisterByte( 0x0e, intState );
     for (int i = 0 ; i < 8; i++ ) {
         if ( intState & ( 1 << i ) ) {
             mInterruptQueue->add( Message::MSG_GPIO_INTERRUPT, 1, i );
@@ -46,7 +47,7 @@ PinMcpManager::processPortAInterrupt() {
 void 
 PinMcpManager::processPortBInterrupt() {
     uint8_t intState = 0;
-    mBus->readRegisterByte( mAddr, 0x0f, intState );
+    mBus->readRegisterByte( 0x0f, intState );
     for (int i = 0 ; i < 8; i++ ) {
         if ( intState & ( 1 << i ) ) {
             mInterruptQueue->add( Message::MSG_GPIO_INTERRUPT, 1, 0x10 | i );
@@ -61,9 +62,9 @@ PinMcpManager::setState( uint8_t pin, uint8_t state ) {
     AMP_DEBUG_I( "Attemping to set MCP state on pin %d to state %d", pin, state );
 
     if ( isPortA( pin ) ) {
-        mBus->readRegisterByte( mAddr, 0x12, portState );
+        mBus->readRegisterByte( 0x12, portState );
     } else {
-        mBus->readRegisterByte( mAddr, 0x13, portState );
+        mBus->readRegisterByte( 0x13, portState );
     }
    
     uint8_t pinValue = ( 1 << ( ( pin & 0x0f ) - 1 ) );
@@ -80,10 +81,10 @@ PinMcpManager::setState( uint8_t pin, uint8_t state ) {
 
     if ( isPortA( pin ) ) {
         AMP_DEBUG_I( ".....Writing %d to addr %d and register 0x12", portState, mAddr );
-        mBus->writeRegisterByte( mAddr, 0x12, portState );
+        mBus->writeRegisterByte( 0x12, portState );
     } else {
         AMP_DEBUG_I( ".....Writing %d to addr %d and register 0x13", portState, mAddr );
-        mBus->writeRegisterByte( mAddr, 0x13, portState );
+        mBus->writeRegisterByte( 0x13, portState );
     }
 }
 
@@ -118,12 +119,12 @@ PinMcpManager::updateConfig() {
             }
 
             AMP_DEBUG_I( "Setting PortA Dir to %d for pin %d", portADir, i->second->getPinID() );
-            mBus->writeRegisterByte( mAddr, 0x00, portADir );
+            mBus->writeRegisterByte( 0x00, portADir );
 
             AMP_DEBUG_I( "Setting PortB Dir to %d for pin %d", portBDir, i->second->getPinID() );
-            mBus->writeRegisterByte( mAddr, 0x01, portBDir );
-            mBus->writeRegisterByte( mAddr, 0x0c, pullupA );
-            mBus->writeRegisterByte( mAddr, 0x0d, pullupB );
+            mBus->writeRegisterByte( 0x01, portBDir );
+            mBus->writeRegisterByte( 0x0c, pullupA );
+            mBus->writeRegisterByte( 0x0d, pullupB );
         }
     }
 }

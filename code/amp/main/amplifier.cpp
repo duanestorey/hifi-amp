@@ -33,7 +33,7 @@
 
 Amplifier::Amplifier() : mWifiEnabled( false ), mWifiConnectionAttempts( 0 ), mUpdatingFromNTP( false ), mPoweredOn( true ), mTimerID( 0 ), mButtonTimerID( 0 ), mReconnectTimerID( 0 ),
     mCurrentInput( 0 ), mVolumeEncoder( 15, 13, true ), mInputEncoder( 4, 16, false ), mAudioTimerID( 0 ), mSpdifTimerID( 0 ), mPendingVolumeChange( false ), mPendingVolume( 0 ),
-    mPowerButton( 0 ), mVolumeButton( 0 ), mInputButton( 0 ), mIRBuffer( 0 ) {
+    mPowerButton( 0 ), mVolumeButton( 0 ), mInputButton( 0 ), mIRBuffer( 0 ), mTempSensorHandle( NULL ) {
 
 }
 
@@ -154,6 +154,11 @@ Amplifier::init() {
     AMP_DEBUG_I( "Setting up I2C bus" );
     mI2C = I2CBUSPtr( new I2CBUS() );
 
+    temperature_sensor_config_t temp_sensor_config = TEMPERATURE_SENSOR_CONFIG_DEFAULT(20, 50);
+    ESP_ERROR_CHECK(temperature_sensor_install(&temp_sensor_config, &mTempSensorHandle));
+    // Enable temperature sensor
+    ESP_ERROR_CHECK(temperature_sensor_enable(mTempSensorHandle));
+
     /*
 -> found device with address 0x20 - MCP1
 -> found device with address 0x21 - MCP2
@@ -187,25 +192,26 @@ Amplifier::init() {
     mMasterVolume = VolumeControllerPtr( new VolumeController() );
 
     // Create pin manager
-    AMP_DEBUG_I( "Setting up pin manager" );
-    mPinManager = PinManagerPtr( new PinManager( mI2C, mAmplifierQueue ) );
-    mStandbyLED = mPinManager->createPin( PinManager::PIN_TYPE_ESP32, AMP_PIN_STANDBY_LED, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_ENABLE, Pin::PIN_PULLUP_DISABLE );
+   // AMP_DEBUG_I( "Setting up pin manager" );
+  //  mPinManager = PinManagerPtr( new PinManager( mI2C, mAmplifierQueue ) );
+   // mStandbyLED = mPinManager->createPin( PinManager::PIN_TYPE_ESP32, AMP_PIN_STANDBY_LED, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_ENABLE, Pin::PIN_PULLUP_DISABLE );
   //  mEncoderResetPin = mPinManager->createPin( PinManager::PIN_TYPE_ESP32, AMP_PIN_MCP_RESET, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_ENABLE, Pin::PIN_PULLUP_DISABLE );
 
    // AMP_DEBUG_I( "Activing MCP GPIO extenders" );
    // mEncoderResetPin->enable();
 
-    mDolbyResetPin = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A7, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
-    mMonoblockEnablePin = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A2, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_ENABLE, Pin::PIN_PULLUP_DISABLE );
-    mDACXSMT = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A3, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_ENABLE );
-    mDolbyInterrupt = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A6, Pin::PIN_TYPE_INPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+//    mDolbyResetPin = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A7, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+  //  mMonoblockEnablePin = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A2, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_ENABLE, Pin::PIN_PULLUP_DISABLE );
+  //  mDACXSMT = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A3, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_ENABLE );
+ //   mDolbyInterrupt = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A6, Pin::PIN_TYPE_INPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
 
-    mChannel1 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B0, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
-    mChannel2 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B1, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
-    mChannel3 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B2, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
-    mChannelEnable = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B3, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
-    mSPDIFEnable = mPinManager->createPin( PinManager::PIN_TYPE_MCP2, PinMcp::PIN_A2, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+  //  mChannel1 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B0, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+  //  mChannel2 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B1, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+  //  mChannel3 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B2, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+ //   mChannelEnable = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B3, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+   // mSPDIFEnable = mPinManager->createPin( PinManager::PIN_TYPE_MCP2, PinMcp::PIN_A2, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
 
+   /*
     mChannelEnable->enable();
     mChannel1->enable();
     mChannel2->disable();
@@ -221,6 +227,8 @@ Amplifier::init() {
     AMP_DEBUG_I( "Activing Dolby Decoder" );
     mDolbyResetPin->enable();
 
+    */
+
     taskDelayInMs( 20 );
 
     AMP_DEBUG_I( "Scanning Bus" ); 
@@ -235,34 +243,39 @@ Amplifier::init() {
     // Setup temperature sensors
     AMP_DEBUG_I( "Setting up temperature sensors" );
     
-    mDiagnostics->addTemperatureSensor( "CPU", TempSensorPtr( new TMP100( 0x48, mI2C ) ) );
-    mDiagnostics->addTemperatureSensor( "PSU", TempSensorPtr( new TMP100( 0x49, mI2C ) ) );
+   // mDiagnostics->addTemperatureSensor( "CPU", TempSensorPtr( new TMP100( 0x48, mI2C ) ) );
+   // mDiagnostics->addTemperatureSensor( "PSU", TempSensorPtr( new TMP100( 0x49, mI2C ) ) );
 
     // Setup power sensors
     AMP_DEBUG_I( "Setting up power sensors" );
-    mDiagnostics->addPowerSensor( "CHAN", PowerSensorPtr( new INA260( 0x41, mI2C ) ) );
-    mDiagnostics->addPowerSensor( "PSU", PowerSensorPtr( new INA260( 0x42, mI2C ) ) );
-    mDiagnostics->addPowerSensor( "DCPOS", PowerSensorPtr( new INA260( 0x43, mI2C ) ) );
-    mDiagnostics->addPowerSensor( "BUCK", PowerSensorPtr( new INA260( 0x44, mI2C ) ) );
-    mDiagnostics->addPowerSensor( "5V", PowerSensorPtr( new INA260( 0x45, mI2C ) ) );
+    
+    mDiagnostics->addPowerSensor( "POWER", PowerSensorPtr( new INA260( 0x40, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "OPAMP", PowerSensorPtr( new INA260( 0x44, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "3V3", PowerSensorPtr( new INA260( 0x45, mI2C ) ) );
+    mDiagnostics->addPowerSensor( "5V", PowerSensorPtr( new INA260( 0x41, mI2C ) ) );
+    /*
    // mDiagnostics->addPowerSensor( "12V", PowerSensorPtr( new INA260( 0x46, mI2C ) ) );
     mDiagnostics->addPowerSensor( "3V3", PowerSensorPtr( new INA260( 0x47, mI2C ) ) );
+    */
 
     // Setting up ADC
     AMP_DEBUG_I( "Setting up ADC" );
-    mADC = PCM1863Ptr( new PCM1863( 0x4a, mI2C, PCM1863::SAMPLING_RATE_48K ) );
+   // mADC = PCM1863Ptr( new PCM1863( 0x4a, mI2C, PCM1863::SAMPLING_RATE_48K ) );
 
     // setup channel selector
     AMP_DEBUG_I( "Setting up channel selectors" );
-    mChannelSel = AnalogChannelSelectorPtr( new AnalogChannelSelector( mI2C, mPinManager ) );
+  //  mChannelSel = AnalogChannelSelectorPtr( new AnalogChannelSelector( mI2C, mPinManager ) );
 
+  /*
     mDolby = Dolby_STA310Ptr( new Dolby_STA310( 0x5c, mI2C ) );
     mDolby->init();
     mDolby->mute( false );
     mDolby->play( true );
+    */
 
     // Setup output DACs
     AMP_DEBUG_I( "Setting up DACs" );
+    /*
     for ( int i = 0; i < AMP_DAC_TOTAL_NUM; i++ ) {
         mDAC[i] = DACPtr( new DAC_PCM5142( 0x4e + i, mI2C ) );
         mDAC[i]->init();
@@ -270,19 +283,21 @@ Amplifier::init() {
 
         mMasterVolume->addForControl( std::dynamic_pointer_cast<Volume>( mDAC[i] ) );
     }
+        */
 
     AMP_DEBUG_I( "Setting up DSP" );
-    mDSP = DSPPtr( new DSP( 0x58, mI2C ) );
+  //  mDSP = DSPPtr( new DSP( 0x58, mI2C ) );
 
     // Setup digital inputs
     AMP_DEBUG_I( "Setting up digital receiver" );
-    mDigitalReceiver = DigitalReceiverPtr( new DigitalReceiver( mI2C, 0x40 ) );
-    mDigitalReceiver->init();
+   // mDigitalReceiver = DigitalReceiverPtr( new DigitalReceiver( mI2C, 0x40 ) );
+   // mDigitalReceiver->init();
 
     AMP_DEBUG_W( "TODO: Activate button light here" );
 
     // Set up buttons
     AMP_DEBUG_I( "Setting up button" );
+    /*
     mPowerButton = ButtonPtr( new Button( PIN_BUTTON_POWER, mAmplifierQueue ) );
     mVolumeButton = ButtonPtr( new Button( PIN_BUTTON_VOLUME, mAmplifierQueue ) );
     mInputButton = ButtonPtr( new Button( PIN_BUTTON_INPUT, mAmplifierQueue ) );
@@ -290,6 +305,7 @@ Amplifier::init() {
     mNeedsTick.push_back( std::dynamic_pointer_cast<Tick>( mPowerButton ) );
     mNeedsTick.push_back( std::dynamic_pointer_cast<Tick>( mVolumeButton ) );
     mNeedsTick.push_back( std::dynamic_pointer_cast<Tick>( mInputButton ) );
+    */
 
     AMP_DEBUG_I( "Setting up web server" );
     mWebServer = HTTPServerPtr( new HTTPServer( mAmplifierQueue, mDiagnostics ) );
@@ -298,11 +314,11 @@ Amplifier::init() {
     AMP_DEBUG_I( "Setting up periodic timers" );
     mTimer = TimerPtr( new Timer() );
     mTimerID = mTimer->setTimer( 10000, mAmplifierQueue, true );
-    mButtonTimerID = mTimer->setTimer( 10, mAmplifierQueue, true );
-    mAudioTimerID = mTimer->setTimer( 1000, mAudioQueue, true );
+   // mButtonTimerID = mTimer->setTimer( 10, mAmplifierQueue, true );
+   // mAudioTimerID = mTimer->setTimer( 1000, mAudioQueue, true );
 
     AMP_DEBUG_I( "Setting up IR receiver" );
-    setupRemoteReceiver();
+    //setupRemoteReceiver();
 
     // setting up inputs
     addInput( InputPtr( new Input( Input::INPUT_TYPE_DIGITAL, Input::INPUT_PORT_SPDIF, 0, "Dolby" ) ) );
@@ -356,6 +372,10 @@ Amplifier::updateDisplay() {
     char s[32];
     char d[14];
 
+    float temperature_celsius;
+
+    ESP_ERROR_CHECK(temperature_sensor_get_celsius(mTempSensorHandle, &temperature_celsius));
+
     sprintf( d, "Vol %ddB", ( -state.mCurrentAttenuation ) );
 
     if ( state.mConnected ) {
@@ -370,7 +390,13 @@ Amplifier::updateDisplay() {
             sprintf( s, "%-12s", "Starting");
             break;
         case AmplifierState::STATE_PLAYING:
-            sprintf( s, "%-12s%7.1fC", "Playing", mDiagnostics->getTemperature( "CPU" ) );
+          // Read the temperature sensor
+           // float temperature_fahrenheit = temprature_sens_read();
+  
+  // Convert Fahrenheit to Celsius
+           // float temperature_celsius = (temperature_fahrenheit - 32.0) * 5.0 / 9.0;
+  
+            sprintf( s, "%-12s%7.1fC", "Playing", temperature_celsius );
             break;
         case AmplifierState::STATE_MUTED:
             sprintf( s, "%-12s", "Muted" );
@@ -685,9 +711,11 @@ Amplifier::audioChangeInput() {
     InputPtr currentInput = getCurrentInput();
     AMP_DEBUG_I( "Attemping to change audio input" );
 
+        /*
     if ( mDolby->isRunning() ) {
         mDolby->stopDolby();
     }
+    */
 
     if ( currentInput.get() ) {
         if( currentInput->mType == Input::INPUT_TYPE_ANALOG ) {
@@ -695,22 +723,22 @@ Amplifier::audioChangeInput() {
             if ( currentInput->mPort == Input::INPUT_PORT_RCA ) {
                 AMP_DEBUG_I( "...Setting RCA input to %d", mState.mCurrentInput->mID );
                 // rca input
-                mChannelSel->selectChannel( currentInput->mID + 1 );
+              //  mChannelSel->selectChannel( currentInput->mID + 1 );
             }
         } else if ( currentInput->mType == Input::INPUT_TYPE_DIGITAL ) {
             // deselect all relays to save power
-            mChannelSel->selectChannel( 0 );
+           // mChannelSel->selectChannel( 0 );
             
             if ( currentInput->mPort == Input::INPUT_PORT_SPDIF ) {
                 AMP_DEBUG_I( "...Setting SPDIF input to %d", currentInput->mID );
 
-                mDigitalReceiver->setInput( currentInput->mID );
+               // mDigitalReceiver->setInput( currentInput->mID );
 
                 if ( currentInput->mID == 0 ) {
-                    mDolby->startDolby();
+                 //   mDolby->startDolby();
 
-                    mDolby->run();
-                    mDolby->mute( false );
+                 //   mDolby->run();
+                  //  mDolby->mute( false );
                 }
             }
         }
@@ -729,15 +757,15 @@ Amplifier::startAudio() {
 
     AMP_DEBUG_I( "Setting previous volume" );    
     // mMasterVolume->setAttenuation( mState.mCurrentAttenuation );
-    mMasterVolume->setAttenuation( 15 );
+   // mMasterVolume->setAttenuation( 15 );
 
     AMP_DEBUG_I( "Enabling DACs" );
     for ( int i = 0; i < AMP_DAC_TOTAL_NUM; i++ ) {
-        mDAC[i]->enable( true );
+   //     mDAC[i]->enable( true );
     }
 
     AMP_DEBUG_I( "Unmuting outputs" );
-    mMasterVolume->mute( false );
+  //  mMasterVolume->mute( false );
 
     AMP_DEBUG_I( "Switching to PLAY state" );
     changeAmplifierState( AmplifierState::STATE_PLAYING );
@@ -753,17 +781,19 @@ Amplifier::stopAudio() {
     mTimer->cancelTimer( mSpdifTimerID );
     mSpdifTimerID = 0;
 
+    /*
     if ( mDolby->isRunning() ) {
         mDolby->stopDolby();
     }
+        */
 
     AMP_DEBUG_I( "Muting volume" );
-    mMasterVolume->mute( true );
+   // mMasterVolume->mute( true );
 
     // Disable the DACs
     AMP_DEBUG_I( "Disabling DACs" );
     for ( int i = 0; i < AMP_DAC_TOTAL_NUM; i++ ) {
-        mDAC[i]->enable( false );
+      //  mDAC[i]->enable( false );
     }
 
     AMP_DEBUG_I( "Switching to SLEEP state" );

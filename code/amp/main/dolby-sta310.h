@@ -96,7 +96,7 @@ public:
 	bool isRunning() const { return mRunning; }
 protected:
     uint8_t mAddr;
-    I2CBUSPtr mBus;
+    I2C_Device_Ptr mBus;
     bool mInitialized;
     bool mRunning;
     bool mMuted;

@@ -27,10 +27,10 @@ PinManager::PinManager( I2CBUSPtr i2c, QueuePtr interruptQueue ) : mInterruptQue
     // set up global interrupts
     gpio_install_isr_service( ESP_INTR_FLAG_LEVEL3 );
 
-    mPinManagerMCP1 = PinMcpManagerPtr( new PinMcpManager( i2c, AMP_I2C_ADDR_MCP_1, interruptQueue ) );
-    mPinManagerMCP2 = PinMcpManagerPtr( new PinMcpManager( i2c, AMP_I2C_ADDR_MCP_2, interruptQueue ) );
+    //mPinManagerMCP1 = PinMcpManagerPtr( new PinMcpManager( i2c, AMP_I2C_ADDR_MCP_1, interruptQueue ) );
+    //mPinManagerMCP2 = PinMcpManagerPtr( new PinMcpManager( i2c, AMP_I2C_ADDR_MCP_2, interruptQueue ) );
 
-    configureMCPInterrupts();
+   // configureMCPInterrupts();
 
     reset();
 

@@ -49,7 +49,7 @@ public:
     virtual void setPrecision( uint8_t precision );
 protected:
     uint8_t mAddress;
-    I2CBUSPtr mI2C;
+    I2C_Device_Ptr mI2C;
     bool mMuted;
 
     uint8_t mCurrentPage;

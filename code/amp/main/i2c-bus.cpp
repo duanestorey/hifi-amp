@@ -1,186 +1,50 @@
 #include <stdio.h>
+#include "pins.h"
 #include "i2c-bus.h"
-#include "driver/i2c.h"
 #include "sdkconfig.h"
 #include "debug.h"
 #include "config.h"
 
-#define I2C_MASTER_TX_BUF_DISABLE   0                          /*!< I2C master doesn't need buffer */
-#define I2C_MASTER_RX_BUF_DISABLE   0  
-#define I2C_MASTER_NUM              0    
-#define I2C_MASTER_SDA_IO           39
-#define I2C_MASTER_SCL_IO           40
-
-#define I2C_WRITE_REQ               0
-#define I2C_READ_REQ                0
-
-#define ACK_VAL                     0x0         
-#define NACK_VAL                    0x1             
-
-I2CBUS::I2CBUS() {  
+I2CBUS::I2CBUS() : mBusHandle( 0 ) {  
     AMP_DEBUG_I( "Starting I2C bus" );
-    i2c_config_t conf = {};
 
-    conf.mode = I2C_MODE_MASTER;
-    conf.sda_io_num = I2C_MASTER_SDA_IO;
-    conf.scl_io_num = I2C_MASTER_SCL_IO;
-    conf.sda_pullup_en = GPIO_PULLUP_DISABLE;
-    conf.scl_pullup_en = GPIO_PULLUP_DISABLE;
-    conf.master.clk_speed = I2C_MASTER_FREQ_HZ;
+    i2c_master_bus_config_t i2c_mst_config = {};
+    i2c_mst_config.clk_source = I2C_CLK_SRC_DEFAULT;
+    i2c_mst_config.i2c_port = 0;
+    i2c_mst_config.scl_io_num = I2C_MASTER_SCL_IO;
+    i2c_mst_config.sda_io_num = I2C_MASTER_SDA_IO;
+    i2c_mst_config.glitch_ignore_cnt = 7;
+    i2c_mst_config.flags.enable_internal_pullup = false;
+    
+    ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_mst_config, &mBusHandle));
+}
 
-    esp_err_t err = i2c_param_config( I2C_NUM_0, &conf );
-    ESP_ERROR_CHECK( i2c_driver_install( I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0) );
+I2C_Device_Ptr 
+I2CBUS::bindAddress( uint8_t addr ) {
+    i2c_device_config_t dev_cfg = {
+        .dev_addr_length = I2C_ADDR_BIT_LEN_7,
+        .device_address = addr,
+        .scl_speed_hz = I2C_MASTER_FREQ_HZ,
+    };
+
+    i2c_master_dev_handle_t deviceHandle = 0;
+    ESP_ERROR_CHECK(i2c_master_bus_add_device( mBusHandle, &dev_cfg, &deviceHandle ) );
+
+    bool deviceExists = ( i2c_master_probe( mBusHandle, addr, I2C_PROBE_MS_TO_WAIT ) == ESP_OK );
+
+    return I2C_Device_Ptr( new I2C_Device( deviceHandle, deviceExists ) );
 }
 
 void 
 I2CBUS::scanBus() {
     int devices_found = 0;
-    for(int address = 1; address < 127; address++) {
-        // create and execute the command link
-        i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-        i2c_master_start(cmd);
-        i2c_master_write_byte(cmd, (address << 1) | I2C_MASTER_WRITE, true);
-        i2c_master_stop(cmd);
-        if( i2c_master_cmd_begin(I2C_NUM_0, cmd, 100 / portTICK_PERIOD_MS) == ESP_OK) {
-            printf("-> found device with address 0x%02x\r\n", address);
+    for( int address = 1; address < 127; address++)  {
+        if ( i2c_master_probe( mBusHandle, address, I2C_PROBE_MS_TO_WAIT ) == ESP_OK ) {
+            printf( "-> found device with address 0x%02x\r\n", address );
             devices_found++;
         }
-        i2c_cmd_link_delete(cmd);
     }
+
     if(devices_found == 0) printf("\r\n-> no devices found\r\n");
     printf("\r\n...scan completed!\r\n");
-}
-
-bool
-I2CBUS::writeBytes( uint8_t address, uint8_t *data, uint8_t size ) {
-   esp_err_t err = ESP_OK;
-
-    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-    i2c_master_start( cmd );
-    i2c_master_write_byte( cmd, (address << 1) | I2C_MASTER_WRITE, true );
-    i2c_master_write( cmd, data, size, true );
-    i2c_master_stop( cmd );
-    if ( ( err = i2c_master_cmd_begin(I2C_NUM_0, cmd, I2C_MS_TO_WAIT / portTICK_PERIOD_MS ) ) != ESP_OK ) {
-        AMP_DEBUG_W( "Issue while sending I2C data to address %d", (int)address );
-    }
-    
-    i2c_cmd_link_delete(cmd);
-
-    return ( err == ESP_OK );
-}
-
-bool 
-I2CBUS::writeRegisterBytes( uint8_t address, uint8_t reg, uint8_t dataSize, uint8_t *data ) {
-    esp_err_t err = ESP_OK;
-
-    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-    i2c_master_start( cmd );
-    i2c_master_write_byte( cmd, (address << 1) | I2C_MASTER_WRITE, true );
-    i2c_master_write_byte( cmd, reg, true );
-    i2c_master_write( cmd, data, dataSize, true );
-    i2c_master_stop( cmd );
-    if ( ( err = i2c_master_cmd_begin(I2C_NUM_0, cmd, I2C_MS_TO_WAIT / portTICK_PERIOD_MS ) ) != ESP_OK ) {
-        AMP_DEBUG_W( "Issue while sending I2C data to address %d",(int)address );
-    }
-    
-    i2c_cmd_link_delete(cmd);
-
-    return ( err == ESP_OK );
-}
-
-bool 
-I2CBUS::writeRegisterByte( uint8_t address, uint8_t reg, uint8_t data ) {
-    esp_err_t err = ESP_OK;
-
-    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-    i2c_master_start( cmd );
-    i2c_master_write_byte( cmd, (address << 1) | I2C_MASTER_WRITE, true );
-    i2c_master_write_byte( cmd, reg, true );
-    i2c_master_write_byte( cmd, data, true );
-    i2c_master_stop( cmd );
-    if ( ( err = i2c_master_cmd_begin(I2C_NUM_0, cmd, I2C_MS_TO_WAIT / portTICK_PERIOD_MS ) ) != ESP_OK ) {
-        AMP_DEBUG_W( "Issue while sending I2C data to address %d",(int)address );
-    }
-    
-    i2c_cmd_link_delete(cmd);
-
-    return ( err == ESP_OK );
-}
-
-bool 
-I2CBUS::readRegisterByte( uint8_t address, uint8_t reg, uint8_t &data  ) {
-    esp_err_t err = ESP_OK;
-    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-
-    i2c_master_start( cmd );
-    i2c_master_write_byte( cmd, (address << 1), true );
-    i2c_master_write_byte( cmd, reg, true );
-    i2c_master_start( cmd );
-    i2c_master_write_byte( cmd, (address << 1) | I2C_MASTER_READ, true );
-    i2c_master_read_byte( cmd, &data, I2C_MASTER_LAST_NACK );
-    i2c_master_stop( cmd );
-
-    if ( ( err = i2c_master_cmd_begin( I2C_NUM_0, cmd, I2C_MS_TO_WAIT / portTICK_PERIOD_MS ) ) != ESP_OK ) {
-        AMP_DEBUG_W( "Issue while readig I2C data at address %d",(int)address );
-    }
-
-    i2c_cmd_link_delete(cmd);
-
-    return ( err == ESP_OK );
-}
-
-bool 
-I2CBUS::readRegisterWord( uint8_t address, uint8_t reg, uint8_t *data  ) {
-    esp_err_t err = ESP_OK;
-    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-
-    i2c_master_start( cmd );
-    i2c_master_write_byte( cmd, (address << 1), true );
-    i2c_master_write_byte( cmd, reg, true );
-
-    if ( ( err = i2c_master_cmd_begin( I2C_NUM_0, cmd, I2C_MS_TO_WAIT / portTICK_PERIOD_MS ) ) != ESP_OK ) {
-        AMP_DEBUG_W( "Issue while readig I2C data at address %d",(int)address );
-    }
-    i2c_cmd_link_delete(cmd);
-    cmd = i2c_cmd_link_create();
-
-    vTaskDelay( 1 / portTICK_PERIOD_MS );
-
-    i2c_master_start( cmd );
-    i2c_master_write_byte( cmd, (address << 1) | I2C_MASTER_READ, true );
-    i2c_master_read( cmd, &data[0], 2, I2C_MASTER_LAST_NACK );
-    i2c_master_stop( cmd );
-
-    if ( ( err = i2c_master_cmd_begin( I2C_NUM_0, cmd, I2C_MS_TO_WAIT / portTICK_PERIOD_MS ) ) != ESP_OK ) {
-        AMP_DEBUG_W( "Issue while readig I2C data at address %d",(int)address );
-    }
-
-    i2c_cmd_link_delete(cmd);
-
-    return ( err == ESP_OK );
-}
-
-bool 
-I2CBUS::readRegisterBytes( uint8_t address, uint8_t reg, uint8_t dataSize, uint8_t *data  ) {
-    esp_err_t err = ESP_OK;
-    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-
-    i2c_master_start( cmd );
-    i2c_master_write_byte( cmd, (address << 1), true );
-    i2c_master_write_byte( cmd, reg, true );
-    i2c_master_start( cmd );
-    i2c_master_write_byte( cmd, (address << 1) | I2C_MASTER_READ, true );
-    for ( uint8_t i = 0 ; i < dataSize; i++ ) {
-        i2c_master_read_byte( cmd, &data[i], I2C_MASTER_LAST_NACK );
-    }
-    
-    i2c_master_stop( cmd );
-
-    if ( ( err = i2c_master_cmd_begin( I2C_NUM_0, cmd, I2C_MS_TO_WAIT / portTICK_PERIOD_MS ) ) != ESP_OK ) {
-        AMP_DEBUG_W( "Issue while readig I2C data at address %d",(int)address );
-    }
-
-    i2c_cmd_link_delete(cmd);
-
-    return ( err == ESP_OK );
 }

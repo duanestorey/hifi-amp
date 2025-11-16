@@ -16,7 +16,7 @@ class PCM1863 {
         virtual void init();
     protected:
         uint8_t mAddr;
-        I2CBUSPtr mI2C;
+        I2C_Device_Ptr mI2C;
         uint8_t mSamplingRate;
 };
 

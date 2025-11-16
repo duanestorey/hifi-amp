@@ -6,6 +6,9 @@
 
 typedef gpio_num_t PIN;
 
+#define I2C_MASTER_SDA_IO           GPIO_NUM_14
+#define I2C_MASTER_SCL_IO           GPIO_NUM_13
+
 #define PIN_BUTTON_VOLUME       GPIO_NUM_13
 #define PIN_BUTTON_INPUT        GPIO_NUM_48
 #define PIN_BUTTON_POWER        GPIO_NUM_17

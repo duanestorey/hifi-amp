@@ -11,7 +11,8 @@ public:
         REGISTER_CONFIG = 0x00,
         REGISTER_CURRENT = 0x01,
         REGISTER_VOLTAGE = 0x02,
-        REGISTER_POWER = 0x03
+        REGISTER_POWER = 0x03,
+        REGISTER_ID = 0xfe
     };
 
     INA260( uint8_t addr, I2CBUSPtr bus );
@@ -21,7 +22,7 @@ public:
     virtual float getPowerUsage();
 private:
     uint8_t mAddr;
-    I2CBUSPtr mBus;
+    I2C_Device_Ptr mBus;
 
     void setup();
 };

@@ -11,7 +11,7 @@ public:
 
 protected:
     uint8_t mAddr;
-    I2CBUSPtr mI2C;
+    I2C_Device_Ptr mI2C;
 private:
     void setup();
 };

@@ -6,7 +6,7 @@
 	(descr "Fuse SMD 1812 (4532 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: https://www.nikhef.nl/pub/departments/mt/projects/detectorR_D/dtddice/ERJ2G.pdf), generated with kicad-footprint-generator")
 	(tags "fuse handsolder")
 	(property "Reference" "REF**"
-		(at 0 -2.65 0)
+		(at 0.1875 -3.2 0)
 		(layer "F.SilkS")
 		(uuid "08e3cc40-a961-4547-8b96-57a6010139e2")
 		(effects
@@ -16,8 +16,8 @@
 			)
 		)
 	)
-	(property "Value" "Fuse_1812_AliExpress"
-		(at 0 2.65 0)
+	(property "Value" "Fuse_1808_AliExpress"
+		(at 0.1875 3.4 0)
 		(layer "F.Fab")
 		(uuid "8a71d230-fd0c-44f1-bc06-9a46f771681a")
 		(effects
@@ -75,26 +75,26 @@
 		(uuid "3d9794af-c6ad-42a9-a0e6-6f38ac8fc454")
 	)
 	(fp_rect
-		(start -4.8 -2.1)
-		(end 5.2 2.1)
+		(start -4.8 -2.55)
+		(end 5.2 2.55)
 		(stroke
 			(width 0.1)
-			(type default)
+			(type solid)
 		)
 		(fill no)
 		(layer "F.SilkS")
 		(uuid "5db8d936-e431-4667-bc72-56a1be347d9d")
 	)
 	(fp_rect
-		(start -4.7 -2)
-		(end 5.1 2)
+		(start -4.875 -2.625)
+		(end 5.25 2.625)
 		(stroke
 			(width 0.05)
 			(type default)
 		)
 		(fill no)
 		(layer "F.CrtYd")
-		(uuid "3f0cf408-4006-4bee-b5eb-8579e80eba79")
+		(uuid "808b9f87-7d76-4d50-b80b-6d3640992e34")
 	)
 	(fp_line
 		(start -2.25 -1.6)
@@ -171,6 +171,17 @@
 		)
 		(rotate
 			(xyz 0 0 0)
+		)
+	)
+	(model "${CUSTOM}/SMD fuse holder v7.step"
+		(offset
+			(xyz 0.24 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 -0)
 		)
 	)
 )

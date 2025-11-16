@@ -48,7 +48,7 @@ public:
 	void writeLine( uint8_t line, std::string s );
 protected:
     uint8_t mAddr;
-    I2CBUSPtr mI2C;
+    I2C_Device_Ptr mI2C;
 	uint8_t mBacklight;
 	uint8_t mRowOffsets[4];
 
