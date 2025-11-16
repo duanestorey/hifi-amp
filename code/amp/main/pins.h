@@ -16,12 +16,12 @@ typedef gpio_num_t PIN;
 #define PIN_LED_FRONT_POWER     GPIO_NUM_16
 #define PIN_LED_FRONT_STANDBY   GPIO_NUM_28
 
-#define PIN_RELAY               GPIO_NUM_16
+#define PIN_RELAY               GPIO_NUM_18
 #define PIN_BACKLIGHT           GPIO_NUM_14
 
 #define PIN_DECODER_RESET       GPIO_NUM_3
 #define PIN_DECODER_IRQ         GPIO_NUM_3
 #define PIN_LED_ACTIVE          GPIO_NUM_3
-#define PIN_CS8416_RESET        GPIO_NUM_3
+#define PIN_CS8416_RESET        GPIO_NUM_7
 
 #endif

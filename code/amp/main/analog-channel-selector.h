@@ -11,14 +11,20 @@ class AnalogChannelSelector {
     public:
         AnalogChannelSelector( I2CBUSPtr i2c, PinManagerPtr pinManager );
         void selectChannel( uint8_t channel );
+        void enable( bool enable );
 
     protected:
-        ButtonPtr mEnable1;
-        ButtonPtr mEnable2;
-        ButtonPtr mEnable3;
-        ButtonPtr mReset;
+        PinPtr mEnable1;
+        PinPtr mEnable2;
+        PinPtr mEnable3;
 
         I2CBUSPtr mI2C;
+
+        bool mEnabled;
+        uint8_t mCurrentChannel;
+    private:
+        void disableAll();
+        void maybeActivateChannel();
 };
 
 typedef std::shared_ptr<AnalogChannelSelector> AnalogChannelSelectorPtr;

@@ -9,9 +9,7 @@ public:
     enum {
         INPUT_STEREO_1 = 1,
         INPUT_STEREO_2 = 2,
-        INPUT_STEREO_3 = 3,
-        INPUT_STEREO_4 = 4, 
-        INPUT_6CH = 5
+        INPUT_STEREO_3 = 3
     };
 
     enum {

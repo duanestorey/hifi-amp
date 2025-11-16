@@ -28,7 +28,6 @@ LCD::sendCommand( uint8_t command ) {
 
 void 
 LCD::enableBacklight( bool enable ) {
-	uint8_t value = 0;
 	if ( enable ) {
 		mBacklight = BACKLIGHT_ON;
 		command( LCD_COMMAND_DISPLAYCONTROL | 0x04 );

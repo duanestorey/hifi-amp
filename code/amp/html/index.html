@@ -145,17 +145,11 @@
 						<td class="desc">Input</td>
 						<td>		
 							<a class="button" href="/input_hdmi">HDMI</a>
-							<a class="button" href="/input_blueray">Blueray</a>
 							<a class="button" href="/input_streamer">Streamer</a>
-							<a class="button" href="/input_tv">TV</a>
-							<a class="button" href="/input_game">Game</a>
-							<a class="button" href="/input_vinyl">Vinyl</a>
-							<a class="button" href="/input_hdmi">Analog 1</a>
-							<a class="button" href="/input_blueray">Analog 2</a>
-							<a class="button" href="/input_streamer">Analog 3</a>
-							<a class="button" href="/input_tv">Analog 4</a>
-							<a class="button" href="/input_game">Analog 5</a>
-							<a class="button" href="/input_vinyl">Analog 6</a></td>
+							<a class="button" href="/input_dolby">Dolby</a>	
+							<a class="button" href="/input_analog1">Analog 1</a>
+							<a class="button" href="/input_analog2">Analog 2</a>
+							<a class="button" href="/input_vinyl">Vinyl</a></td>
 						</td>
 					</tr>
 				</tbody>
@@ -174,31 +168,25 @@
 						<td>
 							<div class="largeblock">
 								<h4>Amplifers</h4>
+								<div class="level voltage">{$chan_voltage}V</div>
 								<div class="level voltage">{$chan_current}ma</div>
 								<div class="level power">{$chan_power}W</div>
 							</div>
 							<div class="largeblock">
-								<h4>Secondary</h4>
-								<div class="level voltage">{$second_current}ma</div>
-								<div class="level power">{$second_power}W</div>
-							</div>
-							<div class="largeblock">
-								<h4>Buck Converter</h4>
-								<div class="level voltage">{$buck_current}ma</div>
-								<div class="level power">{$buck_power}W</div>
-							</div>
-							<div class="largeblock">
 								<h4>Opamps</h4>
+								<div class="level voltage">{$opamp_voltage}V</div>
 								<div class="level voltage">{$opamp_current}ma</div>
 								<div class="level power">{$opamp_power}W</div>
 							</div>
 							<div class="largeblock">
 								<h4>5V Rail</h4>
+								<div class="level voltage">{$5v_voltage}V</div>
 								<div class="level voltage">{$5v_current}ma</div>
 								<div class="level power">{$5v_power}W</div>
 							</div>
 							<div class="largeblock">
 								<h4>3.3V Rail</h4>
+								<div class="level voltage">{$3v3_voltage}V</div>
 								<div class="level voltage">{$3v3_current}ma</div>
 								<div class="level power">{$3v3_power}W</div>
 							</div>

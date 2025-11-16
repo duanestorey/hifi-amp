@@ -1,5 +1,6 @@
 #include "pin-esp32.h"
 #include "pin-manager.h"
+#include "debug.h"
 
 PinESP32::PinESP32( PinManager *pinManager, gpio_num_t pin, uint8_t direction, uint8_t pulldown, uint8_t pullup ) : Pin( direction, pulldown, pullup ), mPinManager( pinManager ), mPin( pin ) {
     config( direction, pulldown, pullup );
@@ -34,44 +35,40 @@ PinESP32::enableInterrupt( uint8_t interruptType ) {
 
 void 
 PinESP32::config( uint8_t direction, uint8_t pulldown, uint8_t pullup ) {
-    uint64_t mask = ( ((uint_fast32_t)1) << ( uint_fast32_t ) mPin );
+    AMP_DEBUG_I( "...setting up pin %d", mPin );
 
-    gpio_config_t io_conf;
-    io_conf.intr_type = GPIO_INTR_DISABLE;
-    io_conf.pin_bit_mask = mask;
 
     switch( direction ) {
         case Pin::PIN_TYPE_OUTPUT:
-            io_conf.mode = GPIO_MODE_OUTPUT;
+            gpio_set_direction( mPin, GPIO_MODE_OUTPUT );
             break;
         case Pin::PIN_TYPE_INPUT:
-            io_conf.mode = GPIO_MODE_INPUT;
+            gpio_set_direction( mPin, GPIO_MODE_INPUT );
             break;   
     }
 
     switch( pulldown ) {
         case Pin::PIN_PULLDOWN_ENABLE:
-            io_conf.pull_down_en = GPIO_PULLDOWN_ENABLE;
+            gpio_pulldown_en( mPin );
             break;
         case Pin::PIN_PULLDOWN_DISABLE:
-            io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE;
+            gpio_pulldown_dis( mPin );
             break;   
     }
 
-    switch( pulldown ) {
+    switch( pullup ) {
         case Pin::PIN_PULLUP_ENABLE:
-            io_conf.pull_up_en = GPIO_PULLUP_ENABLE;
+            gpio_pullup_en( mPin );
             break;
         case Pin::PIN_PULLUP_DISABLE:
-            io_conf.pull_up_en = GPIO_PULLUP_DISABLE;
+            gpio_pullup_dis( mPin );
             break;   
     }
-
-	gpio_config( &io_conf );  
 }
 
 void 
 PinESP32::setState( uint8_t state ) {
+    AMP_DEBUG_I( "Setting PIN %d to %d", mPin, state );
     if ( state == Pin::PIN_STATE_LOW ) {
         gpio_set_level( mPin, 0 );
     } else if ( state == Pin::PIN_STATE_HIGH ) {

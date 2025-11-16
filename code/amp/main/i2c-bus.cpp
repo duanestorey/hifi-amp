@@ -21,11 +21,11 @@ I2CBUS::I2CBUS() : mBusHandle( 0 ) {
 
 I2C_Device_Ptr 
 I2CBUS::bindAddress( uint8_t addr ) {
-    i2c_device_config_t dev_cfg = {
-        .dev_addr_length = I2C_ADDR_BIT_LEN_7,
-        .device_address = addr,
-        .scl_speed_hz = I2C_MASTER_FREQ_HZ,
-    };
+    i2c_device_config_t dev_cfg = {};
+
+    dev_cfg.dev_addr_length = I2C_ADDR_BIT_LEN_7;
+    dev_cfg.device_address = addr;
+    dev_cfg.scl_speed_hz = I2C_MASTER_FREQ_HZ;
 
     i2c_master_dev_handle_t deviceHandle = 0;
     ESP_ERROR_CHECK(i2c_master_bus_add_device( mBusHandle, &dev_cfg, &deviceHandle ) );

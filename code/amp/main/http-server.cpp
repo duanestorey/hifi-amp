@@ -76,34 +76,34 @@ esp_err_t input_hdmi( httpd_req_t *req )
     return server->handleResponse( HTTPServer::SERVER_INPUT_HDMI, req );
 }
 
-esp_err_t input_blueray( httpd_req_t *req )
-{
-    HTTPServer *server = (HTTPServer *)req->user_ctx;
-    return server->handleResponse( HTTPServer::SERVER_INPUT_BLUERAY, req );
-}
-
 esp_err_t input_streamer( httpd_req_t *req )
 {
     HTTPServer *server = (HTTPServer *)req->user_ctx;
     return server->handleResponse( HTTPServer::SERVER_INPUT_STREAMER, req );
 }
 
-esp_err_t input_tv( httpd_req_t *req )
+esp_err_t input_dolby( httpd_req_t *req )
 {
     HTTPServer *server = (HTTPServer *)req->user_ctx;
-    return server->handleResponse( HTTPServer::SERVER_INPUT_TV, req );
+    return server->handleResponse( HTTPServer::SERVER_INPUT_DOLBY, req );
+}
+
+esp_err_t input_analog1( httpd_req_t *req )
+{
+    HTTPServer *server = (HTTPServer *)req->user_ctx;
+    return server->handleResponse( HTTPServer::SERVER_INPUT_ANALOG1, req );
+}
+
+esp_err_t input_analog2( httpd_req_t *req )
+{
+    HTTPServer *server = (HTTPServer *)req->user_ctx;
+    return server->handleResponse( HTTPServer::SERVER_INPUT_ANALOG2, req );
 }
 
 esp_err_t input_vinyl( httpd_req_t *req )
 {
     HTTPServer *server = (HTTPServer *)req->user_ctx;
     return server->handleResponse( HTTPServer::SERVER_INPUT_VINYL, req );
-}
-
-esp_err_t input_game( httpd_req_t *req )
-{
-    HTTPServer *server = (HTTPServer *)req->user_ctx;
-    return server->handleResponse( HTTPServer::SERVER_INPUT_GAME, req );
 }
 
 esp_err_t http_404( httpd_req_t *req ) {
@@ -148,16 +148,16 @@ HTTPServer::handleResponse( uint8_t requestType, httpd_req_t *req ) {
             {
                 std::string resp = mMainPage;
                 {
-                    replaceWithFloat( resp, "{$chan_current}", mDiag->getCurrent( "CHAN" ) );
-                    replaceWithFloat( resp, "{$chan_power}", mDiag->getPower( "CHAN" ), 2 );
-                    replaceWithFloat( resp, "{$second_current}", mDiag->getCurrent( "SECOND" ) );
-                    replaceWithFloat( resp, "{$second_power}", mDiag->getPower( "SECOND" ), 2 );
-                    replaceWithFloat( resp, "{$buck_current}", mDiag->getCurrent( "BUCK" ) );
-                    replaceWithFloat( resp, "{$buck_power}", mDiag->getPower( "BUCK" ), 2 );
+                    replaceWithFloat( resp, "{$chan_voltage}", mDiag->getVoltage( "POWER" ) );
+                    replaceWithFloat( resp, "{$chan_current}", mDiag->getCurrent( "POWER" ) );
+                    replaceWithFloat( resp, "{$chan_power}", mDiag->getPower( "POWER" ), 2 );
+                    replaceWithFloat( resp, "{$5v_voltage}", mDiag->getVoltage( "5V" ) );
                     replaceWithFloat( resp, "{$5v_current}", mDiag->getCurrent( "5V" ) );
                     replaceWithFloat( resp, "{$5v_power}", mDiag->getPower( "5V" ), 2 );
+                    replaceWithFloat( resp, "{$opamp_voltage}", mDiag->getVoltage( "OPAMP" ) );
                     replaceWithFloat( resp, "{$opamp_current}", mDiag->getCurrent( "OPAMP" ) );
                     replaceWithFloat( resp, "{$opamp_power}", mDiag->getPower( "OPAMP" ), 2 );
+                    replaceWithFloat( resp, "{$3v3_voltage}", mDiag->getVoltage( "3V3" ) );
                     replaceWithFloat( resp, "{$3v3_current}", mDiag->getCurrent( "3V3" ) );
                     replaceWithFloat( resp, "{$3v3_power}", mDiag->getPower( "3V3" ), 2 );
                     replaceWithFloat( resp, "{$cpu_temp}", mDiag->getTemperature( "CPU" ) );
@@ -192,37 +192,38 @@ HTTPServer::handleResponse( uint8_t requestType, httpd_req_t *req ) {
             return httpd_resp_send(req, NULL, 0 );
             break;  
         case HTTPServer::SERVER_INPUT_HDMI:
-           // mQueue->add( Message::MSG_INPUT_SET, AmplifierState::INPUT_SPDIF_1 );
+            mQueue->add( Message::MSG_INPUT_SET, 0 );
             httpd_resp_set_status( req, HTTPD_307 );
             httpd_resp_set_hdr( req, "Location", "/");
             return httpd_resp_send(req, NULL, 0 );
-            break;  
-        case HTTPServer::SERVER_INPUT_BLUERAY:
-           // mQueue->add( Message::MSG_INPUT_SET, AmplifierState::INPUT_SPDIF_2 );
-            httpd_resp_set_status( req, HTTPD_307 );
-            httpd_resp_set_hdr( req, "Location", "/");
-            return httpd_resp_send(req, NULL, 0 );
-            break;      
-        case HTTPServer::SERVER_INPUT_TV:
-          //  mQueue->add( Message::MSG_INPUT_SET, AmplifierState::INPUT_STEREO_1 );
-            httpd_resp_set_status( req, HTTPD_307 );
-            httpd_resp_set_hdr( req, "Location", "/");
-            return httpd_resp_send(req, NULL, 0 );
-            break;   
+            break;        
         case HTTPServer::SERVER_INPUT_STREAMER:
-          //  mQueue->add( Message::MSG_INPUT_SET, AmplifierState::INPUT_SPDIF_3 );
+            mQueue->add( Message::MSG_INPUT_SET, 1 );
             httpd_resp_set_status( req, HTTPD_307 );
             httpd_resp_set_hdr( req, "Location", "/");
             return httpd_resp_send(req, NULL, 0 );
             break; 
-        case HTTPServer::SERVER_INPUT_GAME:
-          //  mQueue->add( Message::MSG_INPUT_SET, AmplifierState::INPUT_STEREO_2 );
+        case HTTPServer::SERVER_INPUT_DOLBY:
+            mQueue->add( Message::MSG_INPUT_SET, 2 );
             httpd_resp_set_status( req, HTTPD_307 );
             httpd_resp_set_hdr( req, "Location", "/");
             return httpd_resp_send(req, NULL, 0 );
-            break;      
+            break;    
+        case HTTPServer::SERVER_INPUT_ANALOG1:
+            mQueue->add( Message::MSG_INPUT_SET, 3);
+            httpd_resp_set_status( req, HTTPD_307 );
+            httpd_resp_set_hdr( req, "Location", "/");
+            return httpd_resp_send(req, NULL, 0 );
+            break; 
+        case HTTPServer::SERVER_INPUT_ANALOG2:
+            mQueue->add( Message::MSG_INPUT_SET, 4);
+            httpd_resp_set_status( req, HTTPD_307 );
+            httpd_resp_set_hdr( req, "Location", "/");
+            return httpd_resp_send(req, NULL, 0 );
+            break;
+            
         case HTTPServer::SERVER_INPUT_VINYL:
-          //  mQueue->add( Message::MSG_INPUT_SET, AmplifierState::INPUT_STEREO_3 );
+            mQueue->add( Message::MSG_INPUT_SET, 5 );
             httpd_resp_set_status( req, HTTPD_307 );
             httpd_resp_set_hdr( req, "Location", "/");
             return httpd_resp_send(req, NULL, 0 );
@@ -238,8 +239,7 @@ HTTPServer::handleResponse( uint8_t requestType, httpd_req_t *req ) {
 std::string 
 HTTPServer::replaceAll( std::string str, const std::string& from, const std::string& to) {
     auto&& pos = str.find(from, size_t{});
-    while (pos != std::string::npos)
-    {
+    while (pos != std::string::npos) {
         str.replace(pos, from.length(), to);
         // easy to forget to add to.length()
         pos = str.find(from, pos + to.length());
@@ -256,7 +256,8 @@ HTTPServer::start() {
     if ( httpd_start( &mServerHandle, &config ) == ESP_OK ) { 
         AMP_DEBUG_I( "Web server started" );
 
-        httpd_uri_t uri_get = {0};
+        httpd_uri_t uri_get = {};
+
         uri_get.uri = "/";
         uri_get.method = HTTP_GET;
         uri_get.handler = send_web_response;
@@ -290,24 +291,24 @@ HTTPServer::start() {
         uri_get.handler = input_hdmi;
         httpd_register_uri_handler( mServerHandle, &uri_get );
 
-        uri_get.uri = "/input_blueray";
-        uri_get.handler = input_blueray;
+        uri_get.uri = "/input_dolby";
+        uri_get.handler = input_dolby;
         httpd_register_uri_handler( mServerHandle, &uri_get );
 
         uri_get.uri = "/input_streamer";
         uri_get.handler = input_streamer;
         httpd_register_uri_handler( mServerHandle, &uri_get );
 
-        uri_get.uri = "/input_tv";
-        uri_get.handler = input_tv;
+        uri_get.uri = "/input_analog1";
+        uri_get.handler = input_analog1;
+        httpd_register_uri_handler( mServerHandle, &uri_get );
+
+        uri_get.uri = "/input_analog2";
+        uri_get.handler = input_analog2;
         httpd_register_uri_handler( mServerHandle, &uri_get );
 
         uri_get.uri = "/input_vinyl";
         uri_get.handler = input_vinyl;
-        httpd_register_uri_handler( mServerHandle, &uri_get );
-
-        uri_get.uri = "/input_game";
-        uri_get.handler = input_game;
         httpd_register_uri_handler( mServerHandle, &uri_get );
 
         uri_get.uri = "/ipp/print";

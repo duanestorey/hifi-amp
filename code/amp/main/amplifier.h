@@ -29,6 +29,7 @@
 #include "diagnostics.h"
 #include "dolby-sta310.h"
 #include "adc-pcm1863.h"
+#include "cs8416.h"
 #include <vector>
 
 typedef std::vector<InputPtr> InputVector;
@@ -62,11 +63,9 @@ protected:
     PinPtr mMonoblockEnablePin;
     PinPtr mDACXSMT;
     PinPtr mDolbyInterrupt;
-    PinPtr mChannel1;
-    PinPtr mChannel2;
-    PinPtr mChannel3;
     PinPtr mChannelEnable;
     PinPtr mSPDIFEnable;
+    PinPtr mRelayEnablePin;
 
     bool mWifiEnabled;   
     bool mWifiConnectionAttempts;
@@ -105,7 +104,7 @@ protected:
     HTTPServerPtr mWebServer;
     MDNSPtr mDNS;
     AnalogChannelSelectorPtr mChannelSel;
-    DigitalReceiverPtr mDigitalReceiver;
+    CS8416_Ptr mSPDIF;
     DiagnosticsPtr mDiagnostics;
     DSPPtr mDSP;
     Dolby_STA310Ptr mDolby;
@@ -130,7 +129,7 @@ protected:
     rmt_channel_handle_t mIRChannel;
 
     //PinMcpManagerPtr mMcpPinManager;
-   // PinManagerPtr mPinManager;
+    PinManagerPtr mPinManager;
 
     VolumeControllerPtr mMasterVolume;
 
@@ -164,8 +163,8 @@ private:
     void setupRemoteReceiver();
     void doActualRemoteReceive();
 
-
     void addInput( InputPtr input ) { mAllInputs.push_back( input ); }
+    InputPtr findInput( uint8_t inputType, uint8_t modifier );
     void audioChangeInput();
 
     Mutex mStateMutex;

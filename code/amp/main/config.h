@@ -1,7 +1,9 @@
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
-#define AMP_DAC_TOTAL_NUM            1
+#include "sdkconfig.h"
+
+#define AMP_DAC_TOTAL_NUM            3
 
 // I2C parameters
 #define I2C_PROBE_MS_TO_WAIT        20

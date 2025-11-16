@@ -39,16 +39,16 @@ PinManager::PinManager( I2CBUSPtr i2c, QueuePtr interruptQueue ) : mInterruptQue
 void 
 PinManager::reset() {
     // disable reset, enable MCP
-    gpio_set_direction( (gpio_num_t)AMP_PIN_MCP_RESET, GPIO_MODE_OUTPUT );
-    gpio_set_level( (gpio_num_t)AMP_PIN_MCP_RESET, 0 );
-    gpio_set_pull_mode( (gpio_num_t)AMP_PIN_MCP_RESET, GPIO_FLOATING );
+    //gpio_set_direction( (gpio_num_t)AMP_PIN_MCP_RESET, GPIO_MODE_OUTPUT );
+  //  gpio_set_level( (gpio_num_t)AMP_PIN_MCP_RESET, 0 );
+    //gpio_set_pull_mode( (gpio_num_t)AMP_PIN_MCP_RESET, GPIO_FLOATING );
 
-    vTaskDelay( 1 / portTICK_PERIOD_MS );
-    gpio_set_level( (gpio_num_t)AMP_PIN_MCP_RESET, 1 );
-    vTaskDelay( 1 / portTICK_PERIOD_MS );
+   // vTaskDelay( 1 / portTICK_PERIOD_MS );
+   // gpio_set_level( (gpio_num_t)AMP_PIN_MCP_RESET, 1 );
+   // vTaskDelay( 1 / portTICK_PERIOD_MS );
 
-    mPinManagerMCP1->reset();
-    mPinManagerMCP2->reset();
+   // mPinManagerMCP1->reset();
+   // mPinManagerMCP2->reset();
 }
 
 PinPtr 

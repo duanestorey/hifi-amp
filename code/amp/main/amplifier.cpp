@@ -69,7 +69,7 @@ Amplifier::updateConnectedStatus( bool connected, bool doActualUpdate ) {
     }   
 
     if ( connected ) {
-        mDNS->start();
+        mDNS->start( "amp", "Hi-Fi Amplifier" );
         mWebServer->start();
     } else {
         mWebServer->stop();
@@ -192,8 +192,8 @@ Amplifier::init() {
     mMasterVolume = VolumeControllerPtr( new VolumeController() );
 
     // Create pin manager
-   // AMP_DEBUG_I( "Setting up pin manager" );
-  //  mPinManager = PinManagerPtr( new PinManager( mI2C, mAmplifierQueue ) );
+    AMP_DEBUG_I( "Setting up pin manager" );
+    mPinManager = PinManagerPtr( new PinManager( mI2C, mAmplifierQueue ) );
    // mStandbyLED = mPinManager->createPin( PinManager::PIN_TYPE_ESP32, AMP_PIN_STANDBY_LED, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_ENABLE, Pin::PIN_PULLUP_DISABLE );
   //  mEncoderResetPin = mPinManager->createPin( PinManager::PIN_TYPE_ESP32, AMP_PIN_MCP_RESET, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_ENABLE, Pin::PIN_PULLUP_DISABLE );
 
@@ -205,12 +205,18 @@ Amplifier::init() {
   //  mDACXSMT = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A3, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_ENABLE );
  //   mDolbyInterrupt = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_A6, Pin::PIN_TYPE_INPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
 
-  //  mChannel1 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B0, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+    mRelayEnablePin = mPinManager->createPin( PinManager::PIN_TYPE_ESP32, PIN_RELAY, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_ENABLE, Pin::PIN_PULLUP_DISABLE );
+    mRelayEnablePin->enable();
+
   //  mChannel2 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B1, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
   //  mChannel3 = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B2, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
  //   mChannelEnable = mPinManager->createPin( PinManager::PIN_TYPE_MCP1, PinMcp::PIN_B3, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
-   // mSPDIFEnable = mPinManager->createPin( PinManager::PIN_TYPE_MCP2, PinMcp::PIN_A2, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
-
+        mSPDIFEnable = mPinManager->createPin( PinManager::PIN_TYPE_ESP32, PIN_CS8416_RESET, Pin::PIN_TYPE_OUTPUT, Pin::PIN_PULLDOWN_DISABLE, Pin::PIN_PULLUP_DISABLE );
+        mSPDIFEnable->enable();
+    //gpio_set_direction( GPIO_NUM_37, GPIO_MODE_OUTPUT );
+   //GPIO_NUM_37gpio_set_level( GPIO_NUM_37, 1 );
+    taskDelayInMs( 50 );
+    //gpio_set_level( PIN_CS8416_RESET, 1 );
    /*
     mChannelEnable->enable();
     mChannel1->enable();
@@ -229,7 +235,7 @@ Amplifier::init() {
 
     */
 
-    taskDelayInMs( 20 );
+    taskDelayInMs( 100 );
 
     AMP_DEBUG_I( "Scanning Bus" ); 
     mI2C->scanBus();
@@ -264,7 +270,7 @@ Amplifier::init() {
 
     // setup channel selector
     AMP_DEBUG_I( "Setting up channel selectors" );
-  //  mChannelSel = AnalogChannelSelectorPtr( new AnalogChannelSelector( mI2C, mPinManager ) );
+    mChannelSel = AnalogChannelSelectorPtr( new AnalogChannelSelector( mI2C, mPinManager ) );
 
   /*
     mDolby = Dolby_STA310Ptr( new Dolby_STA310( 0x5c, mI2C ) );
@@ -275,21 +281,23 @@ Amplifier::init() {
 
     // Setup output DACs
     AMP_DEBUG_I( "Setting up DACs" );
-    /*
+    
     for ( int i = 0; i < AMP_DAC_TOTAL_NUM; i++ ) {
-        mDAC[i] = DACPtr( new DAC_PCM5142( 0x4e + i, mI2C ) );
+        mDAC[i] = DACPtr( new DAC_PCM5142( 0x4c + i, mI2C ) );
         mDAC[i]->init();
         mDAC[i]->setFormat( DAC::FORMAT_I2S );
 
         mMasterVolume->addForControl( std::dynamic_pointer_cast<Volume>( mDAC[i] ) );
+
     }
-        */
 
     AMP_DEBUG_I( "Setting up DSP" );
   //  mDSP = DSPPtr( new DSP( 0x58, mI2C ) );
 
     // Setup digital inputs
-    AMP_DEBUG_I( "Setting up digital receiver" );
+    AMP_DEBUG_I( "Setting SPDIF receiver" );
+    mSPDIF = CS8416_Ptr( new CS8416( 0x10, mI2C ) );
+    mSPDIF->init();
    // mDigitalReceiver = DigitalReceiverPtr( new DigitalReceiver( mI2C, 0x40 ) );
    // mDigitalReceiver->init();
 
@@ -321,17 +329,13 @@ Amplifier::init() {
     //setupRemoteReceiver();
 
     // setting up inputs
-    addInput( InputPtr( new Input( Input::INPUT_TYPE_DIGITAL, Input::INPUT_PORT_SPDIF, 0, "Dolby" ) ) );
-    addInput( InputPtr( new Input( Input::INPUT_TYPE_DIGITAL, Input::INPUT_PORT_SPDIF, 1, "HDMI" ) ) );
-    addInput( InputPtr( new Input( Input::INPUT_TYPE_DIGITAL, Input::INPUT_PORT_SPDIF, 2, "Blueray" ) ) );
-    addInput( InputPtr( new Input( Input::INPUT_TYPE_DIGITAL, Input::INPUT_PORT_SPDIF, 3 ) ) );
+    addInput( InputPtr( new Input( Input::INPUT_TYPE_DIGITAL, Input::INPUT_PORT_SPDIF, 0, "HDMI" ) ) );
+    addInput( InputPtr( new Input( Input::INPUT_TYPE_DIGITAL, Input::INPUT_PORT_SPDIF, 1, "Streamer" ) ) );
+    addInput( InputPtr( new Input( Input::INPUT_TYPE_DIGITAL, Input::INPUT_PORT_SPDIF, 2, "Dolby" ) ) );
 
-    addInput( InputPtr( new Input( Input::INPUT_TYPE_ANALOG, Input::INPUT_PORT_RCA, 0 ) ) );
-    addInput( InputPtr( new Input( Input::INPUT_TYPE_ANALOG, Input::INPUT_PORT_RCA, 1 ) ) );
-    addInput( InputPtr( new Input( Input::INPUT_TYPE_ANALOG, Input::INPUT_PORT_RCA, 2 ) ) );
-    addInput( InputPtr( new Input( Input::INPUT_TYPE_ANALOG, Input::INPUT_PORT_RCA, 3 ) ) );
-    addInput( InputPtr( new Input( Input::INPUT_TYPE_ANALOG, Input::INPUT_PORT_RCA, 4 ) ) );
-    addInput( InputPtr( new Input( Input::INPUT_TYPE_ANALOG, Input::INPUT_PORT_RCA, 5, "Vinyl" ) ) );
+    addInput( InputPtr( new Input( Input::INPUT_TYPE_ANALOG, Input::INPUT_PORT_RCA, 0, "Input 1" ) ) );
+    addInput( InputPtr( new Input( Input::INPUT_TYPE_ANALOG, Input::INPUT_PORT_RCA, 1, "Input 2" ) ) );
+    addInput( InputPtr( new Input( Input::INPUT_TYPE_ANALOG, Input::INPUT_PORT_RCA, 2, "Vinyl" ) ) );
 }
 
 void 
@@ -547,24 +551,23 @@ Amplifier::handleAmplifierThread() {
                     break;
                 case Message::MSG_POWEROFF:
                     activateButtonLight( false );
+                    mRelayEnablePin->disable();
 
                     mPoweredOn = false;
 
-                  //  gpio_set_level( PIN_RELAY, 0 );
-                    mMonoblockEnablePin->disable();
+                    //mMonoblockEnablePin->disable();
                     mLCD->enableBacklight( false );
+
                     mAudioQueue->add( Message::MSG_AUDIO_SHUTDOWN );
 
                     break;
                 case Message::MSG_POWERON:
                     activateButtonLight( true ); 
-                    mMonoblockEnablePin->enable();
+                    mRelayEnablePin->enable();
 
                     mPoweredOn = true;
 
                     mLCD->enableBacklight( true );
-                    gpio_set_level( PIN_RELAY, 1 );
-                    taskDelayInMs( 1000 );
 
                     mAudioQueue->add( Message::MSG_AUDIO_RESTART );
                     
@@ -625,6 +628,20 @@ Amplifier::handleAmplifierThread() {
 
                         mAudioQueue->add( Message::MSG_VOLUME_SET, mState.mCurrentAttenuation );
                     }  
+                    break;
+                case Message::MSG_INPUT_SET:
+                    {
+                        AMP_DEBUG_I( "Attempting to set audio input to %d", msg.mParam );
+                        if ( msg.mParam < mAllInputs.size() ) {
+                            mCurrentInput = msg.mParam;
+                    
+                            ScopedLock lock( mStateMutex );
+                            mState.mCurrentInput = mAllInputs[ mCurrentInput ];
+
+                            mAudioQueue->add( Message::MSG_INPUT_SET );
+                            asyncUpdateDisplay();
+                        }
+                    }
                     break;
                 case Message::MSG_INPUT_UP:
                     {
@@ -705,6 +722,17 @@ Amplifier::handleVolumeButtonPress() {
     AMP_DEBUG_I( "Volume button pressed" );
 }
 
+InputPtr 
+Amplifier::findInput( uint8_t inputType, uint8_t modifier ) {
+    for ( InputVector::iterator i = mAllInputs.begin(); i != mAllInputs.end(); ++i ) {
+        if ( (*i)->mPort == inputType && (*i)->mID == modifier ) {
+            return *i;
+        }
+    }
+
+    return InputPtr( NULL );
+}
+
 void 
 Amplifier::audioChangeInput() {
     // change the input to what is specified in the configuration
@@ -716,6 +744,9 @@ Amplifier::audioChangeInput() {
         mDolby->stopDolby();
     }
     */
+    if ( mSPDIF->isRunning() ) {
+        mSPDIF->run( false );
+    }
 
     if ( currentInput.get() ) {
         if( currentInput->mType == Input::INPUT_TYPE_ANALOG ) {
@@ -723,15 +754,26 @@ Amplifier::audioChangeInput() {
             if ( currentInput->mPort == Input::INPUT_PORT_RCA ) {
                 AMP_DEBUG_I( "...Setting RCA input to %d", mState.mCurrentInput->mID );
                 // rca input
-              //  mChannelSel->selectChannel( currentInput->mID + 1 );
+                mChannelSel->selectChannel( currentInput->mID );
+                mChannelSel->enable( true );
             }
         } else if ( currentInput->mType == Input::INPUT_TYPE_DIGITAL ) {
             // deselect all relays to save power
            // mChannelSel->selectChannel( 0 );
+           mChannelSel->enable( false );
             
             if ( currentInput->mPort == Input::INPUT_PORT_SPDIF ) {
-                AMP_DEBUG_I( "...Setting SPDIF input to %d", currentInput->mID );
+                AMP_DEBUG_I( "...Setting digital input to %d", currentInput->mID );
 
+                if ( currentInput->mID == 2 ) {
+                    AMP_DEBUG_I( "...Setting input to Dolby Decoder" );
+                    //   mDolby->startDolby();
+                    //   mDolby->run();
+                    //  mDolby->mute( false );
+                } else {
+                    mSPDIF->setInput( currentInput->mID );
+                    mSPDIF->run( true );
+                }
                // mDigitalReceiver->setInput( currentInput->mID );
 
                 if ( currentInput->mID == 0 ) {
@@ -756,16 +798,16 @@ Amplifier::startAudio() {
     audioChangeInput();
 
     AMP_DEBUG_I( "Setting previous volume" );    
-    // mMasterVolume->setAttenuation( mState.mCurrentAttenuation );
+    mMasterVolume->setAttenuation( mState.mCurrentAttenuation );
    // mMasterVolume->setAttenuation( 15 );
 
     AMP_DEBUG_I( "Enabling DACs" );
     for ( int i = 0; i < AMP_DAC_TOTAL_NUM; i++ ) {
-   //     mDAC[i]->enable( true );
+        mDAC[i]->enable( true );
     }
 
     AMP_DEBUG_I( "Unmuting outputs" );
-  //  mMasterVolume->mute( false );
+    mMasterVolume->mute( false );
 
     AMP_DEBUG_I( "Switching to PLAY state" );
     changeAmplifierState( AmplifierState::STATE_PLAYING );
@@ -781,6 +823,8 @@ Amplifier::stopAudio() {
     mTimer->cancelTimer( mSpdifTimerID );
     mSpdifTimerID = 0;
 
+    mChannelSel->enable( false );
+
     /*
     if ( mDolby->isRunning() ) {
         mDolby->stopDolby();
@@ -788,12 +832,12 @@ Amplifier::stopAudio() {
         */
 
     AMP_DEBUG_I( "Muting volume" );
-   // mMasterVolume->mute( true );
+    mMasterVolume->mute( true );
 
     // Disable the DACs
     AMP_DEBUG_I( "Disabling DACs" );
     for ( int i = 0; i < AMP_DAC_TOTAL_NUM; i++ ) {
-      //  mDAC[i]->enable( false );
+        mDAC[i]->enable( false );
     }
 
     AMP_DEBUG_I( "Switching to SLEEP state" );
@@ -831,11 +875,11 @@ Amplifier::handleAudioThread() {
                     
                     break;
                 case Message::MSG_INPUT_SET:
-                    AMP_DEBUG_I( "Setting audio input" );
+                    {
+                        AMP_DEBUG_I( "Setting audio input" );
 
-                    AMP_DEBUG_E( "Need to do actual audio input selection here" );
-
-                    //mChannelSel->setInput( ChannelSel::INPUT_STEREO_1 );
+                        audioChangeInput();
+                    }
                     break;
                 case Message::MSG_TIMER: 
                     if ( msg.mParam == mSpdifTimerID ) {

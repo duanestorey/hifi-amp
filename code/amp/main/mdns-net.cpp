@@ -11,9 +11,10 @@ MDNS::MDNS() {
 }
 
 void
-MDNS::start() {
+MDNS::start(  const std::string &name, const std::string &desc ) {
     //set hostname
-    mdns_hostname_set( "amp2" ) ;
-    mdns_instance_name_set( "Hifi Audio Amplifier" );
+    AMP_DEBUG_I( "Starting mDNS Service" );
+    mdns_hostname_set( name.c_str() ) ;
+    mdns_instance_name_set( desc.c_str() );
     mdns_service_add( NULL, "_http", "_tcp", 80, NULL, 0 );
 }

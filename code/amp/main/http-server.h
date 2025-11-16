@@ -6,6 +6,7 @@
 #include "diagnostics.h"
 #include <string>
 #include <memory>
+#include "input.h"
 
 class HTTPServer {
 public:
@@ -20,11 +21,11 @@ public:
         SERVER_VOLUME_UP_5,
         SERVER_VOLUME_DOWN_5,
         SERVER_INPUT_HDMI,
-        SERVER_INPUT_BLUERAY,
         SERVER_INPUT_STREAMER,
-        SERVER_INPUT_TV,
+        SERVER_INPUT_DOLBY,
+        SERVER_INPUT_ANALOG1,
+        SERVER_INPUT_ANALOG2,
         SERVER_INPUT_VINYL,
-        SERVER_INPUT_GAME,
         SERVER_NOT_FOUND
     };
 
